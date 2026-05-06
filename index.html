@@ -2,579 +2,556 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Контент Фабрика — AI-команда для брендов одежды</title>
-<meta name="description" content="Один продукт заменяет фотографа, SMM-щика и менеджера в DM. Тест-драйв $1 500 за 30 видео + 210 фото или установка системы от $5 000.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Контент Фабрика — AI-команда вместо фотографа, SMM-щика и менеджера в DM</title>
+<meta name="description" content="Один продукт заменяет фотографа, SMM-команду и менеджера в DM. Тест-драйв $1 500 за 30 видео + 210 фото или установка системы от $5 000.">
 <link rel="canonical" href="https://ssardcompany-web.github.io/">
 <meta property="og:title" content="Контент Фабрика — AI-команда для брендов одежды">
-<meta property="og:description" content="Один продукт заменяет фотографа, SMM-щика и менеджера в DM. Тест-драйв $1 500 или установка системы от $5 000.">
+<meta property="og:description" content="Один продукт заменяет фотографа, SMM-щика и менеджера в DM. От $1 500.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --base:#F4F1E8;
-  --paper:#F8F6F0;
-  --cream:#EDE7D6;
-  --surface:#FFFFFF;
-  --ink:#0F0E0C;
-  --ink-soft:#2A2622;
-  --ink-muted:#5C5852;
-  --border:rgba(15,14,12,0.08);
-  --border-strong:rgba(15,14,12,0.18);
-  --accent:#A87A4F;
-  --accent-deep:#7C5836;
-  --accent-tint:rgba(168,122,79,0.10);
-  --rust:#B8542A;
-  --moss:#5E5234;
-  --font-display:'Instrument Serif',Georgia,serif;
-  --font-sans:'Geist',-apple-system,sans-serif;
-  --font-mono:'JetBrains Mono',ui-monospace,monospace;
-  --ease:cubic-bezier(0.32,0.72,0,1);
+  --bg:#050505;
+  --surface:#0f0f11;
+  --surface-2:#16161a;
+  --surface-hover:#1a1a1d;
+  --border:rgba(255,255,255,0.08);
+  --border-strong:rgba(255,255,255,0.18);
+  --text:#f8f8f8;
+  --text-muted:#8b8b93;
+  --accent:#ffffff;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;background:var(--base);overflow-x:hidden;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{
-  font-family:var(--font-sans);
-  background:var(--base);
-  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  font-feature-settings:"ss01","cv01","cv11";
 }
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  z-index:1;
-  opacity:0.4;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+h1,h2,h3,h4,.eyebrow,.font-display{font-family:'Outfit',sans-serif;font-weight:500;}
+::selection{background:rgba(255,255,255,0.15);}
+
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+
+/* HEADER (sticky) */
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(5,5,5,0.85);
+  backdrop-filter:saturate(180%) blur(16px);
+  -webkit-backdrop-filter:saturate(180%) blur(16px);
+  border-bottom:1px solid var(--border);
 }
-
-h1,h2,h3,h4{font-family:var(--font-display);font-weight:400;letter-spacing:-0.025em;line-height:1.0;}
-a{color:inherit;text-decoration:none;transition:all 280ms var(--ease);}
-::selection{background:var(--accent-tint);}
-
-.container{max-width:1440px;margin:0 auto;padding:0 clamp(20px,5vw,80px);position:relative;z-index:2;}
-.section{padding:clamp(80px,12vw,160px) 0;border-top:1px solid var(--border);position:relative;z-index:2;}
-.section:first-of-type{border-top:none;}
-
-/* TYPOGRAPHY UTILITIES */
-.eyebrow{
-  font-family:var(--font-mono);
-  font-size:11px;
-  letter-spacing:0.24em;
-  text-transform:uppercase;
-  color:var(--accent);
-  font-weight:500;
-  display:inline-flex;
+nav{
+  display:flex;
+  justify-content:space-between;
   align-items:center;
-  gap:14px;
-  margin-bottom:32px;
+  padding:20px 0;
 }
-.eyebrow::before{
-  content:"";
-  width:32px;
-  height:1px;
-  background:var(--accent);
+.logo{
+  font-family:'Outfit',sans-serif;
+  font-weight:700;
+  letter-spacing:2px;
+  font-size:14px;
+  color:var(--text);
+  text-decoration:none;
+  text-transform:uppercase;
 }
-.eyebrow-num{font-family:var(--font-mono);color:var(--ink-muted);}
-
-.hero-display{
-  font-family:var(--font-display);
-  font-size:clamp(56px,11vw,180px);
-  line-height:0.92;
-  letter-spacing:-0.045em;
-  color:var(--ink);
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-link{
+  color:var(--text-muted);
+  text-decoration:none;
+  font-size:14px;
+  transition:color .3s;
 }
-.hero-display em{font-style:italic;color:var(--accent);}
-
-.title-xl{font-family:var(--font-display);font-size:clamp(40px,7vw,96px);line-height:0.96;letter-spacing:-0.035em;}
-.title-lg{font-family:var(--font-display);font-size:clamp(32px,5vw,64px);line-height:1.02;letter-spacing:-0.025em;}
-.title-md{font-family:var(--font-display);font-size:clamp(24px,3vw,40px);line-height:1.1;letter-spacing:-0.02em;}
-
-.lead{font-size:clamp(18px,2vw,22px);line-height:1.5;color:var(--ink-soft);max-width:64ch;}
-.muted{color:var(--ink-muted);}
+.nav-link:hover{color:var(--accent);}
+@media(max-width:640px){.nav-links .nav-link.hide-sm{display:none;}}
 
 /* BUTTONS */
 .btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
-  font-family:var(--font-sans);
-  font-weight:500;
+  gap:8px;
+  padding:16px 32px;
   font-size:15px;
-  letter-spacing:-0.005em;
-  padding:18px 32px;
-  border-radius:0;
+  font-weight:500;
+  text-decoration:none;
+  border-radius:4px;
+  transition:all .3s ease;
   cursor:pointer;
-  border:none;
-  transition:all 280ms var(--ease);
-  white-space:nowrap;
-  position:relative;
+  border:1px solid transparent;
+  font-family:'Inter',sans-serif;
 }
-.btn-primary{background:var(--ink);color:var(--paper);}
-.btn-primary:hover{background:var(--accent);transform:translateY(-2px);}
-.btn-secondary{background:transparent;color:var(--ink);border:1px solid var(--ink);}
-.btn-secondary:hover{background:var(--ink);color:var(--paper);}
-.btn-accent{background:var(--accent);color:var(--paper);}
-.btn-accent:hover{background:var(--accent-deep);transform:translateY(-2px);box-shadow:0 20px 60px rgba(168,122,79,0.35);}
-.btn-ghost{background:var(--paper);color:var(--ink);}
-.btn-ghost:hover{background:var(--ink);color:var(--paper);}
-.btn-block{display:flex;width:100%;}
-.btn-large{font-size:17px;padding:22px 36px;}
-.btn .arrow{transition:transform 280ms var(--ease);}
+.btn-primary{background:var(--accent);color:var(--bg);}
+.btn-primary:hover{background:#e0e0e0;transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,0.15);}
+.btn-secondary{background:transparent;color:var(--text);border:1px solid var(--border);}
+.btn-secondary:hover{background:var(--surface-hover);border-color:var(--text-muted);}
+.btn-ghost{background:var(--bg);color:var(--text);border:1px solid var(--border);}
+.btn-ghost:hover{background:var(--surface);border-color:var(--text-muted);}
+.btn .arrow{transition:transform .3s ease;}
 .btn:hover .arrow{transform:translateX(4px);}
 
-/* HEADER */
-header{
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:rgba(244,241,232,0.85);
-  backdrop-filter:saturate(180%) blur(16px);
-  -webkit-backdrop-filter:saturate(180%) blur(16px);
-  border-bottom:1px solid var(--border);
-}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;gap:16px;}
-.logo{font-family:var(--font-display);font-size:26px;letter-spacing:-0.02em;line-height:1;display:flex;align-items:baseline;gap:10px;}
-.logo-issue{font-family:var(--font-mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-muted);}
-.nav-cta{font-family:var(--font-sans);font-weight:500;font-size:13px;padding:11px 20px;background:var(--ink);color:var(--paper);transition:all 240ms var(--ease);}
-.nav-cta:hover{background:var(--accent);}
-
 /* HERO */
-.hero{padding-top:60px;padding-bottom:0;border-top:none;}
-.hero-eyebrow-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:60px;flex-wrap:wrap;gap:20px;}
-.hero-meta{font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--ink-muted);display:flex;gap:24px;}
-.hero-meta span{position:relative;}
-.hero-meta span:not(:last-child)::after{content:"·";position:absolute;right:-15px;color:var(--ink-muted);}
-
-.hero-display-block{max-width:1280px;}
-.hero-display-block h1{margin-bottom:0;}
-
-.hero-bottom{
-  display:grid;
-  grid-template-columns:1.5fr 1fr;
-  gap:80px;
-  align-items:end;
-  margin-top:80px;
-  padding-bottom:80px;
-}
-.hero-sub{font-size:clamp(18px,1.6vw,22px);line-height:1.5;color:var(--ink-soft);max-width:50ch;margin-bottom:40px;}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;}
-.hero-visual{
+.hero{
+  padding:120px 0 80px;
+  text-align:center;
   position:relative;
-  aspect-ratio:9/16;
-  max-width:340px;
-  margin-left:auto;
-  background:linear-gradient(165deg,#d4cdb8 0%,#b8a98b 50%,#a87a4f 100%);
   overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  padding:24px;
-  color:var(--paper);
 }
-.hero-visual::before{
-  content:"";
+.hero::before{
+  content:'';
   position:absolute;
-  inset:0;
-  background:radial-gradient(60% 40% at 50% 30%,rgba(255,255,255,0.20) 0%,transparent 70%);
+  top:-50%;
+  left:50%;
+  transform:translateX(-50%);
+  width:900px;
+  height:900px;
+  background:radial-gradient(circle,rgba(255,255,255,0.04) 0%,rgba(0,0,0,0) 70%);
+  z-index:0;
+  pointer-events:none;
 }
-.hero-visual::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.15 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
-  mix-blend-mode:overlay;
-  opacity:0.6;
-}
-.hero-visual > *{position:relative;z-index:1;}
-.hero-visual-meta{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;display:flex;justify-content:space-between;}
-.hero-visual-title{font-family:var(--font-display);font-size:30px;line-height:1.1;letter-spacing:-0.02em;}
-.hero-visual-tag{font-family:var(--font-mono);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;}
-
-/* MARQUEE */
-.marquee{
-  background:var(--ink);
-  color:var(--paper);
-  padding:18px 0;
-  overflow:hidden;
-  border-top:1px solid var(--ink);
-  border-bottom:1px solid var(--ink);
-  position:relative;
-  z-index:3;
-}
-.marquee-track{
-  display:flex;
-  gap:60px;
-  animation:scroll 32s linear infinite;
-  white-space:nowrap;
-  font-family:var(--font-display);
-  font-size:clamp(28px,4vw,52px);
-  line-height:1;
-  letter-spacing:-0.025em;
-  font-style:italic;
-}
-.marquee-track span{display:flex;align-items:center;gap:60px;}
-.marquee-track span::after{content:"✦";color:var(--accent);font-style:normal;font-size:0.7em;}
-@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
-/* PAIN */
-.pain{background:var(--cream);}
-.pain-header{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:end;margin-bottom:80px;}
-.pain-header h2{margin-bottom:0;}
-.pain-stats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:1px;
-  background:var(--border);
-  border:1px solid var(--border);
-}
-.pain-stat{
-  background:var(--cream);
-  padding:48px 36px;
-  position:relative;
-  transition:all 320ms var(--ease);
-}
-.pain-stat:hover{background:var(--paper);}
-.pain-stat-num{
-  font-family:var(--font-mono);
-  font-size:11px;
-  letter-spacing:0.22em;
+.hero > *{position:relative;z-index:1;}
+.eyebrow{
+  display:inline-block;
+  font-size:12px;
   text-transform:uppercase;
-  color:var(--accent);
+  letter-spacing:3px;
+  color:var(--text-muted);
   margin-bottom:24px;
+  padding:6px 16px;
+  border:1px solid var(--border);
+  border-radius:100px;
+  font-weight:500;
 }
-.pain-stat-amount{
-  font-family:var(--font-display);
-  font-size:clamp(48px,5vw,72px);
-  line-height:0.96;
-  letter-spacing:-0.035em;
-  color:var(--ink);
-  margin-bottom:16px;
+.hero h1{
+  font-size:clamp(40px,6vw,72px);
+  line-height:1.08;
+  margin-bottom:24px;
+  letter-spacing:-1px;
+  font-weight:300;
+  max-width:18ch;
+  margin-left:auto;
+  margin-right:auto;
 }
-.pain-stat-amount em{font-style:italic;color:var(--accent);}
-.pain-stat-label{font-family:var(--font-display);font-size:24px;letter-spacing:-0.015em;color:var(--ink);margin-bottom:8px;}
-.pain-stat-desc{font-size:14px;color:var(--ink-muted);line-height:1.55;}
+.hero-sub{
+  font-size:18px;
+  color:var(--text-muted);
+  max-width:600px;
+  margin:0 auto 48px;
+}
+.hero-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
 
-.pain-quote{
-  margin-top:80px;
-  padding:48px 0 0;
-  border-top:1px solid var(--border-strong);
+/* SECTIONS */
+section{padding:100px 0;border-top:1px solid var(--border);}
+.section-header{margin-bottom:64px;text-align:center;}
+.section-header h2{
+  font-size:clamp(28px,4vw,48px);
+  font-weight:300;
+  letter-spacing:-0.5px;
+  margin-bottom:16px;
+  line-height:1.15;
 }
-.pain-quote p{
-  font-family:var(--font-display);
-  font-style:italic;
-  font-size:clamp(28px,3.5vw,48px);
-  line-height:1.2;
-  letter-spacing:-0.022em;
-  max-width:24ch;
+.section-header p{
+  color:var(--text-muted);
+  font-size:18px;
+  max-width:640px;
+  margin:0 auto;
 }
+
+/* GRID-3 (Pain, Solution) */
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:24px;
+}
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:40px;
+  transition:transform .3s,border-color .3s,background .3s;
+}
+.card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.2);background:var(--surface-2);}
+.card-number{
+  font-family:'Outfit',sans-serif;
+  font-size:48px;
+  font-weight:300;
+  color:rgba(255,255,255,0.15);
+  margin-bottom:24px;
+  line-height:1;
+}
+.card h3{font-size:24px;margin-bottom:12px;font-weight:500;}
+.card p{color:var(--text-muted);font-size:15px;line-height:1.6;}
+
+/* MATH (Proof) */
+.math-compare{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+@media(max-width:768px){.math-compare{grid-template-columns:1fr;}}
+.math-box{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:48px;
+}
+.math-box.highlight{
+  border-color:rgba(255,255,255,0.3);
+  background:linear-gradient(180deg,var(--surface-2) 0%,rgba(255,255,255,0.04) 100%);
+}
+.math-box h3{
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  color:var(--text-muted);
+  margin-bottom:16px;
+  font-weight:500;
+}
+.math-box.highlight h3{color:var(--text);}
+.math-price{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(40px,5vw,64px);
+  font-weight:300;
+  line-height:1;
+  margin-bottom:8px;
+  letter-spacing:-1px;
+}
+.math-sub{color:var(--text-muted);margin-bottom:32px;font-size:14px;}
+.math-list{list-style:none;}
+.math-list li{
+  padding:14px 0;
+  border-top:1px solid var(--border);
+  color:var(--text);
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:15px;
+}
+.math-list.bad li{color:var(--text-muted);}
+.math-list .check{color:var(--accent);flex:none;font-size:14px;}
+.math-list .cross{color:var(--text-muted);flex:none;font-size:14px;}
 
 /* EXAMPLES */
-.examples-header{display:flex;justify-content:space-between;align-items:end;margin-bottom:64px;gap:40px;flex-wrap:wrap;}
-.examples-header > div:first-child{max-width:600px;}
-.examples-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
-.example{
-  position:relative;
+.examples-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:16px;
+}
+.example-card{
   aspect-ratio:9/16;
+  border:1px solid var(--border);
+  border-radius:8px;
+  position:relative;
   overflow:hidden;
-  background:var(--cream);
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
-  padding:18px;
+  justify-content:flex-end;
+  padding:20px;
+  transition:transform .4s ease,border-color .4s;
   cursor:pointer;
-  transition:all 360ms var(--ease);
 }
-.example::before{
-  content:"";
+.example-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.25);}
+.example-card.bg-1{background:linear-gradient(180deg,#1f1d1a 0%,#0a0908 100%);}
+.example-card.bg-2{background:linear-gradient(180deg,#22201a 0%,#0a0807 100%);}
+.example-card.bg-3{background:linear-gradient(180deg,#1a1714 0%,#080706 100%);}
+.example-card.bg-4{background:linear-gradient(180deg,#1d1b18 0%,#0f0e0c 100%);}
+.example-card.bg-5{background:linear-gradient(180deg,#211e1a 0%,#0c0b09 100%);}
+.example-card.bg-6{background:linear-gradient(180deg,#1c1a16 0%,#070605 100%);}
+.example-card::before{
+  content:'';
   position:absolute;
   inset:0;
+  background:radial-gradient(60% 50% at 50% 25%,rgba(255,255,255,0.06) 0%,transparent 70%);
   z-index:0;
-  transition:transform 600ms var(--ease);
 }
-.example:hover::before{transform:scale(1.06);}
-.example-1::before{background:linear-gradient(180deg,#d4cdb8 0%,#a87a4f 100%);}
-.example-2::before{background:linear-gradient(180deg,#e8e3d4 0%,#5e5234 100%);}
-.example-3::before{background:linear-gradient(180deg,#c8b4a3 0%,#7c5836 100%);}
-.example-4::before{background:linear-gradient(180deg,#dfd6c2 0%,#3d3a35 100%);}
-.example-5::before{background:linear-gradient(180deg,#e5dac4 0%,#a87a4f 100%);}
-.example-6::before{background:linear-gradient(180deg,#a87a4f 0%,#0f0e0c 100%);}
-.example::after{
-  content:"";
+.example-card::after{
+  content:'';
   position:absolute;
   inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);
   z-index:1;
-  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='gn'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23gn)'/%3E%3C/svg%3E");
-  mix-blend-mode:overlay;
-  opacity:0.5;
 }
-.example > *{position:relative;z-index:2;color:var(--paper);}
-.example-top{display:flex;justify-content:space-between;gap:6px;align-items:flex-start;}
-.chip{font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;padding:5px 9px;font-weight:500;background:var(--paper);color:var(--ink);}
-.chip-reach{background:var(--accent);color:var(--paper);}
-.chip-brand{background:var(--ink);color:var(--paper);}
-.example-name{font-family:var(--font-display);font-size:24px;letter-spacing:-0.018em;line-height:1.1;align-self:flex-end;width:100%;}
-.example-bottom{display:flex;justify-content:space-between;align-items:center;}
-.example-cost{font-family:var(--font-mono);font-size:11px;letter-spacing:0.05em;background:rgba(0,0,0,0.6);padding:5px 9px;}
-@media(min-width:768px){
-  .examples-grid > *:nth-child(even){transform:translateY(44px);}
+.example-content{position:relative;z-index:2;}
+.example-tag{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:var(--text-muted);
+  margin-bottom:8px;
+  font-family:'Outfit',sans-serif;
+}
+.example-title{
+  font-weight:500;
+  font-size:17px;
+  margin-bottom:16px;
+  line-height:1.3;
+  font-family:'Outfit',sans-serif;
+}
+.example-meta{
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+  font-family:'Outfit',sans-serif;
+  letter-spacing:1px;
+  color:var(--text-muted);
+  border-top:1px solid rgba(255,255,255,0.12);
+  padding-top:12px;
+  text-transform:uppercase;
 }
 
-/* SOLUTION */
-.solution{background:var(--paper);}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
-.step{
-  position:relative;
-  padding:48px 36px;
+/* TEST-DRIVE BANNER */
+.testdrive-banner{
   background:var(--surface);
   border:1px solid var(--border);
-  transition:all 320ms var(--ease);
-  overflow:hidden;
-}
-.step::before{
-  content:attr(data-num);
-  position:absolute;
-  top:24px;
-  right:36px;
-  font-family:var(--font-display);
-  font-size:160px;
-  line-height:0.85;
-  color:var(--cream);
-  font-style:italic;
-  z-index:0;
-}
-.step:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,0.06);}
-.step > *{position:relative;z-index:1;}
-.step-num{font-family:var(--font-mono);font-size:11px;letter-spacing:0.22em;color:var(--accent);text-transform:uppercase;margin-bottom:20px;display:block;}
-.step-title{font-family:var(--font-display);font-size:32px;letter-spacing:-0.022em;line-height:1.1;margin-bottom:16px;}
-.step p{font-size:15px;line-height:1.6;color:var(--ink-muted);}
-
-/* PROOF */
-.proof{background:var(--ink);color:var(--paper);position:relative;overflow:hidden;}
-.proof::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(60% 60% at 30% 0%,rgba(168,122,79,0.18) 0%,transparent 60%);
-  pointer-events:none;
-}
-.proof .eyebrow{color:var(--accent);}
-.proof .eyebrow::before{background:var(--accent);}
-.proof .eyebrow-num{color:rgba(244,241,232,0.4);}
-.proof-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:start;}
-.proof h2{color:var(--paper);font-size:clamp(40px,5vw,72px);max-width:18ch;margin-bottom:60px;}
-.proof-amount{
-  font-family:var(--font-display);
-  font-size:clamp(72px,10vw,160px);
-  line-height:0.9;
-  letter-spacing:-0.045em;
-  color:var(--accent);
-  margin-bottom:20px;
-}
-.proof-amount .currency{font-size:0.5em;vertical-align:super;color:rgba(168,122,79,0.7);}
-.proof-amount-label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(244,241,232,0.5);}
-.proof-versus{
-  margin-top:64px;
-  padding-top:48px;
-  border-top:1px solid rgba(244,241,232,0.15);
-}
-.proof-versus-label{font-family:var(--font-mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(244,241,232,0.5);margin-bottom:16px;}
-.proof-versus-amount{font-family:var(--font-display);font-size:clamp(48px,6vw,80px);line-height:0.95;letter-spacing:-0.03em;color:var(--paper);margin-bottom:12px;}
-.proof-versus-desc{font-size:15px;color:rgba(244,241,232,0.6);}
-.proof-list{display:flex;flex-direction:column;gap:1px;background:rgba(244,241,232,0.08);}
-.proof-item{
-  background:var(--ink);
-  padding:32px;
+  border-radius:12px;
+  padding:48px;
+  max-width:900px;
+  margin:0 auto;
   display:flex;
-  gap:20px;
-  align-items:flex-start;
+  gap:48px;
+  align-items:center;
+  flex-wrap:wrap;
+  background-image:radial-gradient(circle at top right,rgba(255,255,255,0.06) 0%,transparent 60%);
 }
-.proof-item-num{
-  flex:none;
-  font-family:var(--font-mono);
-  font-size:11px;
-  letter-spacing:0.22em;
-  color:var(--accent);
-  text-transform:uppercase;
-  padding-top:6px;
-  width:24px;
-}
-.proof-item-content{flex:1;}
-.proof-item-title{font-family:var(--font-display);font-size:24px;letter-spacing:-0.015em;line-height:1.15;margin-bottom:8px;color:var(--paper);}
-.proof-item-amount{font-family:var(--font-display);font-size:32px;color:var(--accent);letter-spacing:-0.025em;line-height:1;margin-bottom:12px;}
-.proof-item-desc{font-size:14px;color:rgba(244,241,232,0.6);line-height:1.55;}
-
-/* TEST-DRIVE */
-.testdrive{background:var(--paper);}
-.testdrive-card{
-  position:relative;
-  background:var(--surface);
-  padding:clamp(48px,7vw,96px);
-  overflow:hidden;
-}
-.testdrive-card::before{
-  content:"$1500";
-  position:absolute;
-  top:-40px;
-  right:-40px;
-  font-family:var(--font-display);
-  font-size:clamp(180px,24vw,400px);
-  font-style:italic;
-  line-height:0.85;
-  color:var(--cream);
-  pointer-events:none;
-  z-index:0;
-}
-.testdrive-card > *{position:relative;z-index:1;}
-.testdrive-card h2{font-size:clamp(36px,5vw,64px);margin-bottom:24px;max-width:20ch;}
-.testdrive-sub{font-size:18px;line-height:1.55;color:var(--ink-muted);margin-bottom:56px;max-width:60ch;}
-.testdrive-row{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:center;margin-bottom:56px;}
+.testdrive-left{flex:1;min-width:280px;}
+.testdrive-right{flex:1.4;min-width:300px;}
 .testdrive-price{
-  font-family:var(--font-display);
-  font-size:clamp(96px,14vw,180px);
-  line-height:0.88;
-  letter-spacing:-0.045em;
-  color:var(--accent);
-  font-style:italic;
+  font-family:'Outfit',sans-serif;
+  font-size:64px;
+  font-weight:300;
+  line-height:1;
+  margin-bottom:16px;
+  letter-spacing:-1.5px;
 }
-.testdrive-period{font-family:var(--font-mono);font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:var(--ink-muted);margin-top:16px;}
-.testdrive-features{list-style:none;display:flex;flex-direction:column;gap:0;}
-.testdrive-features li{
+.testdrive-period{
+  color:var(--text-muted);
+  font-size:14px;
+  margin-bottom:32px;
+  font-family:'Outfit',sans-serif;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+.testdrive-list{list-style:none;}
+.testdrive-list li{
   display:flex;
-  gap:16px;
-  font-size:17px;
+  gap:14px;
+  align-items:flex-start;
+  padding:14px 0;
+  font-size:15px;
   line-height:1.5;
-  padding:18px 0;
   border-bottom:1px solid var(--border);
 }
-.testdrive-features li:last-child{border-bottom:none;}
-.testdrive-features li::before{content:"01";font-family:var(--font-mono);color:var(--accent);font-size:11px;letter-spacing:0.18em;flex:none;padding-top:6px;width:22px;}
-.testdrive-features li:nth-child(2)::before{content:"02";}
-.testdrive-features li:nth-child(3)::before{content:"03";}
-.testdrive-features li:nth-child(4)::before{content:"04";}
-.testdrive-features strong{color:var(--ink);font-weight:500;}
+.testdrive-list li:last-child{border-bottom:none;}
+.testdrive-list .check{color:var(--accent);flex:none;font-weight:500;}
+.testdrive-list strong{color:var(--text);font-weight:500;}
 
 /* PRICING */
-.pricing{background:var(--cream);}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;align-items:stretch;border:1px solid var(--border);background:var(--border);}
-.tier{
-  background:var(--paper);
-  padding:48px 36px;
+.pricing-grid{
+  display:grid;
+  grid-template-columns:1fr 1.1fr 1fr;
+  gap:24px;
+  align-items:stretch;
+}
+@media(max-width:992px){.pricing-grid{grid-template-columns:1fr;}}
+.price-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:40px;
   display:flex;
   flex-direction:column;
-  position:relative;
-  transition:all 320ms var(--ease);
+  height:100%;
+  transition:all .3s ease;
 }
-.tier:hover{background:var(--surface);}
-.tier-mvp{background:var(--ink);color:var(--paper);position:relative;}
-.tier-mvp:hover{background:var(--ink);}
-.tier-mvp .tier-features li{border-color:rgba(244,241,232,0.12);}
-.tier-mvp .tier-features li::before{color:var(--accent);}
-.tier-mvp p,.tier-mvp span{color:var(--paper);}
-.tier-mvp .muted{color:rgba(244,241,232,0.55);}
-.tier-mvp .tier-price{color:var(--accent);}
-.tier-badge{
+.price-card:hover{border-color:rgba(255,255,255,0.18);}
+.price-card.featured{
+  background:linear-gradient(180deg,#16161a 0%,var(--surface) 100%);
+  border-color:rgba(255,255,255,0.3);
+  box-shadow:0 24px 48px rgba(0,0,0,0.5);
+  position:relative;
+}
+@media(min-width:993px){.price-card.featured{transform:scale(1.04);}}
+.price-badge{
   position:absolute;
-  top:-1px;
+  top:-12px;
   left:50%;
   transform:translateX(-50%);
   background:var(--accent);
-  color:var(--paper);
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.22em;
+  color:var(--bg);
+  font-family:'Outfit',sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2px;
+  padding:6px 14px;
+  border-radius:100px;
   text-transform:uppercase;
-  font-weight:500;
-  padding:8px 16px;
   white-space:nowrap;
 }
-.tier-num{font-family:var(--font-mono);font-size:11px;letter-spacing:0.22em;color:var(--accent);text-transform:uppercase;margin-bottom:24px;}
-.tier-name{font-family:var(--font-display);font-size:40px;letter-spacing:-0.022em;line-height:1.05;margin-bottom:24px;}
-.tier-price{font-family:var(--font-display);font-size:64px;line-height:1;letter-spacing:-0.035em;color:var(--accent);margin-bottom:6px;font-style:italic;}
-.tier-period{font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:32px;}
-.tier-mvp .tier-period{color:rgba(244,241,232,0.5);}
-.tier-features{list-style:none;display:flex;flex-direction:column;gap:0;margin-bottom:36px;flex:1;}
-.tier-features li{display:flex;gap:12px;font-size:14px;line-height:1.5;padding:12px 0;border-bottom:1px solid var(--border);}
-.tier-features li:last-child{border-bottom:none;}
-.tier-features li::before{content:"+";color:var(--accent);font-family:var(--font-mono);font-weight:500;flex:none;}
+.price-card h3{font-size:20px;margin-bottom:16px;font-weight:500;}
+.price-amount{
+  font-family:'Outfit',sans-serif;
+  font-size:48px;
+  font-weight:300;
+  margin-bottom:8px;
+  line-height:1;
+  letter-spacing:-1px;
+}
+.price-period{
+  color:var(--text-muted);
+  font-size:14px;
+  margin-bottom:32px;
+  font-family:'Outfit',sans-serif;
+  letter-spacing:1px;
+}
+.price-card ul{list-style:none;margin:0 0 32px;flex-grow:1;}
+.price-card ul li{
+  position:relative;
+  padding:12px 0 12px 24px;
+  font-size:14px;
+  color:var(--text-muted);
+  line-height:1.5;
+  border-bottom:1px solid var(--border);
+}
+.price-card ul li:last-child{border-bottom:none;}
+.price-card ul li::before{
+  content:'+';
+  position:absolute;
+  left:0;
+  top:12px;
+  color:var(--text);
+  font-family:'Outfit',sans-serif;
+  font-weight:500;
+}
+.price-card.featured ul li{color:var(--text);}
+.price-card.featured ul li::before{color:var(--accent);}
+.price-card .btn{width:100%;}
 
 /* FAQ */
-.faq{background:var(--paper);}
-.faq-list{display:flex;flex-direction:column;border-top:1px solid var(--border);}
-.faq-item{border-bottom:1px solid var(--border);transition:background 280ms var(--ease);}
+.faq-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--border);}
+.faq-item{
+  border-bottom:1px solid var(--border);
+  transition:background .3s;
+}
 .faq-item:hover{background:var(--surface);}
 .faq-item summary{
   cursor:pointer;
-  padding:36px 0;
+  padding:32px 0;
   display:grid;
   grid-template-columns:80px 1fr 60px;
   align-items:center;
-  gap:32px;
+  gap:24px;
   list-style:none;
 }
 .faq-item summary::-webkit-details-marker{display:none;}
-.faq-num{font-family:var(--font-mono);font-size:11px;letter-spacing:0.22em;color:var(--ink-muted);text-transform:uppercase;}
-.faq-q{font-family:var(--font-display);font-size:clamp(24px,2.6vw,36px);letter-spacing:-0.018em;line-height:1.2;color:var(--ink);}
-.faq-icon{justify-self:end;font-family:var(--font-display);font-size:36px;color:var(--accent);font-style:italic;transition:transform 280ms var(--ease);}
-.faq-item[open] .faq-icon{transform:rotate(45deg);}
-.faq-content{padding:0 0 40px 112px;font-size:17px;line-height:1.65;color:var(--ink-muted);max-width:70ch;}
+.faq-num{
+  font-family:'Outfit',sans-serif;
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--text-muted);
+  text-transform:uppercase;
+  font-weight:500;
+}
+.faq-q{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(18px,2vw,24px);
+  letter-spacing:-0.3px;
+  line-height:1.3;
+  color:var(--text);
+  font-weight:500;
+}
+.faq-icon{
+  justify-self:end;
+  font-size:24px;
+  color:var(--text-muted);
+  font-weight:300;
+  transition:all .3s;
+  font-family:'Outfit',sans-serif;
+}
+.faq-item[open] .faq-icon{transform:rotate(45deg);color:var(--text);}
+.faq-content{
+  padding:0 0 32px 104px;
+  font-size:15px;
+  line-height:1.7;
+  color:var(--text-muted);
+  max-width:70ch;
+}
+@media(max-width:640px){
+  .faq-item summary{grid-template-columns:60px 1fr 40px;gap:16px;padding:24px 0;}
+  .faq-content{padding-left:76px;}
+}
 
 /* DOWNSELL */
-.downsell{background:var(--accent);color:var(--paper);position:relative;overflow:hidden;}
-.downsell::before{
-  content:"$100";
-  position:absolute;
-  top:50%;
-  right:-60px;
-  transform:translateY(-50%);
-  font-family:var(--font-display);
-  font-size:clamp(240px,32vw,520px);
-  font-style:italic;
-  line-height:0.85;
-  color:var(--accent-deep);
-  opacity:0.4;
-  pointer-events:none;
-  z-index:0;
+.downsell-banner{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:64px 48px;
+  text-align:center;
+  margin-top:80px;
+  background-image:radial-gradient(circle at top,rgba(255,255,255,0.05) 0%,transparent 70%);
 }
-.downsell .container{position:relative;z-index:1;max-width:1000px;}
-.downsell .eyebrow{color:var(--paper);opacity:0.6;}
-.downsell .eyebrow::before{background:var(--paper);}
-.downsell h2{color:var(--paper);font-size:clamp(36px,5vw,64px);margin-bottom:24px;max-width:22ch;}
-.downsell-text{font-size:18px;line-height:1.55;max-width:60ch;margin-bottom:40px;color:rgba(244,241,232,0.85);}
+.downsell-banner h2{
+  font-size:clamp(26px,3vw,36px);
+  margin-bottom:16px;
+  font-weight:300;
+  letter-spacing:-0.5px;
+}
+.downsell-banner p{
+  color:var(--text-muted);
+  margin-bottom:32px;
+  max-width:520px;
+  margin-left:auto;
+  margin-right:auto;
+  font-size:16px;
+}
 
 /* CONTACT FORM */
-.contact{background:var(--ink);color:var(--paper);}
-.contact .eyebrow{color:var(--accent);}
-.contact .eyebrow::before{background:var(--accent);}
-.contact .eyebrow-num{color:rgba(244,241,232,0.4);}
-.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
-.contact h2{color:var(--paper);font-size:clamp(40px,5vw,80px);max-width:14ch;margin-bottom:32px;}
-.contact-text{color:rgba(244,241,232,0.7);font-size:18px;line-height:1.55;margin-bottom:48px;max-width:50ch;}
+.contact-section{background:var(--surface);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:48px;}}
+.contact-left h2{
+  font-size:clamp(36px,5vw,56px);
+  font-weight:300;
+  line-height:1.1;
+  letter-spacing:-1px;
+  margin-bottom:24px;
+}
+.contact-left p{color:var(--text-muted);font-size:17px;line-height:1.6;margin-bottom:32px;}
 .contact-tags{display:flex;flex-wrap:wrap;gap:8px;}
-.contact-tag{font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;padding:8px 14px;border:1px solid rgba(244,241,232,0.2);color:rgba(244,241,232,0.7);}
-
-.form-card{background:var(--paper);color:var(--ink);padding:48px;}
-.form-card h3{font-family:var(--font-display);font-size:32px;letter-spacing:-0.022em;margin-bottom:8px;}
-.form-card .form-sub{color:var(--ink-muted);margin-bottom:32px;font-size:14px;}
-.form-fields{display:flex;flex-direction:column;gap:20px;}
+.contact-tag{
+  font-family:'Outfit',sans-serif;
+  font-size:12px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  padding:8px 14px;
+  border:1px solid var(--border);
+  border-radius:100px;
+  color:var(--text-muted);
+}
+.form-card{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:40px;
+}
+.form-fields{display:flex;flex-direction:column;gap:24px;}
 .form-field label{
   display:block;
-  font-family:var(--font-mono);
-  font-size:10px;
-  letter-spacing:0.2em;
+  font-family:'Outfit',sans-serif;
+  font-size:11px;
+  letter-spacing:2px;
   text-transform:uppercase;
-  color:var(--ink-muted);
-  margin-bottom:8px;
+  color:var(--text-muted);
+  margin-bottom:10px;
+  font-weight:500;
 }
 .form-field input,
 .form-field select{
@@ -584,338 +561,320 @@ header{
   border-bottom:1px solid var(--border-strong);
   border-radius:0;
   padding:12px 0;
-  font-family:var(--font-sans);
-  font-size:16px;
-  color:var(--ink);
-  transition:all 240ms var(--ease);
+  font-family:'Inter',sans-serif;
+  font-size:15px;
+  color:var(--text);
+  transition:border-color .3s;
 }
 .form-field input:focus,
 .form-field select:focus{outline:none;border-color:var(--accent);}
-.form-agree{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--ink-muted);line-height:1.5;}
-.form-agree input{margin-top:3px;}
-.form-agree a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+.form-field select{cursor:pointer;}
+.form-field option{background:var(--bg);color:var(--text);}
+.form-agree{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-size:12px;
+  color:var(--text-muted);
+  line-height:1.5;
+}
+.form-agree a{color:var(--text);text-decoration:underline;text-underline-offset:3px;}
 
 /* FOOTER */
-footer{background:var(--ink);color:rgba(244,241,232,0.7);padding:64px 0 32px;border-top:1px solid rgba(244,241,232,0.08);}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:48px;margin-bottom:48px;align-items:start;}
-.footer-brand{font-family:var(--font-display);font-size:48px;letter-spacing:-0.025em;color:var(--paper);margin-bottom:12px;line-height:1;}
-.footer-tagline{font-size:14px;color:rgba(244,241,232,0.5);max-width:32ch;line-height:1.5;}
+footer{
+  padding:60px 0 32px;
+  border-top:1px solid var(--border);
+  color:var(--text-muted);
+  font-size:14px;
+  margin-top:0;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr;
+  gap:48px;
+  margin-bottom:48px;
+  align-items:start;
+}
+@media(max-width:768px){.footer-grid{grid-template-columns:1fr;gap:32px;}}
+.footer-brand{
+  font-family:'Outfit',sans-serif;
+  font-weight:700;
+  letter-spacing:2px;
+  font-size:16px;
+  text-transform:uppercase;
+  color:var(--text);
+  margin-bottom:12px;
+}
+.footer-tagline{font-size:14px;color:var(--text-muted);max-width:32ch;line-height:1.5;}
 .footer-nav{display:flex;flex-direction:column;gap:12px;}
-.footer-nav-title{font-family:var(--font-mono);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(244,241,232,0.4);margin-bottom:8px;}
-.footer-nav a{font-size:14px;color:rgba(244,241,232,0.7);transition:color 240ms var(--ease);}
-.footer-nav a:hover{color:var(--accent);}
-.footer-meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(244,241,232,0.08);padding-top:32px;font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(244,241,232,0.4);flex-wrap:wrap;gap:20px;}
-
-/* RESPONSIVE */
-@media(max-width:1024px){
-  .pain-header,.proof-layout,.contact-layout,.testdrive-row{grid-template-columns:1fr;gap:40px;}
-  .hero-bottom{grid-template-columns:1fr;gap:48px;}
-  .hero-visual{margin:0 auto;}
+.footer-nav-title{
+  font-family:'Outfit',sans-serif;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  margin-bottom:8px;
+  font-weight:500;
 }
-@media(max-width:768px){
-  .pricing-grid{grid-template-columns:1fr;}
-  .examples-grid > *:nth-child(even){transform:none;}
-  .footer-grid{grid-template-columns:1fr;gap:32px;}
-  .step::before{font-size:100px;top:16px;right:24px;}
-  .hero-meta{font-size:10px;gap:16px;}
-  .faq-item summary{grid-template-columns:60px 1fr 40px;gap:20px;padding:28px 0;}
-  .faq-content{padding-left:80px;}
-}
-@media(hover:none){
-  .step:hover,.example:hover{transform:none;}
+.footer-nav a{font-size:14px;color:var(--text-muted);text-decoration:none;transition:color .3s;}
+.footer-nav a:hover{color:var(--text);}
+.footer-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-top:1px solid var(--border);
+  padding-top:32px;
+  font-size:12px;
+  flex-wrap:wrap;
+  gap:16px;
 }
 </style>
 </head>
-
 <body>
 
 <header>
   <div class="container">
-    <div class="nav">
-      <a href="/" class="logo">Контент Фабрика<span class="logo-issue">Issue 1</span></a>
-      <a href="#downsell" class="nav-cta">Тест-драйв $100 →</a>
-    </div>
+    <nav>
+      <a href="/" class="logo">Контент Фабрика</a>
+      <div class="nav-links">
+        <a href="#pricing" class="nav-link hide-sm">Тарифы</a>
+        <a href="#testdrive" class="nav-link">Тест-драйв $1 500</a>
+      </div>
+    </nav>
   </div>
 </header>
 
 <main id="main">
 
 <!-- HERO -->
-<section class="section hero">
+<header class="hero">
   <div class="container">
-    <div class="hero-eyebrow-row">
-      <p class="eyebrow"><span class="eyebrow-num">№ 01</span>Контент Фабрика</p>
-      <p class="hero-meta"><span>Vol 1</span><span>2026</span><span>Editorial</span></p>
-    </div>
-
-    <div class="hero-display-block">
-      <h1 class="hero-display">Наймите <em>цифровую</em> команду, которая никогда не устаёт.</h1>
-    </div>
-
-    <div class="hero-bottom">
-      <div>
-        <p class="hero-sub">Три AI-агента генерируют видео в стиле бренда, ведут аккаунты в соцсетях и закрывают сделки в директе. На ваших серверах. 24/7.</p>
-        <div class="hero-ctas">
-          <a href="#contact" class="btn btn-primary btn-large">Обсудить внедрение <span class="arrow">→</span></a>
-          <a href="#examples" class="btn btn-secondary btn-large">Смотреть примеры</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-visual-meta"><span>Hero / 9:16</span><span>0:30</span></div>
-        <div class="hero-visual-title">Видео коллекции собирается из одного фото за минуту</div>
-        <div class="hero-visual-tag">Veo 3.1 · Seedance 2 · Kling 3</div>
-      </div>
+    <div class="eyebrow">Для DTC Fashion-брендов</div>
+    <h1>Получите полную независимость от креативных агентств и фрилансеров</h1>
+    <p class="hero-sub">Три AI-агента генерируют видео в стиле бренда, ведут аккаунты в соцсетях и закрывают сделки в директе — на ваших серверах, 24/7.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Обсудить внедрение системы <span class="arrow">→</span></a>
+      <a href="#testdrive" class="btn btn-secondary">Взять Тест-драйв за $1 500</a>
     </div>
   </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span>Замена студии</span>
-    <span>Замена SMM-команды</span>
-    <span>Замена менеджера в DM</span>
-    <span>Self-Hosted</span>
-    <span>30 видео + 210 фото</span>
-    <span>Замена студии</span>
-    <span>Замена SMM-команды</span>
-    <span>Замена менеджера в DM</span>
-    <span>Self-Hosted</span>
-    <span>30 видео + 210 фото</span>
-  </div>
-</div>
+</header>
 
 <!-- PAIN -->
-<section class="section pain">
+<section>
   <div class="container">
-    <p class="eyebrow"><span class="eyebrow-num">№ 02</span>Цена вопроса</p>
-    <div class="pain-header">
-      <h2 class="title-xl">На бренд работают <em style="font-style:italic;color:var(--accent);">три</em> отдельных фронта.</h2>
-      <p class="lead">Содержание команды из трёх функций вымывает из выручки <span style="color:var(--accent);font-weight:500;">от $32 000 до $113 000 каждый год</span>. И этого всё равно не хватает алгоритмам.</p>
+    <div class="section-header">
+      <div class="eyebrow">Цена вопроса</div>
+      <h2>Вы платите за то, что алгоритмы<br>делают практически бесплатно</h2>
+      <p>Содержание команды из трёх функций вымывает из вашей выручки от $32 000 до $113 000 каждый год.</p>
     </div>
-
-    <div class="pain-stats">
-      <div class="pain-stat">
-        <div class="pain-stat-num">№ 01 · Студия</div>
-        <div class="pain-stat-amount">$20<em>K</em>+</div>
-        <div class="pain-stat-label">Студийный продакшен</div>
-        <div class="pain-stat-desc">Фотограф, аренда, модели, ретушь — за 4 сезона в год.</div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-number">01</div>
+        <h3>Студийный продакшен</h3>
+        <p>Фотограф, аренда, модели, ретушь — обходятся от $20 000 за 4 сезона. Каждая съёмка — стресс, логистика и человеческий фактор.</p>
       </div>
-      <div class="pain-stat">
-        <div class="pain-stat-num">№ 02 · Соцсети</div>
-        <div class="pain-stat-amount">$6<em>–</em>18<em>K</em></div>
-        <div class="pain-stat-label">SMM-команда</div>
-        <div class="pain-stat-desc">Агентство или in-house за 4–8 постов в неделю — в год.</div>
+      <div class="card">
+        <div class="card-number">02</div>
+        <h3>SMM-отдел</h3>
+        <p>Агентство или in-house за 4–8 постов в неделю — от $6 000 в год. Вы платите фикс за рутину, которую AI делает мгновенно.</p>
       </div>
-      <div class="pain-stat">
-        <div class="pain-stat-num">№ 03 · DM</div>
-        <div class="pain-stat-amount">$6<em>–</em>15<em>K</em></div>
-        <div class="pain-stat-label">Менеджер в DM</div>
-        <div class="pain-stat-desc">Сутками отвечает на «есть размер M?» — в год.</div>
-      </div>
-    </div>
-
-    <div class="pain-quote">
-      <p>«Сезонные съёмки дают картинку. Между сезонами охваты падают, потому что контент иссякает. Мы заменяем эти три функции одной системой.»</p>
-    </div>
-  </div>
-</section>
-
-<!-- EXAMPLES -->
-<section class="section" id="examples">
-  <div class="container">
-    <div class="examples-header">
-      <div>
-        <p class="eyebrow"><span class="eyebrow-num">№ 03</span>Каталог форматов</p>
-        <h2 class="title-xl">Шесть форматов: три тащат охваты, три строят бренд.</h2>
-      </div>
-      <p class="lead" style="max-width:32ch;">Кинематографическая картинка, строго в эстетике вашего бренда. Без пластиковых лиц и лишних пальцев.</p>
-    </div>
-
-    <div class="examples-grid">
-      <div class="example example-1">
-        <div class="example-top"><span class="chip chip-reach">Reach</span><span class="chip">Veo 3.1</span></div>
-        <div class="example-name">Outfit Transition</div>
-        <div class="example-bottom"><span></span><span class="example-cost">$5</span></div>
-      </div>
-      <div class="example example-2">
-        <div class="example-top"><span class="chip chip-reach">Reach</span><span class="chip">Veo 3.1</span></div>
-        <div class="example-name">Quiet Luxury Tag</div>
-        <div class="example-bottom"><span></span><span class="example-cost">$5</span></div>
-      </div>
-      <div class="example example-3">
-        <div class="example-top"><span class="chip chip-reach">Reach</span><span class="chip">Kling 3</span></div>
-        <div class="example-name">Cost-Per-Wear</div>
-        <div class="example-bottom"><span></span><span class="example-cost">$5</span></div>
-      </div>
-      <div class="example example-4">
-        <div class="example-top"><span class="chip chip-brand">Brand</span><span class="chip">Veo 3.1</span></div>
-        <div class="example-name">Mood-Board to Product</div>
-        <div class="example-bottom"><span></span><span class="example-cost">$5</span></div>
-      </div>
-      <div class="example example-5">
-        <div class="example-top"><span class="chip chip-brand">Brand</span><span class="chip">Seedance 2</span></div>
-        <div class="example-name">Color of Season</div>
-        <div class="example-bottom"><span></span><span class="example-cost">$5</span></div>
-      </div>
-      <div class="example example-6">
-        <div class="example-top"><span class="chip chip-brand">Brand</span><span class="chip">Kling 3</span></div>
-        <div class="example-name">Drop Teaser</div>
-        <div class="example-bottom"><span></span><span class="example-cost">$5</span></div>
+      <div class="card">
+        <div class="card-number">03</div>
+        <h3>Менеджер в DM</h3>
+        <p>Человек, который сутками отвечает на «а есть размер M?» — от $6 000 в год. Теряет лиды ночью и выгорает от рутины.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- SOLUTION -->
-<section class="section solution">
+<section>
   <div class="container">
-    <p class="eyebrow"><span class="eyebrow-num">№ 04</span>Как начать</p>
-    <h2 class="title-xl" style="max-width:18ch;margin-bottom:64px;">Три шага от первого касания до автопилота.</h2>
-
-    <div class="steps">
-      <div class="step" data-num="01">
-        <span class="step-num">01 · Брифинг</span>
-        <h3 class="step-title">Загрузка лукбука</h3>
-        <p>Скидываете в Telegram-бот фото изделий, эстетику и ЦА. Никуда не едете. День на разбор брифа и сборку style-guide.</p>
+    <div class="section-header">
+      <div class="eyebrow">Как это устроено</div>
+      <h2>Ваша личная контент-фабрика. Три шага.</h2>
+      <p>100 % Self-Hosted. Система устанавливается на ваши VPS-серверы. Аккаунты нейросетей регистрируются на ваше юр.лицо. Вы полностью владеете инфраструктурой и данными.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <h3>1. Загрузка исходников</h3>
+        <p>Вы просто отдаёте системе фото вашей одежды — даже снятые на телефон или из старого каталога.</p>
       </div>
-      <div class="step" data-num="02">
-        <span class="step-num">02 · Генерация</span>
-        <h3 class="step-title">AI или установка</h3>
-        <p>В Тест-драйве — 30 видео в Telegram-бот за 5 рабочих дней. В Self-Hosted — разворачиваем систему на ваших серверах.</p>
+      <div class="card">
+        <h3>2. AI-генерация</h3>
+        <p>Нейросети одевают виртуальных моделей, помещают их в нужные локации и генерируют готовые видео и фото.</p>
       </div>
-      <div class="step" data-num="03">
-        <span class="step-num">03 · Автопилот</span>
-        <h3 class="step-title">Контент идёт сам</h3>
-        <p>Авто-постинг на 3 платформы (MVP) или 7 (Расширенный). FAQ-бот в Instagram DM. Sales-bot закрывает сделку.</p>
+      <div class="card">
+        <h3>3. Дистрибуция и продажи</h3>
+        <p>Авто-агент сам публикует ролики в TikTok / Instagram / YouTube и закрывает сделки в DM.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROOF -->
-<section class="section proof">
+<!-- EXAMPLES -->
+<section>
   <div class="container">
-    <p class="eyebrow"><span class="eyebrow-num">№ 05</span>Математика</p>
-    <div class="proof-layout">
-      <div>
-        <h2>Сколько вы платите за это сейчас.</h2>
-        <div class="proof-amount"><span class="currency">$</span>32<em style="color:rgba(168,122,79,0.5);font-style:normal;">–</em>113<em style="color:rgba(168,122,79,0.5);font-style:normal;">K</em></div>
-        <div class="proof-amount-label">в год · команда из трёх функций</div>
-
-        <div class="proof-versus">
-          <div class="proof-versus-label">Контент Фабрика заменяет всех троих</div>
-          <div class="proof-versus-amount">$7 400</div>
-          <div class="proof-versus-desc">в первый год — Self-Hosted MVP ($5 000 + $200/мес × 12)</div>
+    <div class="section-header">
+      <div class="eyebrow">Примеры генерации</div>
+      <h2>Выглядит как съёмка в Милане.<br>Стоит как чашка кофе.</h2>
+      <p>Никаких компромиссов в качестве. Кинематографическая картинка строго в эстетике вашего бренда.</p>
+    </div>
+    <div class="examples-grid">
+      <div class="example-card bg-1">
+        <div class="example-content">
+          <div class="example-tag">Outfit Transition</div>
+          <div class="example-title">REACH</div>
+          <div class="example-meta"><span>VEO 3.1</span><span>$5 / видео</span></div>
         </div>
       </div>
+      <div class="example-card bg-2">
+        <div class="example-content">
+          <div class="example-tag">Quiet Luxury / Y2K</div>
+          <div class="example-title">AESTHETIC TAG</div>
+          <div class="example-meta"><span>VEO 3.1</span><span>$5 / видео</span></div>
+        </div>
+      </div>
+      <div class="example-card bg-3">
+        <div class="example-content">
+          <div class="example-tag">Cost-Per-Wear</div>
+          <div class="example-title">CONVERSION</div>
+          <div class="example-meta"><span>KLING 3</span><span>$5 / видео</span></div>
+        </div>
+      </div>
+      <div class="example-card bg-4">
+        <div class="example-content">
+          <div class="example-tag">Mood-Board to Product</div>
+          <div class="example-title">BRAND</div>
+          <div class="example-meta"><span>VEO 3.1</span><span>$5 / видео</span></div>
+        </div>
+      </div>
+      <div class="example-card bg-5">
+        <div class="example-content">
+          <div class="example-tag">Color of Season 2026</div>
+          <div class="example-title">BRAND</div>
+          <div class="example-meta"><span>SEEDANCE 2</span><span>$5 / видео</span></div>
+        </div>
+      </div>
+      <div class="example-card bg-6">
+        <div class="example-content">
+          <div class="example-tag">Drop Teaser</div>
+          <div class="example-title">BRAND</div>
+          <div class="example-meta"><span>KLING 3</span><span>$5 / видео</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <div class="proof-list">
-        <div class="proof-item">
-          <div class="proof-item-num">№ 01</div>
-          <div class="proof-item-content">
-            <div class="proof-item-title">Студийный продакшен</div>
-            <div class="proof-item-amount">$20K+/сезон</div>
-            <div class="proof-item-desc">Фотограф + модель + ретушь + аренда + время команды. 1 раз в 3–6 месяцев. Заменяется во всех пакетах.</div>
-          </div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-item-num">№ 02</div>
-          <div class="proof-item-content">
-            <div class="proof-item-title">SMM-команда</div>
-            <div class="proof-item-amount">$6–18K/год</div>
-            <div class="proof-item-desc">$500–$1 500/мес × 12. За эти деньги — 4–8 постов в неделю, чего не хватает алгоритмам.</div>
-          </div>
-        </div>
-        <div class="proof-item">
-          <div class="proof-item-num">№ 03</div>
-          <div class="proof-item-content">
-            <div class="proof-item-title">Менеджер в DM</div>
-            <div class="proof-item-amount">$6–15K/год</div>
-            <div class="proof-item-desc">$500–$1 200/мес × 12. 80 % вопросов — повторные (размеры, наличие, цена). Заменяется в Расширенном.</div>
-          </div>
-        </div>
+<!-- MATH (Proof) -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Математика</div>
+      <h2>Экономика сходится с первого месяца</h2>
+    </div>
+    <div class="math-compare">
+      <div class="math-box">
+        <h3>Традиционный подход</h3>
+        <div class="math-price">$32K–$113K</div>
+        <div class="math-sub">вымывается из бизнеса каждый год</div>
+        <ul class="math-list bad">
+          <li><span class="cross">×</span> Зависимость от людей и подрядчиков</li>
+          <li><span class="cross">×</span> Просадки контента между сезонами</li>
+          <li><span class="cross">×</span> Алгоритмы наказывают за нерегулярность</li>
+          <li><span class="cross">×</span> Каждое видео — новый счёт</li>
+        </ul>
+      </div>
+      <div class="math-box highlight">
+        <h3>Контент Фабрика (MVP)</h3>
+        <div class="math-price">$7 400</div>
+        <div class="math-sub">за первый год ($5 000 установка + $200/мес обслуживание)</div>
+        <ul class="math-list">
+          <li><span class="check">✓</span> Полная собственность системы (Self-Hosted)</li>
+          <li><span class="check">✓</span> Неограниченное число видео по себестоимости $5</li>
+          <li><span class="check">✓</span> Публикации 24/7 без выходных</li>
+          <li><span class="check">✓</span> Все обновления и новые AI-движки включены</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TEST-DRIVE -->
-<section class="section testdrive" id="testdrive">
+<section id="testdrive">
   <div class="container">
-    <p class="eyebrow"><span class="eyebrow-num">№ 06</span>Тест-драйв</p>
-    <div class="testdrive-card">
-      <h2 class="title-xl">Тест-драйв системы без контрактов и установки на сервер.</h2>
-      <p class="testdrive-sub">Не готовы сразу внедрять Self-Hosted за $5 000? Проверьте систему в бою на одной коллекции. Мы возьмём на себя один ваш физический продакшен от и до.</p>
-
-      <div class="testdrive-row">
-        <div>
-          <div class="testdrive-price">$1 500</div>
-          <div class="testdrive-period">Разовый платёж</div>
-        </div>
-        <ul class="testdrive-features">
-          <li>30 кинематографических AI-видео в стиле бренда</li>
-          <li><strong>210 студийных AI-фото</strong> (по 7 к каждому ролику)</li>
-          <li>Готовность за 7 дней. Доставка в Telegram.</li>
-          <li>Замена целого физического продакшена.</li>
+    <div class="section-header">
+      <div class="eyebrow">Тест-драйв</div>
+      <h2>Тест-драйв системы без контрактов<br>и установки на сервер</h2>
+      <p>Не готовы сразу внедрять Self-Hosted инфраструктуру за $5 000? Проверьте систему в бою на одной коллекции. Мы возьмём на себя один ваш физический продакшен от и до.</p>
+    </div>
+    <div class="testdrive-banner">
+      <div class="testdrive-left">
+        <div class="testdrive-price">$1 500</div>
+        <div class="testdrive-period">Разовый платёж</div>
+        <a href="#contact" class="btn btn-primary" style="width:100%;">Заказать Тест-драйв <span class="arrow">→</span></a>
+      </div>
+      <div class="testdrive-right">
+        <ul class="testdrive-list">
+          <li><span class="check">✓</span><span><strong>30 кинематографических AI-видео</strong> в стиле бренда</span></li>
+          <li><span class="check">✓</span><span><strong>210 студийных AI-фото</strong> (по 7 к каждому ролику)</span></li>
+          <li><span class="check">✓</span><span>Готовность за 7 дней (результат прямо в Telegram)</span></li>
+          <li><span class="check">✓</span><span>Без автоподписок и обязательств</span></li>
         </ul>
       </div>
-
-      <a href="#contact" class="btn btn-accent btn-large">Заказать Тест-драйв за $1 500 <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section class="section pricing" id="pricing">
+<section id="pricing">
   <div class="container">
-    <p class="eyebrow"><span class="eyebrow-num">№ 07</span>Тарифы</p>
-    <h2 class="title-xl" style="max-width:20ch;margin-bottom:64px;">Три уровня автоматизации.</h2>
-
+    <div class="section-header">
+      <div class="eyebrow">Интеграция</div>
+      <h2>Выберите масштаб своей фабрики</h2>
+    </div>
     <div class="pricing-grid">
 
-      <div class="tier">
-        <div class="tier-num">№ 01 · Тест-драйв</div>
-        <div class="tier-name">Тест-драйв</div>
-        <div class="tier-price">$1 500</div>
-        <div class="tier-period">Разово</div>
-        <ul class="tier-features">
+      <div class="price-card">
+        <h3>Тест-драйв «Капсула»</h3>
+        <div class="price-amount">$1 500</div>
+        <div class="price-period">разовый платёж</div>
+        <ul>
           <li>30 кинематографических AI-видео</li>
           <li>210 студийных AI-фото</li>
-          <li>Замена одного продакшена</li>
-          <li>Готовность за 7 дней</li>
+          <li>Замена целого физического продакшена</li>
+          <li>Доставка в Telegram-бот</li>
         </ul>
-        <a href="#contact" class="btn btn-secondary btn-block">Заказать контент-пак</a>
+        <a href="#testdrive" class="btn btn-secondary">Выбрать Тест-драйв</a>
       </div>
 
-      <div class="tier tier-mvp">
-        <div class="tier-badge">Главное предложение</div>
-        <div class="tier-num" style="color:var(--accent);">№ 02 · MVP</div>
-        <div class="tier-name">Self-Hosted MVP</div>
-        <div class="tier-price">$5 000</div>
-        <div class="tier-period">+ $200 / мес</div>
-        <ul class="tier-features">
-          <li>Установка на ваших серверах</li>
-          <li>Неограниченно видео по $5</li>
-          <li>Авто-постинг: TikTok + IG + YouTube</li>
+      <div class="price-card featured">
+        <div class="price-badge">Главное</div>
+        <h3>Self-Hosted MVP</h3>
+        <div class="price-amount">$5 000</div>
+        <div class="price-period">+ $200/мес обслуживание</div>
+        <ul>
+          <li>Установка системы на ваши серверы</li>
+          <li>Неограниченно генераций видео (по $5)</li>
+          <li>Авто-постинг: TikTok + Instagram + YouTube</li>
           <li>FAQ-бот в Instagram DM</li>
-          <li>Год обслуживания: всё включено</li>
+          <li>Полное владение инфраструктурой</li>
         </ul>
-        <a href="#contact" class="btn btn-accent btn-block">Обсудить внедрение →</a>
+        <a href="#contact" class="btn btn-primary">Обсудить внедрение <span class="arrow">→</span></a>
       </div>
 
-      <div class="tier">
-        <div class="tier-num">№ 03 · Расширенный</div>
-        <div class="tier-name">Расширенный</div>
-        <div class="tier-price">$10 000</div>
-        <div class="tier-period">+ $200 / мес</div>
-        <ul class="tier-features">
-          <li>Всё из MVP, плюс:</li>
-          <li>7 платформ: + Pinterest, VK, TG, WA</li>
-          <li>Sales-bot закрывает сделку</li>
-          <li>Год обслуживания включён</li>
+      <div class="price-card">
+        <h3>Расширенный</h3>
+        <div class="price-amount">$10 000</div>
+        <div class="price-period">+ $200/мес обслуживание</div>
+        <ul>
+          <li>Всё, что входит в MVP</li>
+          <li>Поддержка 7 платформ (+ TG, VK, WA, Pinterest)</li>
+          <li>Продвинутый Sales-bot (размер → оплата)</li>
+          <li>Кастомные интеграции с вашей CRM</li>
         </ul>
-        <a href="#contact" class="btn btn-secondary btn-block">Обсудить внедрение</a>
+        <a href="#contact" class="btn btn-secondary">Обсудить внедрение</a>
       </div>
 
     </div>
@@ -923,11 +882,12 @@ footer{background:var(--ink);color:rgba(244,241,232,0.7);padding:64px 0 32px;bor
 </section>
 
 <!-- FAQ -->
-<section class="section faq">
+<section>
   <div class="container">
-    <p class="eyebrow"><span class="eyebrow-num">№ 08</span>Вопросы</p>
-    <h2 class="title-xl" style="max-width:20ch;margin-bottom:48px;">Что чаще всего спрашивают.</h2>
-
+    <div class="section-header">
+      <div class="eyebrow">Вопросы</div>
+      <h2>Что чаще всего спрашивают</h2>
+    </div>
     <div class="faq-list">
       <details class="faq-item">
         <summary>
@@ -935,7 +895,7 @@ footer{background:var(--ink);color:rgba(244,241,232,0.7);padding:64px 0 32px;bor
           <span class="faq-q">А это не будет выглядеть дёшево?</span>
           <span class="faq-icon">+</span>
         </summary>
-        <div class="faq-content">Используем enterprise-модели Veo 3.1, Seedance 2 и Kling 3 — качество студийной RED-камеры. Картинка строго в эстетике бренда. Никаких пластиковых лиц или лишних пальцев.</div>
+        <div class="faq-content">Используем enterprise-модели Veo 3.1, Seedance 2 и Kling 3 — качество студийной RED-камеры. Картинка строго соответствует эстетике вашего бренда. Никаких пластиковых лиц или лишних пальцев.</div>
       </details>
       <details class="faq-item">
         <summary>
@@ -958,34 +918,30 @@ footer{background:var(--ink);color:rgba(244,241,232,0.7);padding:64px 0 32px;bor
 </section>
 
 <!-- DOWNSELL -->
-<section class="section downsell" id="downsell">
-  <div class="container">
-    <p class="eyebrow"><span class="eyebrow-num">№ 09</span>Demo-доступ</p>
-    <h2 class="title-xl">Совсем сомневаетесь? Проверьте на одной вещи.</h2>
-    <p class="downsell-text">Загрузите фото — и через 48 часов получите 3 AI-ролика и 21 студийную фотографию. Оцените кинематографическое качество движков перед покупкой Тест-драйва.</p>
-    <a href="#contact" class="btn btn-ghost btn-large">3 видео + 21 фото за $100 <span class="arrow">→</span></a>
+<div class="container">
+  <div class="downsell-banner">
+    <h2>Совсем сомневаетесь?</h2>
+    <p>Проверьте качество генерации на одной вещи. Загрузите фото, и через 48 часов получите 3 AI-ролика и 21 студийную фотографию. Оцените кинематографическое качество движков перед покупкой Тест-драйва.</p>
+    <a href="#contact" class="btn btn-ghost">Получить 3 видео + 21 фото за $100 <span class="arrow">→</span></a>
   </div>
-</section>
+</div>
 
 <!-- CONTACT -->
-<section class="section contact" id="contact">
+<section class="contact-section" id="contact">
   <div class="container">
-    <div class="contact-layout">
-      <div>
-        <p class="eyebrow"><span class="eyebrow-num">№ 10</span>Контакт</p>
-        <h2>Оставьте заявку.</h2>
-        <p class="contact-text">Свяжемся в Telegram в течение рабочего дня. Уточним пакет, кейсы и условия внедрения.</p>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="eyebrow">Контакт</div>
+        <h2>Оставьте заявку</h2>
+        <p>Свяжемся в Telegram в течение рабочего дня. Уточним пакет, кейсы и условия внедрения. Никакого спама — только по делу.</p>
         <div class="contact-tags">
           <span class="contact-tag">Telegram</span>
           <span class="contact-tag">WhatsApp</span>
           <span class="contact-tag">Email</span>
-          <span class="contact-tag">Voiceover →</span>
+          <span class="contact-tag">Звонок →</span>
         </div>
       </div>
-
       <div class="form-card">
-        <h3>Заявка</h3>
-        <p class="form-sub">Все поля обязательны.</p>
         <form class="form-fields" id="lead-form">
           <div class="form-field">
             <label for="name">Имя или название бренда</label>
@@ -1011,7 +967,7 @@ footer{background:var(--ink);color:rgba(244,241,232,0.7);padding:64px 0 32px;bor
             <input type="checkbox" name="agreement" required>
             <span>Согласен с <a href="/legal/privacy">политикой обработки персональных данных</a></span>
           </label>
-          <button type="submit" class="btn btn-primary btn-large btn-block" style="margin-top:8px;">Отправить заявку →</button>
+          <button type="submit" class="btn btn-primary" style="margin-top:8px;">Отправить заявку <span class="arrow">→</span></button>
         </form>
       </div>
     </div>
@@ -1029,22 +985,20 @@ footer{background:var(--ink);color:rgba(244,241,232,0.7);padding:64px 0 32px;bor
       </div>
       <nav class="footer-nav">
         <div class="footer-nav-title">Навигация</div>
-        <a href="#examples">Примеры</a>
         <a href="#testdrive">Тест-драйв</a>
         <a href="#pricing">Тарифы</a>
-        <a href="#downsell">Demo $100</a>
+        <a href="#contact">Контакт</a>
       </nav>
       <nav class="footer-nav">
-        <div class="footer-nav-title">Контакт</div>
+        <div class="footer-nav-title">Связь</div>
         <a href="https://t.me/fabrika_contenta" target="_blank" rel="noopener">Telegram</a>
         <a href="https://wa.me/+375291234567" target="_blank" rel="noopener">WhatsApp</a>
         <a href="mailto:hello@fabrika-kontenta.ru">hello@fabrika-kontenta.ru</a>
-        <a href="/legal/privacy">Конфиденциальность</a>
       </nav>
     </div>
     <div class="footer-meta">
-      <span>© 2026 Контент Фабрика · Issue 1</span>
-      <span>Made with Veo · Seedance · Kling</span>
+      <span>© 2026 Контент Фабрика</span>
+      <span>Powered by Veo · Seedance · Kling</span>
     </div>
   </div>
 </footer>
