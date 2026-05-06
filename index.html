@@ -26,6 +26,10 @@
   --text:#f8f8f8;
   --text-muted:#8b8b93;
   --accent:#ffffff;
+  --gold:#C9A35F;
+  --gold-deep:#A88444;
+  --gold-glow:rgba(201,163,95,0.32);
+  --gold-soft:rgba(201,163,95,0.12);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -1264,6 +1268,156 @@ body.scene-transition::before{
 }
 body.scene-transitioning::before{opacity:1;}
 
+/* ===== GOLD LUXURY ACCENTS ===== */
+
+/* Primary CTA — gold edge glow при hover (поверх white) */
+.btn-primary{
+  position:relative;
+  isolation:isolate;
+}
+.btn-primary::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  background:linear-gradient(135deg,var(--gold) 0%,transparent 30%,transparent 70%,var(--gold) 100%);
+  opacity:0;
+  z-index:-1;
+  transition:opacity 400ms cubic-bezier(0.32,0.72,0,1);
+  filter:blur(0.5px);
+}
+.btn-primary:hover::before{opacity:0.85;}
+
+/* Secondary CTA — gold border на hover */
+.btn-secondary{transition:all 280ms cubic-bezier(0.32,0.72,0,1),border-color 400ms,box-shadow 400ms;}
+.btn-secondary:hover{
+  border-color:var(--gold);
+  box-shadow:0 0 24px var(--gold-soft),inset 0 0 0 1px var(--gold-soft);
+}
+
+/* Featured pricing — gold accent layer */
+.price-card.featured{
+  border-color:var(--gold-deep);
+}
+.price-card.featured::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  background:linear-gradient(135deg,var(--gold) 0%,transparent 25%,transparent 75%,var(--gold) 100%);
+  opacity:0.5;
+  z-index:-1;
+  filter:blur(0.5px);
+}
+.price-card.featured .price-badge{
+  background:linear-gradient(135deg,var(--gold) 0%,#E8C885 50%,var(--gold-deep) 100%);
+  color:#1a1308;
+  font-weight:700;
+  box-shadow:0 4px 12px var(--gold-glow);
+}
+.price-card.featured .price-amount{
+  background:linear-gradient(135deg,var(--gold) 0%,#E8C885 50%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* REC indicator — gold tint вокруг */
+.rec-bar{
+  border-color:rgba(201,163,95,0.18);
+  box-shadow:inset 0 0 24px rgba(201,163,95,0.05);
+}
+
+/* Section indicator active — gold accent */
+.section-indicator a.active::before{background:var(--gold);}
+.section-indicator a.active{color:var(--gold);}
+
+/* Pull quote — gold quotes */
+.pull-quote::before,.pull-quote::after{color:var(--gold);}
+
+/* Director's note — gold border */
+.director-note{border-left-color:var(--gold);}
+.director-note::before{color:var(--gold);}
+
+/* Slate — gold text */
+.slate-act{
+  color:var(--gold);
+  text-shadow:0 0 8px var(--gold-soft);
+}
+
+/* Live readers — keep green dot but add gold accent на тексте */
+.live-readers{
+  border-color:rgba(201,163,95,0.16);
+  background:linear-gradient(135deg,rgba(201,163,95,0.04),transparent 50%);
+}
+
+/* Frame counter — gold subtle */
+.frame-counter{
+  color:rgba(201,163,95,0.55);
+  border-color:rgba(201,163,95,0.18);
+}
+
+/* Hero ambient — добавить gold layer */
+.hero::after{
+  content:"";
+  position:absolute;
+  top:-30%;
+  left:50%;
+  transform:translateX(-50%);
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle,rgba(201,163,95,0.06) 0%,transparent 60%);
+  z-index:0;
+  pointer-events:none;
+  filter:blur(60px);
+}
+
+/* H1 italic emphasis — gold gradient вместо плоского */
+.hero h1 em{
+  background:linear-gradient(135deg,var(--gold) 0%,#E8C885 50%,var(--gold-deep) 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+}
+
+/* Footer brand — subtle gold underline */
+.footer-brand{position:relative;display:inline-block;}
+.footer-brand::after{
+  content:"";
+  display:block;
+  width:32px;
+  height:1px;
+  background:linear-gradient(to right,var(--gold),transparent);
+  margin-top:8px;
+}
+
+/* Submit button focus glow */
+.form-fields button[type="submit"]:hover{
+  box-shadow:0 0 0 1px var(--gold),0 16px 32px var(--gold-soft);
+}
+
+/* Contact tags — gold ring on hover */
+.contact-tag{transition:all 240ms;}
+.contact-tag:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+  background:var(--gold-soft);
+}
+
+/* TestDrive banner — gold corner accent */
+.testdrive-banner{position:relative;}
+.testdrive-banner::after{
+  content:"";
+  position:absolute;
+  top:0;right:0;
+  width:80px;
+  height:80px;
+  background:radial-gradient(circle at top right,var(--gold-soft) 0%,transparent 60%);
+  border-top-right-radius:12px;
+  pointer-events:none;
+}
+
 /* 15. Underline-draw на nav links / inline links */
 .nav-link,.footer-nav a,.footer-meta a{position:relative;}
 .nav-link::after,.footer-nav a::after{
@@ -1406,8 +1560,8 @@ body.scene-transitioning::before{opacity:1;}
 <section style="padding:0;border:none;">
   <div class="container">
     <div class="pull-quote reveal">
-      <p>Фотографы стали слишком дорогим способом проверять одну гипотезу.</p>
-      <cite>Editorial Note · TC 00:03:14</cite>
+      <p>Контент стоит дороже одежды, которую он продаёт.</p>
+      <cite>Реальность DTC-брендов в 2026</cite>
     </div>
   </div>
 </section>
@@ -1623,8 +1777,8 @@ body.scene-transitioning::before{opacity:1;}
 <section style="padding:0;border:none;">
   <div class="container">
     <div class="director-note reveal">
-      <p>«Кадр 02:34 — момент когда покупательница видит Reels и кладёт вещь в корзину. Этот кадр стоит ровно $5.»</p>
-      <span class="tc">TC 02:34:08 · 24 fps · Director's Cut</span>
+      <p>«Покупательница видит Reels в 23:47. Менеджер спит. Sales-bot отвечает за 8 секунд. Заказ оформлен.»</p>
+      <span class="tc">23:47:08 · Test-Drive Cut · 24 fps</span>
     </div>
   </div>
 </section>
