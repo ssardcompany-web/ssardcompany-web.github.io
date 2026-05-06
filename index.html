@@ -917,23 +917,14 @@ footer{
   </div>
 </section>
 
-<!-- DOWNSELL -->
-<div class="container">
-  <div class="downsell-banner">
-    <h2>Совсем сомневаетесь?</h2>
-    <p>Проверьте качество генерации на одной вещи. Загрузите фото, и через 48 часов получите 3 AI-ролика и 21 студийную фотографию. Оцените кинематографическое качество движков перед покупкой Тест-драйва.</p>
-    <a href="#contact" class="btn btn-ghost">Получить 3 видео + 21 фото за $100 <span class="arrow">→</span></a>
-  </div>
-</div>
-
-<!-- CONTACT -->
+<!-- CONSULTATION FORM (после FAQ) -->
 <section class="contact-section" id="contact">
   <div class="container">
     <div class="contact-grid">
       <div class="contact-left">
-        <div class="eyebrow">Контакт</div>
-        <h2>Оставьте заявку</h2>
-        <p>Свяжемся в Telegram в течение рабочего дня. Уточним пакет, кейсы и условия внедрения. Никакого спама — только по делу.</p>
+        <div class="eyebrow">Консультация</div>
+        <h2>Хотите обсудить детали?</h2>
+        <p>Расскажите про свой бренд и текущий контент-процесс. Свяжемся в Telegram в течение рабочего дня — уточним пакет, кейсы и условия внедрения. Никакого спама — только по делу.</p>
         <div class="contact-tags">
           <span class="contact-tag">Telegram</span>
           <span class="contact-tag">WhatsApp</span>
@@ -955,11 +946,10 @@ footer{
             <label for="segment">Какой пакет интересует?</label>
             <select id="segment" name="segment" required>
               <option value="">— выберите —</option>
-              <option value="downsell">Demo $100 (3 видео + 21 фото)</option>
               <option value="testdrive">Тест-драйв $1 500 (30 видео + 210 фото)</option>
               <option value="mvp">Self-Hosted MVP $5 000 + $200/мес</option>
               <option value="advanced">Self-Hosted Расширенный $10 000 + $200/мес</option>
-              <option value="other">Хочу обсудить</option>
+              <option value="other">Хочу обсудить, не уверен</option>
             </select>
           </div>
           <input type="text" name="honeypot" style="display:none" tabindex="-1" autocomplete="off">
@@ -970,6 +960,18 @@ footer{
           <button type="submit" class="btn btn-primary" style="margin-top:8px;">Отправить заявку <span class="arrow">→</span></button>
         </form>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL DOWNSELL — закрытие $100 / 3 видео -->
+<section id="downsell">
+  <div class="container">
+    <div class="downsell-banner">
+      <div class="eyebrow" style="margin-bottom:24px;">Не готовы к консультации?</div>
+      <h2>Проверьте на одной вещи. 3 видео за $100.</h2>
+      <p>Загрузите фото — и через 48 часов получите 3 AI-ролика и 21 студийную фотографию в Telegram. Оцените кинематографическое качество движков. Без обязательств и автоподписок.</p>
+      <a href="https://t.me/fabrika_contenta?text=Хочу%20Demo%20за%20%24100%20—%203%20видео%20%2B%2021%20фото" target="_blank" rel="noopener" class="btn btn-primary" id="downsell-cta">Получить 3 видео + 21 фото за $100 <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -1009,9 +1011,9 @@ document.querySelectorAll('a[href="#contact"]').forEach(link => {
     const text = link.textContent.toLowerCase();
     const sel = document.getElementById('segment');
     if (!sel) return;
-    if (text.includes('100') || text.includes('demo')) sel.value = 'downsell';
-    else if (text.includes('1 500') || text.includes('1500') || text.includes('тест-драйв')) sel.value = 'testdrive';
+    if (text.includes('1 500') || text.includes('1500') || text.includes('тест-драйв')) sel.value = 'testdrive';
     else if (text.includes('внедрение') || text.includes('mvp')) sel.value = 'mvp';
+    else if (text.includes('расширенн')) sel.value = 'advanced';
   });
 });
 document.getElementById('lead-form')?.addEventListener('submit', e => {
