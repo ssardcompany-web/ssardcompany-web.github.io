@@ -357,10 +357,15 @@ section{padding:100px 0;border-top:1px solid var(--border);}
 .testdrive-list .check{color:var(--accent);flex:none;font-weight:500;}
 .testdrive-list strong{color:var(--text);font-weight:500;}
 
+
+/* Test-drive wide banner */
+.testdrive-wide{background:linear-gradient(180deg,rgba(201,163,95,0.04) 0%,transparent 100%);border-top:1px solid rgba(201,163,95,0.18);border-bottom:1px solid rgba(201,163,95,0.18);}
+.testdrive-wide .testdrive-banner{max-width:1200px;}
+
 /* PRICING */
 .pricing-grid{
   display:grid;
-  grid-template-columns:1fr 1.1fr 1fr;
+  grid-template-columns:1fr 1fr;max-width:900px;margin-left:auto;margin-right:auto;
   gap:24px;
   align-items:stretch;
 }
@@ -921,6 +926,39 @@ body::after{
 /* FAQ stagger */
 .faq-item summary{transition:padding-left .4s cubic-bezier(0.32,0.72,0,1),background .3s;}
 .faq-item:hover summary{padding-left:8px;}
+
+
+/* Hero background video (бэкстейдж фэшн-съемки, 15% opacity, grayscale) */
+.hero{position:relative;isolation:isolate;overflow:hidden;}
+.hero-bg-video,.hero-bg-fallback{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:-2;
+  object-fit:cover;
+  filter:grayscale(1) brightness(0.5) contrast(1.1);
+  opacity:0.18;
+}
+.hero-bg-fallback{
+  background:
+    radial-gradient(ellipse at 30% 20%,rgba(201,163,95,0.12) 0%,transparent 50%),
+    radial-gradient(ellipse at 70% 80%,rgba(255,255,255,0.05) 0%,transparent 50%),
+    linear-gradient(180deg,#0a0908 0%,#050505 100%);
+  z-index:-3;
+  filter:none;
+  opacity:1;
+}
+.hero-bg-overlay{
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(180deg,rgba(5,5,5,0.4) 0%,rgba(5,5,5,0.8) 70%,rgba(5,5,5,0.95) 100%),
+    radial-gradient(ellipse at center,transparent 30%,rgba(5,5,5,0.6) 100%);
+  pointer-events:none;
+}
+.hero-bg-video:not([data-loaded])+.hero-bg-fallback{display:block;}
 
 /* Reduced motion */
 @media(prefers-reduced-motion:reduce){
@@ -1626,6 +1664,11 @@ header::after{
 
 <!-- HERO -->
 <header class="hero" id="hero">
+  <video class="hero-bg-video" autoplay muted loop playsinline aria-hidden="true">
+    <source src="/assets/hero-backstage.mp4" type="video/mp4">
+  </video>
+  <div class="hero-bg-fallback" aria-hidden="true"></div>
+  <div class="hero-bg-overlay" aria-hidden="true"></div>
   <span class="vf-corner vf-tl"></span>
   <span class="vf-corner vf-tr"></span>
   <span class="vf-corner vf-bl"></span>
@@ -1641,7 +1684,7 @@ header::after{
       <span>Take 01</span>
     </div>
     <div class="eyebrow reveal">Для DTC Fashion-брендов</div>
-    <h1 class="reveal reveal-d1 typeon">Получите <em>полную</em> независимость от креативных агентств и фрилансеров</h1>
+    <h1 class="reveal reveal-d1 typeon">Наймите <em>цифровую</em> команду, которая никогда не устаёт и не срывает дедлайны</h1>
     <p class="hero-sub reveal reveal-d2">Три AI-агента генерируют видео в стиле бренда, ведут аккаунты в соцсетях и закрывают сделки в директе — на ваших серверах, 24/7.</p>
     <div class="hero-actions reveal reveal-d3">
       <a href="#contact" class="btn btn-primary magnetic">Обсудить внедрение системы <span class="arrow">→</span></a>
@@ -1671,11 +1714,50 @@ header::after{
   </div>
 </div>
 
+<!-- MATH (Proof) -->
+<section id="math">
+  <div class="container">
+    <div class="section-header reveal" style="text-align:center;">
+      <div class="slate"><div class="slate-stripes"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="slate-act">Act I</span><span class="slate-name">— The Math</span></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Математика</div>
+      <h2>Экономика сходится с первого месяца</h2>
+    </div>
+    <div class="math-compare reveal-children">
+      <div class="math-box">
+        <h3>Традиционный подход</h3>
+        <div class="math-price">$32K–$113K</div>
+        <div class="math-sub">вымывается из бизнеса каждый год</div>
+        <ul class="math-list bad">
+          <li><span class="cross">×</span> Зависимость от людей и подрядчиков</li>
+          <li><span class="cross">×</span> Просадки контента между сезонами</li>
+          <li><span class="cross">×</span> Алгоритмы наказывают за нерегулярность</li>
+          <li><span class="cross">×</span> Каждое видео — новый счёт</li>
+        </ul>
+      </div>
+      <div class="math-box highlight">
+        <h3>Контент Фабрика (MVP)</h3>
+        <div class="math-price">$7 400</div>
+        <div class="math-sub">за первый год ($5 000 установка + $200/мес обслуживание)</div>
+        <ul class="math-list">
+          <li><span class="check">✓</span> Полная собственность системы (Self-Hosted)</li>
+          <li><span class="check">✓</span> Неограниченное число видео по себестоимости $5</li>
+          <li><span class="check">✓</span> Публикации 24/7 без выходных</li>
+          <li><span class="check">✓</span> Все обновления и новые AI-движки включены</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PAIN -->
 <section id="pain">
   <div class="container">
     <div class="section-header reveal" style="text-align:center;">
-      <div class="slate"><div class="slate-stripes"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="slate-act">Act I</span><span class="slate-name">— The Problem</span></div>
+      <div class="slate"><div class="slate-stripes"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="slate-act">Act II</span><span class="slate-name">— The Pain</span></div>
     </div>
     <div class="section-header reveal">
       <div class="eyebrow">Цена вопроса</div>
@@ -1717,7 +1799,7 @@ header::after{
 <section>
   <div class="container">
     <div class="section-header reveal" style="text-align:center;">
-      <div class="slate"><div class="slate-stripes"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="slate-act">Act II</span><span class="slate-name">— The Solution</span></div>
+      <div class="slate"><div class="slate-stripes"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="slate-act">Act III</span><span class="slate-name">— The Solution</span></div>
     </div>
     <div class="section-header reveal">
       <div class="eyebrow">Как это устроено</div>
@@ -1796,50 +1878,33 @@ header::after{
   </div>
 </section>
 
-<!-- MATH (Proof) -->
-<section id="math">
+<!-- PRICING -->
+<section id="pricing">
   <div class="container">
     <div class="section-header reveal">
-      <div class="eyebrow">Математика</div>
-      <h2>Экономика сходится с первого месяца</h2>
+      <div class="eyebrow">Флагман</div>
+      <h2>Автономная система генерации и продаж на ваших серверах</h2>
     </div>
-    <div class="math-compare reveal-children">
-      <div class="math-box">
-        <h3>Традиционный подход</h3>
-        <div class="math-price">$32K–$113K</div>
-        <div class="math-sub">вымывается из бизнеса каждый год</div>
-        <ul class="math-list bad">
-          <li><span class="cross">×</span> Зависимость от людей и подрядчиков</li>
-          <li><span class="cross">×</span> Просадки контента между сезонами</li>
-          <li><span class="cross">×</span> Алгоритмы наказывают за нерегулярность</li>
-          <li><span class="cross">×</span> Каждое видео — новый счёт</li>
-        </ul>
-      </div>
-      <div class="math-box highlight">
-        <h3>Контент Фабрика (MVP)</h3>
-        <div class="math-price">$7 400</div>
-        <div class="math-sub">за первый год ($5 000 установка + $200/мес обслуживание)</div>
-        <ul class="math-list">
-          <li><span class="check">✓</span> Полная собственность системы (Self-Hosted)</li>
-          <li><span class="check">✓</span> Неограниченное число видео по себестоимости $5</li>
-          <li><span class="check">✓</span> Публикации 24/7 без выходных</li>
-          <li><span class="check">✓</span> Все обновления и новые AI-движки включены</li>
-        </ul>
-      </div>
+    <div class="pricing-grid reveal-children">
+
+      
+
+    <div class="footnote-block reveal">
+      <p><sup>1</sup> Цены за установку — фиксированные, разовый платёж. <sup>2</sup> $200/мес обслуживание включает все обновления продукта, новые AI-движки (Veo 4, Seedance 3, Kling 4) и фиксы багов. Кастомные доработки под одного клиента — оплачиваются отдельно. <sup>3</sup> Self-Hosted: видео по себестоимости (~$5/штука) — клиент платит за токены AI напрямую, без нашей наценки.</p>
     </div>
   </div>
 </section>
 
 <!-- TEST-DRIVE -->
-<section id="testdrive">
+<section id="testdrive" class="testdrive-wide">
   <div class="container">
     <div class="section-header reveal" style="text-align:center;">
-      <div class="slate"><div class="slate-stripes"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="slate-act">Act III</span><span class="slate-name">— The Offer</span></div>
+      <div class="slate"><div class="slate-stripes"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="slate-act">Act IV</span><span class="slate-name">— The Offer</span></div>
     </div>
     <div class="section-header reveal">
-      <div class="eyebrow">Тест-драйв</div>
-      <h2>Тест-драйв системы без контрактов<br>и установки на сервер</h2>
-      <p>Не готовы сразу внедрять Self-Hosted инфраструктуру за $5 000? Проверьте систему в бою на одной коллекции. Мы возьмём на себя один ваш физический продакшен от и до.</p>
+      <div class="eyebrow">Downsell · Не готовы к серверам?</div>
+      <h2>Пока не готовы внедрять AI-систему<br>на ваши серверы?</h2>
+      <p>Есть решение — тест-драйв. Мы сгенерируем все материалы на наших мощностях и пришлём готовый контент прямо в Telegram. Замена одной съёмки: 30 видео + 210 фото.</p>
     </div>
     <div class="testdrive-banner reveal">
       <div class="testdrive-left">
@@ -1855,67 +1920,6 @@ header::after{
           <li><span class="check">✓</span><span>Без автоподписок и обязательств</span></li>
         </ul>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section id="pricing">
-  <div class="container">
-    <div class="section-header reveal">
-      <div class="eyebrow">Интеграция</div>
-      <h2>Выберите масштаб своей фабрики</h2>
-    </div>
-    <div class="pricing-grid reveal-children">
-
-      <div class="price-card">
-        <div class="lower-third">№ 01 · Тест на одной коллекции</div>
-        <h3>Тест-драйв «Капсула»</h3>
-        <div class="price-amount">$1 500</div>
-        <div class="price-period">разовый платёж</div>
-        <ul>
-          <li>30 кинематографических AI-видео</li>
-          <li>210 студийных AI-фото</li>
-          <li>Замена целого физического продакшена</li>
-          <li>Доставка в Telegram-бот</li>
-        </ul>
-        <a href="#testdrive" class="btn btn-secondary">Выбрать Тест-драйв</a>
-      </div>
-
-      <div class="price-card featured">
-        <div class="price-badge">Главное</div>
-        <div class="lower-third">№ 02 · Замена студии и SMM-команды</div>
-        <h3>Self-Hosted MVP</h3>
-        <div class="price-amount">$5 000</div>
-        <div class="price-period">+ $200/мес обслуживание</div>
-        <ul>
-          <li>Установка системы на ваши серверы</li>
-          <li>Неограниченно генераций видео (по $5)</li>
-          <li>Авто-постинг: TikTok + Instagram + YouTube</li>
-          <li>FAQ-бот в Instagram DM</li>
-          <li>Полное владение инфраструктурой</li>
-        </ul>
-        <a href="#contact" class="btn btn-primary">Обсудить внедрение <span class="arrow">→</span></a>
-      </div>
-
-      <div class="price-card">
-        <div class="lower-third">№ 03 · + Sales-bot закрывает сделку</div>
-        <h3>Расширенный</h3>
-        <div class="price-amount">$10 000</div>
-        <div class="price-period">+ $200/мес обслуживание</div>
-        <ul>
-          <li>Всё, что входит в MVP</li>
-          <li>Поддержка 7 платформ (+ TG, VK, WA, Pinterest)</li>
-          <li>Продвинутый Sales-bot (размер → оплата)</li>
-          <li>Кастомные интеграции с вашей CRM</li>
-        </ul>
-        <a href="#contact" class="btn btn-secondary">Обсудить внедрение</a>
-      </div>
-
-    </div>
-
-    <div class="footnote-block reveal">
-      <p><sup>1</sup> Цены за установку — фиксированные, разовый платёж. <sup>2</sup> $200/мес обслуживание включает все обновления продукта, новые AI-движки (Veo 4, Seedance 3, Kling 4) и фиксы багов. Кастомные доработки под одного клиента — оплачиваются отдельно. <sup>3</sup> Self-Hosted: видео по себестоимости (~$5/штука) — клиент платит за токены AI напрямую, без нашей наценки.</p>
     </div>
   </div>
 </section>
