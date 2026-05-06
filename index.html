@@ -629,6 +629,188 @@ footer{
   gap:16px;
 }
 
+/* ===== CINEMATIC DETAILS ===== */
+/* Film grain overlay (subtle, всё body) */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  opacity:0.06;
+  background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='5'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  mix-blend-mode:overlay;
+  animation:grainShift 0.6s steps(6) infinite;
+}
+@keyframes grainShift{
+  0%,100%{transform:translate(0,0);}
+  10%{transform:translate(-2%,-3%);}
+  20%{transform:translate(-4%,2%);}
+  30%{transform:translate(2%,-4%);}
+  40%{transform:translate(-2%,5%);}
+  50%{transform:translate(-4%,2%);}
+  60%{transform:translate(3%,0);}
+  70%{transform:translate(0,3%);}
+  80%{transform:translate(-3%,1%);}
+  90%{transform:translate(2%,2%);}
+}
+
+/* Letterbox bars — тонкие в hero */
+.hero{
+  border-top:6px solid #000;
+  border-bottom:1px solid var(--border);
+  margin-top:-6px;
+}
+
+/* Hero viewfinder corners */
+.hero{position:relative;}
+.hero .vf-corner{
+  position:absolute;
+  width:32px;
+  height:32px;
+  border:1.5px solid rgba(255,255,255,0.4);
+  z-index:3;
+  pointer-events:none;
+}
+.hero .vf-tl{top:80px;left:24px;border-right:none;border-bottom:none;}
+.hero .vf-tr{top:80px;right:24px;border-left:none;border-bottom:none;}
+.hero .vf-bl{bottom:60px;left:24px;border-right:none;border-top:none;}
+.hero .vf-br{bottom:60px;right:24px;border-left:none;border-top:none;}
+@media(max-width:768px){.hero .vf-corner{width:20px;height:20px;}}
+
+/* REC indicator (мигающая красная точка + текст) */
+.rec-bar{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:'Outfit',sans-serif;
+  font-size:11px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  padding:6px 14px;
+  border:1px solid var(--border);
+  border-radius:100px;
+  margin-bottom:24px;
+}
+.rec-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:#ff3b3b;
+  animation:recPulse 1.4s ease-in-out infinite;
+  box-shadow:0 0 8px rgba(255,59,59,0.6);
+}
+@keyframes recPulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.rec-tc{
+  font-family:'Outfit',sans-serif;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:1.5px;
+  font-size:11px;
+  color:var(--text-muted);
+}
+.rec-bar .divider{width:1px;height:10px;background:var(--border);}
+
+/* Chapter slates — добавляются на eyebrow */
+.eyebrow .chapter{
+  display:inline-block;
+  margin-right:12px;
+  padding-right:12px;
+  border-right:1px solid var(--border-strong);
+  color:var(--accent);
+  font-weight:700;
+}
+
+/* Camera shutter flash на example hover */
+.example-card{transform-origin:center;}
+.example-card:active{transform:scale(0.985) translateY(-6px);}
+.example-card .shutter-flash{
+  position:absolute;
+  inset:0;
+  background:rgba(255,255,255,0);
+  z-index:5;
+  pointer-events:none;
+  transition:background 80ms;
+}
+.example-card:active .shutter-flash{background:rgba(255,255,255,0.18);}
+
+/* Cinema aspect ratio label на placeholder'ах */
+.example-card .aspect-label{
+  position:absolute;
+  top:16px;
+  left:20px;
+  font-family:'Outfit',sans-serif;
+  font-size:9px;
+  letter-spacing:1.5px;
+  color:rgba(255,255,255,0.4);
+  z-index:3;
+  font-variant-numeric:tabular-nums;
+}
+
+/* Footer — film credits style */
+.film-credits{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:32px;
+  padding:32px 0;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  margin-bottom:32px;
+}
+.film-credit-block{display:flex;flex-direction:column;gap:6px;}
+.film-credit-role{
+  font-family:'Outfit',sans-serif;
+  font-size:9px;
+  letter-spacing:2.5px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.3);
+  margin-bottom:4px;
+}
+.film-credit-name{
+  font-family:'Outfit',sans-serif;
+  font-size:14px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--text);
+  font-weight:500;
+}
+
+/* Slate before key sections */
+.slate{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:32px;
+  padding:8px 16px 8px 8px;
+  background:#000;
+  border:1px solid var(--border-strong);
+  font-family:'Outfit',sans-serif;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  position:relative;
+}
+.slate-stripes{
+  display:flex;
+  gap:2px;
+  align-items:center;
+}
+.slate-stripes span{display:inline-block;width:6px;height:14px;}
+.slate-stripes span:nth-child(odd){background:#fff;}
+.slate-stripes span:nth-child(even){background:#000;}
+.slate-act{color:var(--accent);font-weight:700;}
+.slate-name{color:var(--text-muted);}
+
+/* Marquee — добавить film-strip эффект */
+.marquee{
+  background:#000;
+  position:relative;
+}
+.marquee::before,.marquee::after{
+  background:linear-gradient(to right,#000,transparent)!important;
+}
+.marquee::after{background:linear-gradient(to left,#000,transparent)!important;}
+
 /* ===== ANIMATIONS ===== */
 @keyframes fadeUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
@@ -761,8 +943,20 @@ footer{
 
 <!-- HERO -->
 <header class="hero">
+  <span class="vf-corner vf-tl"></span>
+  <span class="vf-corner vf-tr"></span>
+  <span class="vf-corner vf-bl"></span>
+  <span class="vf-corner vf-br"></span>
   <div class="hero-mouse-glow" id="hero-glow"></div>
   <div class="container">
+    <div class="rec-bar reveal">
+      <span class="rec-dot"></span>
+      <span>Rec</span>
+      <span class="divider"></span>
+      <span class="rec-tc" id="timecode">00:00:42:18</span>
+      <span class="divider"></span>
+      <span>Take 01</span>
+    </div>
     <div class="eyebrow reveal">Для DTC Fashion-брендов</div>
     <h1 class="reveal reveal-d1">Получите полную независимость от креативных агентств и фрилансеров</h1>
     <p class="hero-sub reveal reveal-d2">Три AI-агента генерируют видео в стиле бренда, ведут аккаунты в соцсетях и закрывают сделки в директе — на ваших серверах, 24/7.</p>
@@ -794,6 +988,9 @@ footer{
 <!-- PAIN -->
 <section>
   <div class="container">
+    <div class="section-header reveal" style="text-align:center;">
+      <div class="slate"><div class="slate-stripes"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="slate-act">Act I</span><span class="slate-name">— The Problem</span></div>
+    </div>
     <div class="section-header reveal">
       <div class="eyebrow">Цена вопроса</div>
       <h2>Вы платите за то, что алгоритмы<br>делают практически бесплатно</h2>
@@ -822,6 +1019,9 @@ footer{
 <!-- SOLUTION -->
 <section>
   <div class="container">
+    <div class="section-header reveal" style="text-align:center;">
+      <div class="slate"><div class="slate-stripes"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="slate-act">Act II</span><span class="slate-name">— The Solution</span></div>
+    </div>
     <div class="section-header reveal">
       <div class="eyebrow">Как это устроено</div>
       <h2>Ваша личная контент-фабрика. Три шага.</h2>
@@ -936,6 +1136,9 @@ footer{
 <!-- TEST-DRIVE -->
 <section id="testdrive">
   <div class="container">
+    <div class="section-header reveal" style="text-align:center;">
+      <div class="slate"><div class="slate-stripes"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="slate-act">Act III</span><span class="slate-name">— The Offer</span></div>
+    </div>
     <div class="section-header reveal">
       <div class="eyebrow">Тест-драйв</div>
       <h2>Тест-драйв системы без контрактов<br>и установки на сервер</h2>
@@ -1130,9 +1333,34 @@ footer{
         <a href="mailto:hello@fabrika-kontenta.ru">hello@fabrika-kontenta.ru</a>
       </nav>
     </div>
+
+    <!-- FILM CREDITS -->
+    <div class="film-credits">
+      <div class="film-credit-block">
+        <span class="film-credit-role">Directed by</span>
+        <span class="film-credit-name">Veo 3.1</span>
+      </div>
+      <div class="film-credit-block">
+        <span class="film-credit-role">Cinematography</span>
+        <span class="film-credit-name">Seedance 2</span>
+      </div>
+      <div class="film-credit-block">
+        <span class="film-credit-role">Editing</span>
+        <span class="film-credit-name">Kling 3</span>
+      </div>
+      <div class="film-credit-block">
+        <span class="film-credit-role">Distribution</span>
+        <span class="film-credit-name">Self-Hosted</span>
+      </div>
+      <div class="film-credit-block">
+        <span class="film-credit-role">Sales</span>
+        <span class="film-credit-name">AI Agent</span>
+      </div>
+    </div>
+
     <div class="footer-meta">
-      <span>© 2026 Контент Фабрика</span>
-      <span>Powered by Veo · Seedance · Kling</span>
+      <span>© 2026 Контент Фабрика · Issue 1</span>
+      <span id="footer-tc">TC 00:00:42:18 · 24 fps</span>
     </div>
   </div>
 </footer>
@@ -1223,6 +1451,36 @@ const numIo = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.5 });
 document.querySelectorAll('.math-price, .testdrive-price, .price-amount').forEach(el => numIo.observe(el));
+
+// === LIVE TIMECODE (24fps look) ===
+const tcEl = document.getElementById('timecode');
+const footerTcEl = document.getElementById('footer-tc');
+let tcStart = performance.now();
+function pad(n, d=2){return String(n).padStart(d,'0');}
+function tickTimecode(){
+  const elapsed = (performance.now() - tcStart) / 1000 + 42.75;
+  const hours = Math.floor(elapsed / 3600);
+  const minutes = Math.floor((elapsed % 3600) / 60);
+  const seconds = Math.floor(elapsed % 60);
+  const frames = Math.floor((elapsed * 24) % 24);
+  const tc = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(frames)}`;
+  if (tcEl) tcEl.textContent = tc;
+  if (footerTcEl) footerTcEl.textContent = `TC ${tc} · 24 fps`;
+  requestAnimationFrame(tickTimecode);
+}
+requestAnimationFrame(tickTimecode);
+
+// === EXAMPLE CARDS — aspect labels + shutter flash ===
+document.querySelectorAll('.example-card').forEach((card, i) => {
+  const ratios = ['9:16', '9:16', '9:16', '9:16', '9:16', '9:16'];
+  const aspect = document.createElement('div');
+  aspect.className = 'aspect-label';
+  aspect.textContent = `${ratios[i] || '9:16'} · 24 fps`;
+  card.appendChild(aspect);
+  const flash = document.createElement('div');
+  flash.className = 'shutter-flash';
+  card.appendChild(flash);
+});
 
 // === FORM PREFILL FROM CTA ===
 document.querySelectorAll('a[href="#contact"]').forEach(link => {
