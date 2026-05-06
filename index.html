@@ -1374,6 +1374,159 @@ body.scene-transitioning::before{opacity:1;}
 
 /* H1 italic emphasis — оставлен как был (font-style italic + accent color) */
 
+/* ===== GOLD — ALWAYS VISIBLE (не только hover) ===== */
+
+/* Header — тонкая gold линия под navigation */
+header::after{
+  content:"";
+  display:block;
+  height:1px;
+  background:linear-gradient(to right,transparent,var(--gold) 20%,var(--gold) 80%,transparent);
+  opacity:0.45;
+}
+
+/* Logo — gold dot перед текстом */
+.logo::before{
+  content:"";
+  display:inline-block;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--gold);
+  margin-right:10px;
+  vertical-align:middle;
+  box-shadow:0 0 8px var(--gold-glow);
+}
+
+/* Featured pricing — постоянная gold рамка (не только при hover) */
+.price-card.featured{
+  border:1px solid var(--gold)!important;
+  box-shadow:0 0 0 1px var(--gold-soft),0 24px 48px rgba(0,0,0,0.5),0 0 32px rgba(201,163,95,0.12)!important;
+}
+
+/* Featured price — solid gold (без gradient на случай браузерных проблем) */
+.price-card.featured .price-amount{
+  background:none;
+  -webkit-text-fill-color:var(--gold);
+  color:var(--gold);
+}
+
+/* Featured tier h3 — gold accent */
+.price-card.featured h3{
+  color:var(--gold);
+}
+
+/* "Тест-драйв за $1 500" в hero (secondary CTA) — постоянная gold-кайма */
+.hero-actions .btn-secondary{
+  border-color:var(--gold-deep);
+  color:var(--gold);
+}
+.hero-actions .btn-secondary:hover{
+  border-color:var(--gold);
+  background:var(--gold-soft);
+  color:var(--gold);
+}
+
+/* Тест-драйв blockprice — gold */
+.testdrive-price{color:var(--gold)!important;}
+
+/* Math highlight — gold $7 400 */
+.math-box.highlight .math-price{color:var(--gold);}
+
+/* Decorative gold ornament между ключевыми секциями */
+.gold-divider{
+  text-align:center;
+  padding:48px 0;
+  font-size:14px;
+  letter-spacing:8px;
+  color:var(--gold);
+  opacity:0.5;
+}
+
+/* Section indicator — постоянно gold tinted (не только активная) */
+.section-indicator a{color:rgba(201,163,95,0.35);}
+.section-indicator a:hover,.section-indicator a.active{color:var(--gold);}
+
+/* Frame counter — постоянная gold-рамка */
+.frame-counter{
+  border-color:rgba(201,163,95,0.35);
+  color:var(--gold);
+}
+
+/* REC bar — gold tint */
+.rec-bar{
+  border-color:rgba(201,163,95,0.28);
+  color:rgba(248,248,248,0.85);
+}
+.rec-tc{color:var(--gold);}
+
+/* Pull quote — gold horizontal accent line */
+.pull-quote::before{content:"\201C";color:var(--gold);}
+.pull-quote::after{content:"\201D";color:var(--gold);}
+.pull-quote cite{color:var(--gold);}
+.pull-quote{position:relative;}
+.pull-quote .gold-line{
+  display:block;
+  width:60px;
+  height:1px;
+  background:linear-gradient(to right,transparent,var(--gold),transparent);
+  margin:32px auto 0;
+}
+
+/* Director's note — gold accent */
+.director-note .tc{color:var(--gold);}
+
+/* Submit button — постоянная gold-кайма */
+.form-fields button[type="submit"]{
+  border:1px solid var(--gold-deep);
+  position:relative;
+}
+.form-fields button[type="submit"]:hover{
+  border-color:var(--gold);
+}
+
+/* Sticky CTA — gold border */
+.sticky-cta{border-color:var(--gold-deep);}
+.sticky-cta .btn{
+  background:linear-gradient(135deg,var(--gold) 0%,#E8C885 50%,var(--gold-deep) 100%);
+  color:#1a1308;
+  font-weight:600;
+}
+
+/* Footer brand — gold underline (was уже added выше но усилим) */
+.footer-brand::after{
+  width:48px;
+  background:linear-gradient(to right,var(--gold),var(--gold-deep) 70%,transparent);
+}
+
+/* Live readers dot — keep green но добавим gold ring */
+.live-readers{box-shadow:inset 0 0 0 1px rgba(201,163,95,0.18);}
+
+/* Slate — постоянный gold accent */
+.slate{
+  border-color:rgba(201,163,95,0.4);
+  box-shadow:0 0 16px rgba(201,163,95,0.08),inset 0 0 0 1px rgba(201,163,95,0.1);
+}
+.slate-act{color:var(--gold);font-weight:700;}
+
+/* Eyebrow — gold underline */
+.section-header .eyebrow,.contact-left .eyebrow{
+  position:relative;
+  padding-bottom:10px;
+}
+.section-header .eyebrow::after,.contact-left .eyebrow::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:-2px;
+  width:24px;
+  height:1px;
+  background:var(--gold);
+}
+.contact-left .eyebrow{display:inline-block;}
+.contact-left .eyebrow::after{left:0;transform:none;}
+
 /* Footer brand — subtle gold underline */
 .footer-brand{position:relative;display:inline-block;}
 .footer-brand::after{
@@ -1555,6 +1708,7 @@ body.scene-transitioning::before{opacity:1;}
     <div class="pull-quote reveal">
       <p>Контент стоит дороже одежды, которую он продаёт.</p>
       <cite>Реальность DTC-брендов в 2026</cite>
+      <span class="gold-line"></span>
     </div>
   </div>
 </section>
