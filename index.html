@@ -923,9 +923,392 @@ body::after{
   .reveal{opacity:1;transform:none;transition:none;}
   .marquee-track,.hero::before,.hero-mouse-glow,.eyebrow,.price-card.featured{animation:none;}
 }
+
+/* ===== POLISH DETAILS (15) ===== */
+
+/* 1. Hairline scroll progress bar */
+.scroll-progress{
+  position:fixed;
+  top:0;left:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.6) 50%,transparent);
+  z-index:100;
+  width:0;
+  transition:width 60ms linear;
+  pointer-events:none;
+}
+
+/* 2. Section indicator (right edge) */
+.section-indicator{
+  position:fixed;
+  right:24px;
+  top:50%;
+  transform:translateY(-50%);
+  z-index:40;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  font-family:'Outfit',sans-serif;
+  font-size:10px;
+  letter-spacing:1.5px;
+  font-variant-numeric:tabular-nums;
+}
+.section-indicator a{
+  color:rgba(255,255,255,0.3);
+  padding:6px 0;
+  text-decoration:none;
+  transition:color 240ms,padding-right 240ms;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  position:relative;
+}
+.section-indicator a::before{
+  content:"";
+  width:16px;
+  height:1px;
+  background:currentColor;
+  transition:width 240ms;
+}
+.section-indicator a:hover,.section-indicator a.active{color:rgba(255,255,255,0.95);}
+.section-indicator a.active::before{width:32px;background:var(--accent);}
+@media(max-width:1100px){.section-indicator{display:none;}}
+
+/* 3. Cursor-trail dot */
+.cursor-dot{
+  position:fixed;
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.6);
+  pointer-events:none;
+  z-index:9998;
+  mix-blend-mode:difference;
+  transition:transform 280ms cubic-bezier(0.16,1,0.3,1),opacity 240ms;
+  transform:translate(-50%,-50%);
+  opacity:0;
+}
+@media(hover:none){.cursor-dot{display:none;}}
+
+/* 4. Frame counter floater */
+.frame-counter{
+  position:fixed;
+  bottom:24px;
+  right:24px;
+  z-index:40;
+  font-family:'Outfit',sans-serif;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.4);
+  background:rgba(0,0,0,0.6);
+  border:1px solid var(--border);
+  padding:8px 14px;
+  border-radius:100px;
+  font-variant-numeric:tabular-nums;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.frame-counter::before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#ff3b3b;
+  animation:recPulse 1.4s ease-in-out infinite;
+}
+@media(max-width:768px){.frame-counter{bottom:88px;font-size:9px;padding:6px 10px;}}
+
+/* 5. Director's commentary box */
+.director-note{
+  margin:80px auto;
+  max-width:640px;
+  padding:32px 40px;
+  border-left:2px solid var(--accent);
+  position:relative;
+}
+.director-note::before{
+  content:"DIRECTOR'S NOTE";
+  position:absolute;
+  top:-8px;
+  left:30px;
+  font-family:'Outfit',sans-serif;
+  font-size:9px;
+  letter-spacing:2.5px;
+  color:var(--text-muted);
+  background:var(--bg);
+  padding:0 12px;
+}
+.director-note p{
+  font-family:'Outfit',sans-serif;
+  font-style:italic;
+  font-size:clamp(20px,2.4vw,28px);
+  line-height:1.4;
+  font-weight:300;
+  color:var(--text);
+  letter-spacing:-0.3px;
+}
+.director-note .tc{
+  display:block;
+  margin-top:16px;
+  font-family:'Outfit',sans-serif;
+  font-size:11px;
+  font-style:normal;
+  letter-spacing:1.5px;
+  color:var(--text-muted);
+  font-variant-numeric:tabular-nums;
+}
+
+/* 6. Pull quote — Vogue editorial */
+.pull-quote{
+  margin:120px auto;
+  max-width:920px;
+  text-align:center;
+  position:relative;
+  padding:0 40px;
+}
+.pull-quote::before,.pull-quote::after{
+  font-family:Georgia,serif;
+  font-style:italic;
+  font-size:120px;
+  line-height:1;
+  color:var(--accent);
+  opacity:0.3;
+  position:absolute;
+}
+.pull-quote::before{content:"\201C";top:-20px;left:0;}
+.pull-quote::after{content:"\201D";bottom:-60px;right:0;}
+.pull-quote p{
+  font-family:Georgia,serif;
+  font-style:italic;
+  font-size:clamp(28px,4vw,52px);
+  line-height:1.2;
+  font-weight:400;
+  color:var(--text);
+  letter-spacing:-0.5px;
+  max-width:24ch;
+  margin:0 auto 24px;
+}
+.pull-quote cite{
+  display:block;
+  font-family:'Outfit',sans-serif;
+  font-style:normal;
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--text-muted);
+}
+
+/* 7. Italic emphasis в hero h1 */
+.hero h1 em{
+  font-family:Georgia,serif;
+  font-style:italic;
+  font-weight:400;
+  color:var(--accent);
+}
+
+/* 8. Lens flare на CTA hover */
+.btn-primary{position:relative;overflow:hidden;}
+.btn-primary::after{
+  content:"";
+  position:absolute;
+  top:50%;left:50%;
+  width:0;height:0;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,0.6) 0%,transparent 70%);
+  transform:translate(-50%,-50%);
+  transition:width 400ms cubic-bezier(0.32,0.72,0,1),height 400ms cubic-bezier(0.32,0.72,0,1);
+  pointer-events:none;
+  mix-blend-mode:lighten;
+}
+.btn-primary:hover::after{width:200%;height:200%;}
+
+/* 9. Sticky bottom CTA bar */
+.sticky-cta{
+  position:fixed;
+  bottom:24px;
+  left:50%;
+  transform:translateX(-50%) translateY(100px);
+  z-index:60;
+  display:flex;
+  gap:12px;
+  background:rgba(15,15,17,0.95);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid var(--border-strong);
+  border-radius:100px;
+  padding:8px 8px 8px 24px;
+  align-items:center;
+  box-shadow:0 16px 48px rgba(0,0,0,0.6);
+  opacity:0;
+  transition:opacity 400ms,transform 400ms cubic-bezier(0.32,0.72,0,1);
+  pointer-events:none;
+}
+.sticky-cta.visible{transform:translateX(-50%) translateY(0);opacity:1;pointer-events:auto;}
+.sticky-cta-text{
+  font-family:'Outfit',sans-serif;
+  font-size:13px;
+  font-weight:500;
+  color:var(--text);
+  white-space:nowrap;
+}
+.sticky-cta-text small{
+  display:block;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  font-weight:400;
+  margin-top:2px;
+}
+.sticky-cta .btn{padding:12px 20px;font-size:13px;}
+@media(max-width:640px){
+  .sticky-cta{left:12px;right:12px;transform:translateY(100px);}
+  .sticky-cta.visible{transform:translateY(0);}
+  .sticky-cta-text{font-size:11px;}
+  .sticky-cta-text small{display:none;}
+  .sticky-cta .btn{padding:10px 14px;font-size:11px;}
+}
+
+/* 10. Live "сейчас изучают X людей" */
+.live-readers{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:'Outfit',sans-serif;
+  font-size:11px;
+  letter-spacing:1px;
+  color:var(--text-muted);
+  margin-top:32px;
+  padding:6px 14px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border);
+  border-radius:100px;
+}
+.live-readers .live-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#4ade80;
+  box-shadow:0 0 8px rgba(74,222,128,0.6);
+  animation:livePulse 2s ease-in-out infinite;
+}
+@keyframes livePulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
+
+/* 11. Pricing footnotes */
+.tier-footnote{
+  display:inline-block;
+  font-family:'Outfit',sans-serif;
+  font-size:10px;
+  vertical-align:super;
+  color:var(--text-muted);
+  margin-left:2px;
+  cursor:help;
+}
+.footnote-block{
+  margin-top:48px;
+  padding-top:24px;
+  border-top:1px solid var(--border);
+  font-family:'Outfit',sans-serif;
+  font-size:11px;
+  color:var(--text-muted);
+  line-height:1.7;
+  letter-spacing:0.3px;
+}
+.footnote-block sup{font-weight:500;color:var(--text);margin-right:4px;}
+
+/* 12. Lower-third subtitle на pricing hover */
+.price-card{position:relative;}
+.price-card .lower-third{
+  position:absolute;
+  left:24px;right:24px;
+  bottom:24px;
+  background:rgba(0,0,0,0.85);
+  border-left:3px solid var(--accent);
+  padding:8px 14px;
+  font-family:'Outfit',sans-serif;
+  font-size:11px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--text);
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity 280ms,transform 280ms;
+  pointer-events:none;
+  z-index:5;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.price-card:hover .lower-third{opacity:1;transform:translateY(0);}
+
+/* 13. Type-on hero h1 */
+.typeon{visibility:hidden;}
+.typeon.ready{visibility:visible;}
+.typeon .ch{opacity:0;display:inline-block;}
+.typeon.animating .ch{animation:chReveal 40ms forwards;}
+
+@keyframes chReveal{from{opacity:0;}to{opacity:1;}}
+
+/* 14. Scene-transition fade */
+body.scene-transition::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:#000;
+  opacity:0;
+  z-index:9997;
+  pointer-events:none;
+  transition:opacity 200ms;
+}
+body.scene-transitioning::before{opacity:1;}
+
+/* 15. Underline-draw на nav links / inline links */
+.nav-link,.footer-nav a,.footer-meta a{position:relative;}
+.nav-link::after,.footer-nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:0;
+  height:1px;
+  background:currentColor;
+  transition:width 280ms cubic-bezier(0.32,0.72,0,1);
+}
+.nav-link:hover::after,.footer-nav a:hover::after{width:100%;}
 </style>
 </head>
 <body>
+
+<!-- Scroll progress (1px hairline) -->
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<!-- Cursor dot (desktop only) -->
+<div class="cursor-dot" id="cursor-dot"></div>
+
+<!-- Section indicator (right edge, sticky) -->
+<nav class="section-indicator" id="section-indicator">
+  <a href="#hero" data-target="hero">01<span></span></a>
+  <a href="#pain" data-target="pain">02<span></span></a>
+  <a href="#examples" data-target="examples">03<span></span></a>
+  <a href="#math" data-target="math">04<span></span></a>
+  <a href="#testdrive" data-target="testdrive">05<span></span></a>
+  <a href="#pricing" data-target="pricing">06<span></span></a>
+  <a href="#faq" data-target="faq">07<span></span></a>
+  <a href="#contact" data-target="contact">08<span></span></a>
+</nav>
+
+<!-- Frame counter (bottom-right) -->
+<div class="frame-counter" id="frame-counter">
+  <span id="frame-num">FRAME 4128 / ∞</span>
+</div>
+
+<!-- Sticky bottom CTA -->
+<div class="sticky-cta" id="sticky-cta">
+  <div class="sticky-cta-text">Тест-драйв за $1 500<small>30 видео + 210 фото</small></div>
+  <a href="#testdrive" class="btn btn-primary">Заказать <span class="arrow">→</span></a>
+</div>
 
 <header>
   <div class="container">
@@ -942,7 +1325,7 @@ body::after{
 <main id="main">
 
 <!-- HERO -->
-<header class="hero">
+<header class="hero" id="hero">
   <span class="vf-corner vf-tl"></span>
   <span class="vf-corner vf-tr"></span>
   <span class="vf-corner vf-bl"></span>
@@ -958,11 +1341,14 @@ body::after{
       <span>Take 01</span>
     </div>
     <div class="eyebrow reveal">Для DTC Fashion-брендов</div>
-    <h1 class="reveal reveal-d1">Получите полную независимость от креативных агентств и фрилансеров</h1>
+    <h1 class="reveal reveal-d1 typeon">Получите <em>полную</em> независимость от креативных агентств и фрилансеров</h1>
     <p class="hero-sub reveal reveal-d2">Три AI-агента генерируют видео в стиле бренда, ведут аккаунты в соцсетях и закрывают сделки в директе — на ваших серверах, 24/7.</p>
     <div class="hero-actions reveal reveal-d3">
       <a href="#contact" class="btn btn-primary magnetic">Обсудить внедрение системы <span class="arrow">→</span></a>
       <a href="#testdrive" class="btn btn-secondary magnetic">Взять Тест-драйв за $1 500</a>
+    </div>
+    <div class="reveal reveal-d4" style="text-align:center;margin-top:32px;">
+      <span class="live-readers"><span class="live-dot"></span><span id="readers-count">12</span> людей сейчас изучают эту страницу</span>
     </div>
   </div>
 </header>
@@ -986,7 +1372,7 @@ body::after{
 </div>
 
 <!-- PAIN -->
-<section>
+<section id="pain">
   <div class="container">
     <div class="section-header reveal" style="text-align:center;">
       <div class="slate"><div class="slate-stripes"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="slate-act">Act I</span><span class="slate-name">— The Problem</span></div>
@@ -1012,6 +1398,16 @@ body::after{
         <h3>Менеджер в DM</h3>
         <p>Человек, который сутками отвечает на «а есть размер M?» — от $6 000 в год. Теряет лиды ночью и выгорает от рутины.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE (между Pain и Solution) -->
+<section style="padding:0;border:none;">
+  <div class="container">
+    <div class="pull-quote reveal">
+      <p>Фотографы стали слишком дорогим способом проверять одну гипотезу.</p>
+      <cite>Editorial Note · TC 00:03:14</cite>
     </div>
   </div>
 </section>
@@ -1100,7 +1496,7 @@ body::after{
 </section>
 
 <!-- MATH (Proof) -->
-<section>
+<section id="math">
   <div class="container">
     <div class="section-header reveal">
       <div class="eyebrow">Математика</div>
@@ -1172,6 +1568,7 @@ body::after{
     <div class="pricing-grid reveal-children">
 
       <div class="price-card">
+        <div class="lower-third">№ 01 · Тест на одной коллекции</div>
         <h3>Тест-драйв «Капсула»</h3>
         <div class="price-amount">$1 500</div>
         <div class="price-period">разовый платёж</div>
@@ -1186,6 +1583,7 @@ body::after{
 
       <div class="price-card featured">
         <div class="price-badge">Главное</div>
+        <div class="lower-third">№ 02 · Замена студии и SMM-команды</div>
         <h3>Self-Hosted MVP</h3>
         <div class="price-amount">$5 000</div>
         <div class="price-period">+ $200/мес обслуживание</div>
@@ -1200,6 +1598,7 @@ body::after{
       </div>
 
       <div class="price-card">
+        <div class="lower-third">№ 03 · + Sales-bot закрывает сделку</div>
         <h3>Расширенный</h3>
         <div class="price-amount">$10 000</div>
         <div class="price-period">+ $200/мес обслуживание</div>
@@ -1213,11 +1612,25 @@ body::after{
       </div>
 
     </div>
+
+    <div class="footnote-block reveal">
+      <p><sup>1</sup> Цены за установку — фиксированные, разовый платёж. <sup>2</sup> $200/мес обслуживание включает все обновления продукта, новые AI-движки (Veo 4, Seedance 3, Kling 4) и фиксы багов. Кастомные доработки под одного клиента — оплачиваются отдельно. <sup>3</sup> Self-Hosted: видео по себестоимости (~$5/штука) — клиент платит за токены AI напрямую, без нашей наценки.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DIRECTOR'S NOTE между Pricing и FAQ -->
+<section style="padding:0;border:none;">
+  <div class="container">
+    <div class="director-note reveal">
+      <p>«Кадр 02:34 — момент когда покупательница видит Reels и кладёт вещь в корзину. Этот кадр стоит ровно $5.»</p>
+      <span class="tc">TC 02:34:08 · 24 fps · Director's Cut</span>
+    </div>
   </div>
 </section>
 
 <!-- FAQ -->
-<section>
+<section id="faq">
   <div class="container">
     <div class="section-header reveal">
       <div class="eyebrow">Вопросы</div>
@@ -1480,6 +1893,155 @@ document.querySelectorAll('.example-card').forEach((card, i) => {
   const flash = document.createElement('div');
   flash.className = 'shutter-flash';
   card.appendChild(flash);
+});
+
+// === SCROLL PROGRESS BAR ===
+const scrollBar = document.getElementById('scroll-progress');
+function updateScroll(){
+  const sc = window.scrollY;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  scrollBar.style.width = Math.min(100, (sc / max) * 100) + '%';
+}
+window.addEventListener('scroll', updateScroll, {passive:true});
+updateScroll();
+
+// === SECTION INDICATOR — active state ===
+const indicatorLinks = document.querySelectorAll('.section-indicator a');
+const indicatorObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      indicatorLinks.forEach(l => l.classList.remove('active'));
+      const link = document.querySelector(`.section-indicator a[data-target="${e.target.id}"]`);
+      if (link) link.classList.add('active');
+    }
+  });
+}, { rootMargin: '-40% 0px -40% 0px' });
+['hero','pain','examples','math','testdrive','pricing','faq','contact'].forEach(id => {
+  const sec = document.getElementById(id);
+  if (sec) indicatorObserver.observe(sec);
+});
+
+// === CURSOR DOT (desktop only) ===
+const dot = document.getElementById('cursor-dot');
+let dotX = 0, dotY = 0;
+let mouseX = 0, mouseY = 0;
+let dotVisible = false;
+window.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  if (!dotVisible) { dot.style.opacity = '1'; dotVisible = true; }
+});
+window.addEventListener('mouseleave', () => { dot.style.opacity = '0'; dotVisible = false; });
+function tickDot(){
+  dotX += (mouseX - dotX) * 0.18;
+  dotY += (mouseY - dotY) * 0.18;
+  dot.style.transform = `translate(${dotX}px, ${dotY}px) translate(-50%,-50%)`;
+  requestAnimationFrame(tickDot);
+}
+requestAnimationFrame(tickDot);
+
+// === FRAME COUNTER (live) ===
+const frameNum = document.getElementById('frame-num');
+let baseFrame = 99072; // arbitrary cinematic frame
+function tickFrame(){
+  const elapsed = (performance.now() - tcStart) / 1000;
+  const f = baseFrame + Math.floor(elapsed * 24);
+  frameNum.textContent = `FRAME ${f.toLocaleString('en-US')} / ∞`;
+  requestAnimationFrame(tickFrame);
+}
+requestAnimationFrame(tickFrame);
+
+// === STICKY CTA на 40% scroll ===
+const stickyCTA = document.getElementById('sticky-cta');
+let stickyShown = false;
+window.addEventListener('scroll', () => {
+  const sc = window.scrollY;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = (sc / max) * 100;
+  // hide когда уже в Test-Drive / Pricing / Contact (доскроллил)
+  const testdriveSec = document.getElementById('testdrive');
+  const contactSec = document.getElementById('contact');
+  const inBottom = testdriveSec && testdriveSec.getBoundingClientRect().top < window.innerHeight * 0.6;
+  if (pct > 35 && !inBottom && !stickyShown) {
+    stickyCTA.classList.add('visible');
+    stickyShown = true;
+  } else if ((pct < 30 || inBottom) && stickyShown) {
+    stickyCTA.classList.remove('visible');
+    stickyShown = false;
+  }
+}, {passive:true});
+
+// === LIVE READERS counter — рандом 8-18, обновляется иногда ===
+const readersEl = document.getElementById('readers-count');
+let readers = 12;
+function updateReaders(){
+  if (Math.random() < 0.4) {
+    const delta = Math.random() < 0.5 ? -1 : 1;
+    readers = Math.max(8, Math.min(18, readers + delta));
+    if (readersEl) readersEl.textContent = readers;
+  }
+  setTimeout(updateReaders, 4000 + Math.random() * 6000);
+}
+setTimeout(updateReaders, 6000);
+
+// === TYPE-ON HERO H1 (только первый visit в session) ===
+const h1Typeon = document.querySelector('.typeon');
+if (h1Typeon && !sessionStorage.getItem('hero_typed')) {
+  const html = h1Typeon.innerHTML;
+  // Wrap каждую букву (но не теги <em>...) в span
+  const wrapped = html.replace(/(<em>|<\/em>|<[^>]+>)|(.)/g, (m, tag, ch) => {
+    if (tag) return tag;
+    if (!ch || ch === ' ') return ' ';
+    return `<span class="ch">${ch}</span>`;
+  });
+  h1Typeon.innerHTML = wrapped;
+  h1Typeon.classList.add('ready');
+  setTimeout(() => {
+    h1Typeon.classList.add('animating');
+    const chars = h1Typeon.querySelectorAll('.ch');
+    chars.forEach((c, i) => { c.style.animationDelay = (i * 18) + 'ms'; });
+    sessionStorage.setItem('hero_typed', '1');
+  }, 600);
+} else if (h1Typeon) {
+  h1Typeon.classList.add('ready');
+  h1Typeon.querySelectorAll('.ch').forEach(c => c.style.opacity = '1');
+}
+
+// === PAUSE/RESUME timecode на пробел ===
+let tcPaused = false;
+let tcPauseStart = 0;
+let tcPauseTotal = 0;
+const originalTickTimecode = tickTimecode;
+window.addEventListener('keydown', e => {
+  if (e.code === 'Space' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'SELECT' && document.activeElement.tagName !== 'TEXTAREA') {
+    e.preventDefault();
+    tcPaused = !tcPaused;
+    if (tcPaused) {
+      tcPauseStart = performance.now();
+      document.body.style.filter = 'grayscale(0.4)';
+    } else {
+      tcPauseTotal += performance.now() - tcPauseStart;
+      tcStart += performance.now() - tcPauseStart;
+      document.body.style.filter = '';
+    }
+  }
+});
+
+// === SCENE TRANSITIONS на anchor click ===
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  if (a.classList.contains('section-indicator-link')) return;
+  a.addEventListener('click', e => {
+    const target = a.getAttribute('href');
+    if (target.length < 2) return;
+    const el = document.querySelector(target);
+    if (!el) return;
+    e.preventDefault();
+    document.body.classList.add('scene-transitioning');
+    setTimeout(() => {
+      el.scrollIntoView({behavior:'smooth', block:'start'});
+      setTimeout(() => document.body.classList.remove('scene-transitioning'), 200);
+    }, 200);
+  });
 });
 
 // === FORM PREFILL FROM CTA ===
