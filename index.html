@@ -649,29 +649,17 @@ footer{
 }
 
 /* ===== CINEMATIC DETAILS ===== */
-/* Film grain overlay (subtle, всё body) */
+/* Film grain overlay (статичный — animation отключена для perf) */
 body::after{
   content:"";
   position:fixed;
   inset:0;
   pointer-events:none;
   z-index:9999;
-  opacity:0.06;
+  opacity:0.05;
   background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' seed='5'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   mix-blend-mode:overlay;
-  animation:grainShift 0.6s steps(6) infinite;
-}
-@keyframes grainShift{
-  0%,100%{transform:translate(0,0);}
-  10%{transform:translate(-2%,-3%);}
-  20%{transform:translate(-4%,2%);}
-  30%{transform:translate(2%,-4%);}
-  40%{transform:translate(-2%,5%);}
-  50%{transform:translate(-4%,2%);}
-  60%{transform:translate(3%,0);}
-  70%{transform:translate(0,3%);}
-  80%{transform:translate(-3%,1%);}
-  90%{transform:translate(2%,2%);}
+  /* animation removed — постоянный repaint жрал CPU */
 }
 
 /* Letterbox bars — тонкие в hero */
@@ -898,8 +886,8 @@ body::after{
 .marquee-track span{display:flex;align-items:center;gap:60px;flex-shrink:0;}
 .marquee-track span::after{content:"●";color:var(--text-muted);font-size:0.5em;}
 
-/* Featured pricing — pulse glow */
-.price-card.featured{animation:pulseSoft 4s ease-in-out infinite;}
+/* Featured pricing — pulse glow только when in viewport (CSS contain) */
+.price-card.featured{animation:pulseSoft 4s ease-in-out infinite;contain:layout style paint;}
 
 /* Card hover — refined glow */
 .card,.example-card,.price-card,.math-box,.faq-item,.testdrive-banner,.downsell-banner{position:relative;}
@@ -926,12 +914,7 @@ body::after{
   box-shadow:0 24px 60px rgba(0,0,0,0.5);
 }
 
-/* Eyebrow shimmer */
-.eyebrow{
-  background:linear-gradient(90deg,transparent 25%,rgba(255,255,255,0.05) 50%,transparent 75%);
-  background-size:200% 100%;
-  animation:shimmer 6s ease-in-out infinite;
-}
+/* Eyebrow — shimmer animation removed для perf (8+ eyebrows × shimmer = постоянный repaint) */
 
 /* FAQ stagger */
 .faq-item summary{transition:padding-left .4s cubic-bezier(0.32,0.72,0,1),background .3s;}
@@ -1650,7 +1633,7 @@ header::after{
 <header>
   <div class="container">
     <nav>
-      <a href="/" class="logo"><img src="/logo.png" alt="Контент Фабрика"></a>
+      <a href="/" class="logo"><picture><source srcset="/logo.webp" type="image/webp"><img src="/logo.png" alt="Контент Фабрика" width="320" height="320" loading="eager" decoding="async"></picture></a>
       <div class="nav-links">
         <a href="#pricing" class="nav-link hide-sm">Тарифы</a>
         <a href="#testdrive" class="nav-link">Тест-драйв $1 500</a>
@@ -2145,28 +2128,41 @@ document.querySelectorAll('.magnetic').forEach(btn => {
   });
 });
 
-// === HERO MOUSE-FOLLOW GLOW ===
+// === HERO MOUSE-FOLLOW GLOW (RAF-throttled) ===
 const heroGlow = document.getElementById('hero-glow');
 const hero = document.querySelector('.hero');
 if (heroGlow && hero) {
+  let rafScheduled = false;
+  let lastEvent = null;
   hero.addEventListener('mousemove', e => {
-    const rect = hero.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    heroGlow.style.left = x + '%';
-    heroGlow.style.top = y + '%';
-  });
+    lastEvent = e;
+    if (rafScheduled) return;
+    rafScheduled = true;
+    requestAnimationFrame(() => {
+      const rect = hero.getBoundingClientRect();
+      const x = ((lastEvent.clientX - rect.left) / rect.width) * 100;
+      const y = ((lastEvent.clientY - rect.top) / rect.height) * 100;
+      heroGlow.style.left = x + '%';
+      heroGlow.style.top = y + '%';
+      rafScheduled = false;
+    });
+  }, { passive: true });
 }
 
-// === CARD MOUSE-FOLLOW HIGHLIGHT ===
+// === CARD MOUSE-FOLLOW HIGHLIGHT (RAF-throttled) ===
 document.querySelectorAll('.card, .price-card, .math-box').forEach(card => {
+  let cardRAF = false, lastE = null;
   card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    card.style.setProperty('--x', x + '%');
-    card.style.setProperty('--y', y + '%');
-  });
+    lastE = e;
+    if (cardRAF) return;
+    cardRAF = true;
+    requestAnimationFrame(() => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--x', ((lastE.clientX - rect.left) / rect.width) * 100 + '%');
+      card.style.setProperty('--y', ((lastE.clientY - rect.top) / rect.height) * 100 + '%');
+      cardRAF = false;
+    });
+  }, { passive: true });
 });
 
 // === COUNT-UP for big numbers ===
@@ -2199,12 +2195,14 @@ const numIo = new IntersectionObserver(entries => {
 }, { threshold: 0.5 });
 document.querySelectorAll('.math-price, .testdrive-price, .price-amount').forEach(el => numIo.observe(el));
 
-// === LIVE TIMECODE (24fps look) ===
+// === LIVE TIMECODE — throttle до 8fps (вместо 60fps RAF) ===
 const tcEl = document.getElementById('timecode');
 const footerTcEl = document.getElementById('footer-tc');
 let tcStart = performance.now();
+let tcVisible = true;
 function pad(n, d=2){return String(n).padStart(d,'0');}
 function tickTimecode(){
+  if (!tcVisible) return;
   const elapsed = (performance.now() - tcStart) / 1000 + 42.75;
   const hours = Math.floor(elapsed / 3600);
   const minutes = Math.floor((elapsed % 3600) / 60);
@@ -2213,9 +2211,12 @@ function tickTimecode(){
   const tc = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}:${pad(frames)}`;
   if (tcEl) tcEl.textContent = tc;
   if (footerTcEl) footerTcEl.textContent = `TC ${tc} · 24 fps`;
-  requestAnimationFrame(tickTimecode);
 }
-requestAnimationFrame(tickTimecode);
+setInterval(tickTimecode, 125); // 8fps — достаточно для читаемости TC
+document.addEventListener('visibilitychange', () => {
+  tcVisible = !document.hidden;
+  if (tcVisible) tickTimecode();
+});
 
 // === EXAMPLE CARDS — aspect labels + shutter flash ===
 document.querySelectorAll('.example-card').forEach((card, i) => {
@@ -2267,23 +2268,25 @@ window.addEventListener('mousemove', e => {
 });
 window.addEventListener('mouseleave', () => { dot.style.opacity = '0'; dotVisible = false; });
 function tickDot(){
+  if (!tcVisible) return;
   dotX += (mouseX - dotX) * 0.18;
   dotY += (mouseY - dotY) * 0.18;
   dot.style.transform = `translate(${dotX}px, ${dotY}px) translate(-50%,-50%)`;
   requestAnimationFrame(tickDot);
 }
 requestAnimationFrame(tickDot);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) requestAnimationFrame(tickDot); });
 
-// === FRAME COUNTER (live) ===
+// === FRAME COUNTER — throttle до 8fps ===
 const frameNum = document.getElementById('frame-num');
-let baseFrame = 99072; // arbitrary cinematic frame
+let baseFrame = 99072;
 function tickFrame(){
+  if (!tcVisible) return;
   const elapsed = (performance.now() - tcStart) / 1000;
   const f = baseFrame + Math.floor(elapsed * 24);
   frameNum.textContent = `FRAME ${f.toLocaleString('en-US')} / ∞`;
-  requestAnimationFrame(tickFrame);
 }
-requestAnimationFrame(tickFrame);
+setInterval(tickFrame, 125); // 8fps
 
 // === STICKY CTA на 40% scroll ===
 const stickyCTA = document.getElementById('sticky-cta');
@@ -2305,18 +2308,23 @@ window.addEventListener('scroll', () => {
   }
 }, {passive:true});
 
-// === LIVE READERS counter — рандом 8-18, обновляется иногда ===
+// === LIVE READERS counter — pause при скрытой вкладке ===
 const readersEl = document.getElementById('readers-count');
 let readers = 12;
+let readersTimer = null;
 function updateReaders(){
+  if (document.hidden) { readersTimer = null; return; }
   if (Math.random() < 0.4) {
     const delta = Math.random() < 0.5 ? -1 : 1;
     readers = Math.max(8, Math.min(18, readers + delta));
     if (readersEl) readersEl.textContent = readers;
   }
-  setTimeout(updateReaders, 4000 + Math.random() * 6000);
+  readersTimer = setTimeout(updateReaders, 4000 + Math.random() * 6000);
 }
-setTimeout(updateReaders, 6000);
+readersTimer = setTimeout(updateReaders, 6000);
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && !readersTimer) updateReaders();
+});
 
 // === TYPE-ON HERO H1 (только первый visit в session) ===
 const h1Typeon = document.querySelector('.typeon');
