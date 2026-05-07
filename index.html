@@ -70,14 +70,14 @@ nav{
   color:var(--text);
 }
 .logo img{
-  height:48px;
+  height:72px;
   width:auto;
-  mix-blend-mode:screen;
-  filter:brightness(1.2) contrast(1.05);
+  mix-blend-mode:lighten;
+  filter:brightness(1.35) contrast(1.15);
   transition:filter 280ms var(--ease);
 }
-.logo:hover img{filter:brightness(1.4) contrast(1.1);}
-@media(max-width:640px){.logo img{height:38px;}}
+.logo:hover img{filter:brightness(1.5) contrast(1.25);}
+@media(max-width:640px){.logo img{height:54px;}}
 .nav-links{display:flex;align-items:center;gap:32px;}
 .nav-link{
   color:var(--text-muted);
