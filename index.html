@@ -63,14 +63,21 @@ nav{
   padding:20px 0;
 }
 .logo{
-  font-family:'Outfit',sans-serif;
-  font-weight:700;
-  letter-spacing:2px;
-  font-size:14px;
-  color:var(--text);
+  display:inline-flex;
+  align-items:center;
+  gap:0;
   text-decoration:none;
-  text-transform:uppercase;
+  color:var(--text);
 }
+.logo img{
+  height:48px;
+  width:auto;
+  mix-blend-mode:screen;
+  filter:brightness(1.2) contrast(1.05);
+  transition:filter 280ms var(--ease);
+}
+.logo:hover img{filter:brightness(1.4) contrast(1.1);}
+@media(max-width:640px){.logo img{height:38px;}}
 .nav-links{display:flex;align-items:center;gap:32px;}
 .nav-link{
   color:var(--text-muted);
@@ -1423,18 +1430,7 @@ header::after{
   opacity:0.45;
 }
 
-/* Logo — gold dot перед текстом */
-.logo::before{
-  content:"";
-  display:inline-block;
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:var(--gold);
-  margin-right:10px;
-  vertical-align:middle;
-  box-shadow:0 0 8px var(--gold-glow);
-}
+/* Logo (с image) — gold dot убран т.к. лого теперь image */
 
 /* Featured pricing — постоянная gold рамка (не только при hover) */
 .price-card.featured{
@@ -1651,7 +1647,7 @@ header::after{
 <header>
   <div class="container">
     <nav>
-      <a href="/" class="logo">Контент Фабрика</a>
+      <a href="/" class="logo"><img src="/logo.png" alt="Контент Фабрика"></a>
       <div class="nav-links">
         <a href="#pricing" class="nav-link hide-sm">Тарифы</a>
         <a href="#testdrive" class="nav-link">Тест-драйв $1 500</a>
