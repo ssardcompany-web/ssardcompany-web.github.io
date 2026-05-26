@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Контент Фабрика — AI-команда вместо фотографа, SMM-щика и менеджера в DM</title>
+<title>ModAI Team — Autonomous Content Production for Fashion</title>
 <meta name="description" content="Один продукт заменяет фотографа, SMM-команду и менеджера в DM. Тест-драйв $1 500 за 30 видео + 210 фото или установка системы от $5 000.">
 <link rel="canonical" href="https://ssardcompany-web.github.io/">
-<meta property="og:title" content="Контент Фабрика — AI-команда для брендов одежды">
+<meta property="og:title" content="ModAI Team — Autonomous Content Production for Fashion">
 <meta property="og:description" content="Один продукт заменяет фотографа, SMM-щика и менеджера в DM. От $1 500.">
 <meta property="og:type" content="website">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" href="logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,13 +80,42 @@ nav{
 @media(max-width:640px){.logo img{height:80px;}}
 .nav-links{display:flex;align-items:center;gap:32px;}
 .nav-link{
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:0.5px;
   color:var(--text-muted);
   text-decoration:none;
-  font-size:14px;
   transition:color .3s;
 }
 .nav-link:hover{color:var(--accent);}
 @media(max-width:640px){.nav-links .nav-link.hide-sm{display:none;}}
+.lang-switcher{
+  display:flex;
+  align-items:center;
+  gap:4px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border);
+  border-radius:100px;
+  padding:4px;
+  margin-left:8px;
+}
+.lang-btn{
+  font-family:'Outfit',sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  padding:5px 10px;
+  border-radius:100px;
+  border:none;
+  background:transparent;
+  color:var(--text-muted);
+  cursor:pointer;
+  transition:all .25s;
+}
+.lang-btn.active{
+  background:var(--gold);
+  color:#05050a;
+}
 
 /* BUTTONS */
 .btn{
@@ -146,14 +175,15 @@ nav{
   font-weight:500;
 }
 .hero h1{
-  font-size:clamp(40px,6vw,72px);
+  font-size:clamp(32px,4.8vw,64px);
   line-height:1.08;
   margin-bottom:24px;
   letter-spacing:-1px;
   font-weight:300;
-  max-width:18ch;
+  max-width:none;
   margin-left:auto;
   margin-right:auto;
+  text-align:center;
 }
 .hero-sub{
   font-size:18px;
@@ -183,7 +213,7 @@ section{padding:100px 0;border-top:1px solid var(--border);}
 /* GRID-3 (Pain, Solution) */
 .grid-3{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:24px;
 }
 .card{
@@ -270,12 +300,14 @@ section{padding:100px 0;border-top:1px solid var(--border);}
   cursor:pointer;
 }
 .example-card:hover{transform:translateY(-5px);border-color:rgba(255,255,255,0.25);}
-.example-card.bg-1{background:linear-gradient(180deg,#1f1d1a 0%,#0a0908 100%);}
-.example-card.bg-2{background:linear-gradient(180deg,#22201a 0%,#0a0807 100%);}
-.example-card.bg-3{background:linear-gradient(180deg,#1a1714 0%,#080706 100%);}
-.example-card.bg-4{background:linear-gradient(180deg,#1d1b18 0%,#0f0e0c 100%);}
-.example-card.bg-5{background:linear-gradient(180deg,#211e1a 0%,#0c0b09 100%);}
-.example-card.bg-6{background:linear-gradient(180deg,#1c1a16 0%,#070605 100%);}
+.example-card video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
 .example-card::before{
   content:'';
   position:absolute;
@@ -375,6 +407,7 @@ section{padding:100px 0;border-top:1px solid var(--border);}
   grid-template-columns:1fr 1fr;max-width:900px;margin-left:auto;margin-right:auto;
   gap:24px;
   align-items:stretch;
+  padding-top:20px;
 }
 @media(max-width:992px){.pricing-grid{grid-template-columns:1fr;}}
 .price-card{
@@ -396,10 +429,9 @@ section{padding:100px 0;border-top:1px solid var(--border);}
 }
 @media(min-width:993px){.price-card.featured{transform:scale(1.04);}}
 .price-badge{
-  position:absolute;
-  top:-12px;
-  left:50%;
-  transform:translateX(-50%);
+  display:inline-block;
+  align-self:flex-start;
+  margin-bottom:20px;
   background:var(--accent);
   color:var(--bg);
   font-family:'Outfit',sans-serif;
@@ -502,6 +534,9 @@ section{padding:100px 0;border-top:1px solid var(--border);}
 @media(max-width:640px){
   .faq-item summary{grid-template-columns:60px 1fr 40px;gap:16px;padding:24px 0;}
   .faq-content{padding-left:76px;}
+  .card, .price-card, .testdrive-banner, .downsell-banner {
+    padding: 24px !important;
+  }
 }
 
 /* DOWNSELL */
@@ -584,8 +619,24 @@ section{padding:100px 0;border-top:1px solid var(--border);}
 }
 .form-field input:focus,
 .form-field select:focus{outline:none;border-color:var(--accent);}
-.form-field select{cursor:pointer;}
-.form-field option{background:var(--bg);color:var(--text);}
+.form-field select{
+  cursor:pointer;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+  background-color:#0e0e12;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A35F' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 4px center;
+  padding:12px 28px 12px 8px;
+  border:1px solid var(--border-strong);
+  border-radius:6px;
+  color:var(--text);
+}
+.form-field option{
+  background:#0e0e12;
+  color:#ffffff;
+}
 .form-agree{
   display:flex;
   gap:10px;
@@ -920,7 +971,7 @@ body::after{
 
 /* Hero background video (бэкстейдж фэшн-съемки, 15% opacity, grayscale) */
 .hero{position:relative;isolation:isolate;overflow:hidden;}
-.hero-bg-video,.hero-bg-fallback{
+.hero-bg-video{
   position:absolute;
   inset:0;
   width:100%;
@@ -928,9 +979,19 @@ body::after{
   z-index:-2;
   object-fit:cover;
   filter:grayscale(1) brightness(0.5) contrast(1.1);
+  opacity:0;
+  transition:opacity 0.8s ease;
+}
+.hero-bg-video[data-loaded]{
   opacity:0.18;
 }
 .hero-bg-fallback{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:-3;
+  object-fit:cover;
   background:
     radial-gradient(ellipse at 30% 20%,rgba(201,163,95,0.12) 0%,transparent 50%),
     radial-gradient(ellipse at 70% 80%,rgba(255,255,255,0.05) 0%,transparent 50%),
@@ -1203,30 +1264,59 @@ body::after{
   .sticky-cta .btn{padding:10px 14px;font-size:11px;}
 }
 
-/* 10. Live "сейчас изучают X людей" */
-.live-readers{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  font-family:'Outfit',sans-serif;
-  font-size:11px;
-  letter-spacing:1px;
-  color:var(--text-muted);
-  margin-top:32px;
-  padding:6px 14px;
-  background:rgba(255,255,255,0.04);
-  border:1px solid var(--border);
-  border-radius:100px;
+/* 10. Live News Ticker */
+.live-news-ticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  padding: 8px 18px;
+  background: linear-gradient(135deg, rgba(201,163,95,0.06), transparent 60%);
+  border: 1px solid rgba(201,163,95,0.2);
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgba(201,163,95,0.1);
 }
-.live-readers .live-dot{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:#4ade80;
-  box-shadow:0 0 8px rgba(74,222,128,0.6);
-  animation:livePulse 2s ease-in-out infinite;
+.live-news-ticker:hover {
+  border-color: rgba(201,163,95,0.5);
+  color: var(--gold);
+  background: rgba(201,163,95,0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(201,163,95,0.15);
 }
-@keyframes livePulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
+.live-news-ticker .live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(201,163,95,0.8);
+  animation: livePulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+.ticker-text {
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  white-space: nowrap;
+}
+.ticker-text.fade-out {
+  opacity: 0;
+  transform: translateY(-5px);
+}
+.ticker-text.fade-in {
+  opacity: 0;
+  transform: translateY(5px);
+}
+.ticker-arrow {
+  color: var(--gold);
+  transition: transform 0.4s ease;
+}
+.live-news-ticker:hover .ticker-arrow {
+  transform: translateX(4px);
+}
 
 /* 11. Pricing footnotes */
 .tier-footnote{
@@ -1374,7 +1464,7 @@ body.scene-transitioning::before{opacity:1;}
 }
 
 /* Live readers — keep green dot but add gold accent на тексте */
-.live-readers{
+/* .live-readers{
   border-color:rgba(201,163,95,0.16);
   background:linear-gradient(135deg,rgba(201,163,95,0.04),transparent 50%);
 }
@@ -1536,7 +1626,7 @@ section[id], main > section{scroll-margin-top:140px;}
 }
 
 /* Live readers dot — keep green но добавим gold ring */
-.live-readers{box-shadow:inset 0 0 0 1px rgba(201,163,95,0.18);}
+/* /* .live-readers... */
 
 /* Slate — постоянный gold accent */
 .slate{
@@ -1626,13 +1716,14 @@ section[id], main > section{scroll-margin-top:140px;}
 <!-- Section indicator (right edge, sticky) -->
 <nav class="section-indicator" id="section-indicator">
   <a href="#hero" data-target="hero">01<span></span></a>
-  <a href="#pain" data-target="pain">02<span></span></a>
-  <a href="#examples" data-target="examples">03<span></span></a>
-  <a href="#math" data-target="math">04<span></span></a>
-  <a href="#testdrive" data-target="testdrive">05<span></span></a>
+  <a href="#math" data-target="math">02<span></span></a>
+  <a href="#pain" data-target="pain">03<span></span></a>
+  <a href="#solution" data-target="solution">04<span></span></a>
+  <a href="#examples" data-target="examples">05<span></span></a>
   <a href="#pricing" data-target="pricing">06<span></span></a>
-  <a href="#faq" data-target="faq">07<span></span></a>
-  <a href="#contact" data-target="contact">08<span></span></a>
+  <a href="#testdrive" data-target="testdrive">07<span></span></a>
+  <a href="#faq" data-target="faq">08<span></span></a>
+  <a href="#contact" data-target="contact">09<span></span></a>
 </nav>
 
 <!-- Frame counter (bottom-right) -->
@@ -1649,10 +1740,14 @@ section[id], main > section{scroll-margin-top:140px;}
 <header>
   <div class="container">
     <nav>
-      <a href="/" class="logo"><picture><source srcset="/logo.webp" type="image/webp"><img src="/logo.png" alt="Контент Фабрика" width="320" height="320" loading="eager" decoding="async"></picture></a>
+      <a href="#hero" class="logo"><img src="logo.png" alt="ModAI Team" width="320" height="320" loading="eager" decoding="async"></a>
       <div class="nav-links">
-        <a href="#pricing" class="nav-link hide-sm">Тарифы</a>
-        <a href="#testdrive" class="nav-link">Тест-драйв $1 500</a>
+        <a href="#pricing" class="nav-link hide-sm" data-ru="Тарифы" data-es="Precios">Тарифы</a>
+        <a href="#testdrive" class="nav-link" data-ru="Тест-драйв $1 500" data-es="Demo $1 500">Тест-драйв $1 500</a>
+        <div class="lang-switcher">
+          <button class="lang-btn active" id="btn-ru" onclick="setLang('ru')">RU</button>
+          <button class="lang-btn" id="btn-es" onclick="setLang('es')">ES</button>
+        </div>
       </div>
     </nav>
   </div>
@@ -1662,8 +1757,8 @@ section[id], main > section{scroll-margin-top:140px;}
 
 <!-- HERO -->
 <header class="hero" id="hero">
-  <video class="hero-bg-video" autoplay muted loop playsinline aria-hidden="true">
-    <source src="/assets/hero-backstage.mp4" type="video/mp4">
+  <video class="hero-bg-video" autoplay muted loop playsinline aria-hidden="true" preload="none">
+    <source data-src="assets/hero-backstage.mp4" type="video/mp4">
   </video>
   <div class="hero-bg-fallback" aria-hidden="true"></div>
   <div class="hero-bg-overlay" aria-hidden="true"></div>
@@ -1682,14 +1777,18 @@ section[id], main > section{scroll-margin-top:140px;}
       <span>Take 01</span>
     </div>
     <div class="eyebrow reveal">Для DTC Fashion-брендов</div>
-    <h1 class="reveal reveal-d1 typeon">Наймите <em>цифровую</em> команду, которая никогда не устаёт и не срывает дедлайны</h1>
+    <h1 class="reveal reveal-d1 typeon">Наймите <em>цифровую</em> команду,<br>которая никогда не устаёт<br>и не срывает сроки</h1>
     <p class="hero-sub reveal reveal-d2">Три AI-агента генерируют видео в стиле бренда, ведут аккаунты в соцсетях и закрывают сделки в директе — на ваших серверах, 24/7.</p>
     <div class="hero-actions reveal reveal-d3">
       <a href="#contact" class="btn btn-primary magnetic">Обсудить внедрение системы <span class="arrow">→</span></a>
       <a href="#testdrive" class="btn btn-secondary magnetic">Взять Тест-драйв за $1 500</a>
     </div>
     <div class="reveal reveal-d4" style="text-align:center;margin-top:32px;">
-      <span class="live-readers"><span class="live-dot"></span><span id="readers-count">12</span> людей сейчас изучают эту страницу</span>
+      <a class="live-news-ticker" id="news-ticker">
+    <span class="live-dot"></span>
+    <span class="ticker-text" id="ticker-text">Insights: Как бренды экономят $100k на AI-продакшене</span>
+    <span class="ticker-arrow">→</span>
+  </a>
     </div>
   </div>
 </header>
@@ -1697,18 +1796,18 @@ section[id], main > section{scroll-margin-top:140px;}
 <!-- MARQUEE -->
 <div class="marquee">
   <div class="marquee-track">
-    <span>Замена студии</span>
-    <span>Замена SMM-команды</span>
-    <span>Замена менеджера в DM</span>
-    <span>Self-Hosted</span>
-    <span>30 видео + 210 фото</span>
-    <span>Veo 3.1 · Seedance 2 · Kling 3</span>
-    <span>Замена студии</span>
-    <span>Замена SMM-команды</span>
-    <span>Замена менеджера в DM</span>
-    <span>Self-Hosted</span>
-    <span>30 видео + 210 фото</span>
-    <span>Veo 3.1 · Seedance 2 · Kling 3</span>
+    <span data-ru="Студия без аренды" data-es="Estudio sin alquiler">Студия без аренды</span>
+    <span data-ru="SMM на автопилоте 24/7" data-es="SMM en piloto automático 24/7">SMM на автопилоте 24/7</span>
+    <span data-ru="Директ закрывает сделки сам" data-es="DM cierra ventas por sí solo">Директ закрывает сделки сам</span>
+    <span data-ru="Self-Hosted · Ваши серверы" data-es="Self-Hosted · Tus servidores">Self-Hosted · Ваши серверы</span>
+    <span data-ru="30 видео + 210 фото" data-es="30 vídeos + 210 fotos">30 видео + 210 фото</span>
+    <span data-ru="Veo 3.1 · Seedance 2 · Kling 3" data-es="Veo 3.1 · Seedance 2 · Kling 3">Veo 3.1 · Seedance 2 · Kling 3</span>
+    <span data-ru="Студия без аренды" data-es="Estudio sin alquiler">Студия без аренды</span>
+    <span data-ru="SMM на автопилоте 24/7" data-es="SMM en piloto automático 24/7">SMM на автопилоте 24/7</span>
+    <span data-ru="Директ закрывает сделки сам" data-es="DM cierra ventas por sí solo">Директ закрывает сделки сам</span>
+    <span data-ru="Self-Hosted · Ваши серверы" data-es="Self-Hosted · Tus servidores">Self-Hosted · Ваши серверы</span>
+    <span data-ru="30 видео + 210 фото" data-es="30 vídeos + 210 fotos">30 видео + 210 фото</span>
+    <span data-ru="Veo 3.1 · Seedance 2 · Kling 3" data-es="Veo 3.1 · Seedance 2 · Kling 3">Veo 3.1 · Seedance 2 · Kling 3</span>
   </div>
 </div>
 
@@ -1737,7 +1836,7 @@ section[id], main > section{scroll-margin-top:140px;}
         </ul>
       </div>
       <div class="math-box highlight">
-        <h3>Контент Фабрика (MVP)</h3>
+        <h3>ModAI Team (MVP)</h3>
         <div class="math-price">$7 400</div>
         <div class="math-sub">за первый год ($5 000 установка + $200/мес обслуживание)</div>
         <ul class="math-list">
@@ -1794,7 +1893,7 @@ section[id], main > section{scroll-margin-top:140px;}
 </section>
 
 <!-- SOLUTION -->
-<section>
+<section id="solution">
   <div class="container">
     <div class="section-header reveal" style="text-align:center;">
       <div class="slate"><div class="slate-stripes"><span></span><span></span><span></span><span></span><span></span><span></span></div><span class="slate-act">Act III</span><span class="slate-name">— The Solution</span></div>
@@ -1822,7 +1921,7 @@ section[id], main > section{scroll-margin-top:140px;}
 </section>
 
 <!-- EXAMPLES -->
-<section>
+<section id="examples">
   <div class="container">
     <div class="section-header reveal">
       <div class="eyebrow">Примеры генерации</div>
@@ -1830,48 +1929,51 @@ section[id], main > section{scroll-margin-top:140px;}
       <p>Никаких компромиссов в качестве. Кинематографическая картинка строго в эстетике вашего бренда.</p>
     </div>
     <div class="examples-grid reveal-children">
-      <div class="example-card bg-1">
+
+      <div class="example-card">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="/Users/amigob/Downloads/streetwear 60 fps.mp4" type="video/mp4">
+        </video>
         <div class="example-content">
-          <div class="example-tag">Outfit Transition</div>
-          <div class="example-title">REACH</div>
-          <div class="example-meta"><span>VEO 3.1</span><span>$5 / видео</span></div>
+          <div class="example-tag">Streetwear · AI Production</div>
+          <div class="example-title">STREETWEAR</div>
+          <div class="example-meta"><span>VEO 3.1</span><span>$5 / <span data-ru="видео" data-es="video">видео</span></span></div>
         </div>
       </div>
-      <div class="example-card bg-2">
+
+      <div class="example-card">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="/Users/amigob/Downloads/multi model video 60 fps.mp4" type="video/mp4">
+        </video>
         <div class="example-content">
-          <div class="example-tag">Quiet Luxury / Y2K</div>
-          <div class="example-title">AESTHETIC TAG</div>
-          <div class="example-meta"><span>VEO 3.1</span><span>$5 / видео</span></div>
+          <div class="example-tag">Multi-Model · Lookbook</div>
+          <div class="example-title">LOOKBOOK</div>
+          <div class="example-meta"><span>SEEDANCE 2</span><span>$5 / <span data-ru="видео" data-es="video">видео</span></span></div>
         </div>
       </div>
-      <div class="example-card bg-3">
+
+      <div class="example-card">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="/Users/amigob/Downloads/backstage 60 fps.mp4" type="video/mp4">
+        </video>
         <div class="example-content">
-          <div class="example-tag">Cost-Per-Wear</div>
-          <div class="example-title">CONVERSION</div>
-          <div class="example-meta"><span>KLING 3</span><span>$5 / видео</span></div>
+          <div class="example-tag">Behind The Scenes · BTS</div>
+          <div class="example-title">BACKSTAGE</div>
+          <div class="example-meta"><span>KLING 3</span><span>$5 / <span data-ru="видео" data-es="video">видео</span></span></div>
         </div>
       </div>
-      <div class="example-card bg-4">
+
+      <div class="example-card">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="/Users/amigob/Downloads/white cyclorama 60 fps.mp4" type="video/mp4">
+        </video>
         <div class="example-content">
-          <div class="example-tag">Mood-Board to Product</div>
-          <div class="example-title">BRAND</div>
-          <div class="example-meta"><span>VEO 3.1</span><span>$5 / видео</span></div>
+          <div class="example-tag">White Cyclorama · Studio</div>
+          <div class="example-title">STUDIO</div>
+          <div class="example-meta"><span>VEO 3.1</span><span>$5 / <span data-ru="видео" data-es="video">видео</span></span></div>
         </div>
       </div>
-      <div class="example-card bg-5">
-        <div class="example-content">
-          <div class="example-tag">Color of Season 2026</div>
-          <div class="example-title">BRAND</div>
-          <div class="example-meta"><span>SEEDANCE 2</span><span>$5 / видео</span></div>
-        </div>
-      </div>
-      <div class="example-card bg-6">
-        <div class="example-content">
-          <div class="example-tag">Drop Teaser</div>
-          <div class="example-title">BRAND</div>
-          <div class="example-meta"><span>KLING 3</span><span>$5 / видео</span></div>
-        </div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -1884,13 +1986,13 @@ section[id], main > section{scroll-margin-top:140px;}
     </div>
     <div class="section-header reveal">
       <div class="eyebrow">Флагман</div>
-      <h2>Автономная система генерации и продаж на ваших серверах</h2>
+      <h2>Автономная система<br>генерации и продаж<br>на ваших серверах</h2>
     </div>
     <div class="pricing-grid reveal-children">
 
       <div class="price-card featured">
         <div class="price-badge">Главное</div>
-        <div class="lower-third">№ 01 · Замена студии и SMM-команды</div>
+        <div class="lower-third">№ 01 · Студия + SMM + директ на автопилоте</div>
         <h3>Self-Hosted MVP</h3>
         <div class="price-amount">$5 000<sup class="tier-footnote" title="Цены за установку — фиксированные">¹</sup></div>
         <div class="price-period">+ $200/мес обслуживание<sup class="tier-footnote" title="Все обновления и новые AI-движки включены">²</sup></div>
@@ -1932,7 +2034,7 @@ section[id], main > section{scroll-margin-top:140px;}
     <div class="section-header reveal">
       <div class="eyebrow">Downsell · Не готовы к серверам?</div>
       <h2>Пока не готовы внедрять AI-систему<br>на ваши серверы?</h2>
-      <p>Есть решение — тест-драйв. Мы сгенерируем все материалы на наших мощностях и пришлём готовый контент прямо в Telegram. Замена одной съёмки: 30 видео + 210 фото.</p>
+      <p>Есть решение — тест-драйв. Мы сгенерируем все материалы на наших мощностях и пришлём готовый контент прямо в Telegram. Один запуск закрывает месяц съёмок: 30 видео + 210 фото.</p>
     </div>
     <div class="testdrive-banner reveal">
       <div class="testdrive-left">
@@ -2036,7 +2138,7 @@ section[id], main > section{scroll-margin-top:140px;}
           <input type="text" name="honeypot" style="display:none" tabindex="-1" autocomplete="off">
           <label class="form-agree">
             <input type="checkbox" name="agreement" required>
-            <span>Согласен с <a href="/legal/privacy">политикой обработки персональных данных</a></span>
+            <span>Согласен с <a href="#privacy-note">политикой обработки персональных данных</a></span>
           </label>
           <button type="submit" class="btn btn-primary" style="margin-top:8px;">Отправить заявку <span class="arrow">→</span></button>
         </form>
@@ -2052,7 +2154,7 @@ section[id], main > section{scroll-margin-top:140px;}
       <div class="eyebrow" style="margin-bottom:24px;">Не готовы к консультации?</div>
       <h2>Проверьте на одной вещи. 3 видео за $100.</h2>
       <p>Загрузите фото — и через 48 часов получите 3 AI-ролика и 21 студийную фотографию в Telegram. Оцените кинематографическое качество движков. Без обязательств и автоподписок.</p>
-      <a href="https://t.me/fabrika_contenta?text=Хочу%20Demo%20за%20%24100%20—%203%20видео%20%2B%2021%20фото" target="_blank" rel="noopener" class="btn btn-primary" id="downsell-cta">Получить 3 видео + 21 фото за $100 <span class="arrow">→</span></a>
+      <a href="https://t.me/modaiteambot" target="_blank" rel="noopener" class="btn btn-primary" id="downsell-cta">Получить 3 видео + 21 фото за $100 <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
@@ -2063,8 +2165,8 @@ section[id], main > section{scroll-margin-top:140px;}
   <div class="container">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">Контент Фабрика</div>
-        <p class="footer-tagline">AI-команда для брендов одежды. Замена студии, SMM и менеджера в DM. Self-Hosted.</p>
+        <div class="footer-brand">ModAI Team</div>
+        <p class="footer-tagline">AI-команда для брендов одежды. Студия, SMM и продажи в директе — на автопилоте. Self-Hosted.</p>
       </div>
       <nav class="footer-nav">
         <div class="footer-nav-title">Навигация</div>
@@ -2074,9 +2176,9 @@ section[id], main > section{scroll-margin-top:140px;}
       </nav>
       <nav class="footer-nav">
         <div class="footer-nav-title">Связь</div>
-        <a href="https://t.me/fabrika_contenta" target="_blank" rel="noopener">Telegram</a>
-        <a href="https://wa.me/+375291234567" target="_blank" rel="noopener">WhatsApp</a>
-        <a href="mailto:hello@fabrika-kontenta.ru">hello@fabrika-kontenta.ru</a>
+        <a href="https://t.me/modaiteambot" target="_blank" rel="noopener">Telegram</a>
+        <a href="https://wa.me/375291234567" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="mailto:hello@modai.team">hello@modai.team</a>
       </nav>
     </div>
 
@@ -2105,9 +2207,12 @@ section[id], main > section{scroll-margin-top:140px;}
     </div>
 
     <div class="footer-meta">
-      <span>© 2026 Контент Фабрика · Issue 1</span>
+      <span>© 2026 ModAI Team · Issue 1</span>
       <span id="footer-tc">TC 00:00:42:18 · 24 fps</span>
     </div>
+    <p class="footer-tagline" id="privacy-note" style="margin-top:18px;max-width:760px;">
+      Отправляя заявку, вы соглашаетесь, что мы используем переданные контакты только для ответа по вашему запросу и обсуждения выбранного пакета.
+    </p>
   </div>
 </footer>
 
@@ -2267,7 +2372,7 @@ const indicatorObserver = new IntersectionObserver(entries => {
     }
   });
 }, { rootMargin: '-40% 0px -40% 0px' });
-['hero','pain','examples','math','testdrive','pricing','faq','contact'].forEach(id => {
+['hero','math','pain','solution','examples','pricing','testdrive','faq','contact'].forEach(id => {
   const sec = document.getElementById(id);
   if (sec) indicatorObserver.observe(sec);
 });
@@ -2324,22 +2429,249 @@ window.addEventListener('scroll', () => {
   }
 }, {passive:true});
 
-// === LIVE READERS counter — pause при скрытой вкладке ===
-const readersEl = document.getElementById('readers-count');
-let readers = 12;
-let readersTimer = null;
-function updateReaders(){
-  if (document.hidden) { readersTimer = null; return; }
-  if (Math.random() < 0.4) {
-    const delta = Math.random() < 0.5 ? -1 : 1;
-    readers = Math.max(8, Math.min(18, readers + delta));
-    if (readersEl) readersEl.textContent = readers;
-  }
-  readersTimer = setTimeout(updateReaders, 4000 + Math.random() * 6000);
+// === INSIGHTS TICKER ===
+const tickerEl = document.getElementById('ticker-text');
+const tickerLink = document.getElementById('news-ticker');
+
+const tickerItems = [
+  { text: "Insights: Как бренды экономят $100k на AI-продакшене", id: "ai-production-100k", href: "/insights/ai-production-100k.html" },
+  { text: "Case Study: Отказ от SMM-агентства в пользу AI-агентов", id: "smm-replacement", href: "/insights/smm-replacement.html" },
+  { text: "Тренд 2026: ИИ-модели вместо реальных фотосессий", id: "ai-models", href: "/insights/ai-models.html" },
+  { text: "Как мы снизили себестоимость ролика с $300 до $5", id: "cost-reduction", href: "/insights/cost-reduction.html" }
+];
+
+let currentTickerIndex = 0;
+let tickerTimer = null;
+
+function cycleTicker() {
+  if (document.hidden || !tickerEl) return;
+  tickerEl.classList.add('fade-out');
+  setTimeout(() => {
+    currentTickerIndex = (currentTickerIndex + 1) % tickerItems.length;
+    tickerEl.textContent = tickerItems[currentTickerIndex].text;
+    if (tickerLink) tickerLink.setAttribute('data-insight', tickerItems[currentTickerIndex].id);
+    
+    tickerEl.classList.remove('fade-out');
+    tickerEl.classList.add('fade-in');
+    void tickerEl.offsetWidth; 
+    tickerEl.classList.remove('fade-in');
+  }, 800); 
 }
-readersTimer = setTimeout(updateReaders, 6000);
-document.addEventListener('visibilitychange', () => {
-  if (!document.hidden && !readersTimer) updateReaders();
+tickerTimer = setInterval(cycleTicker, 12000);
+
+if (tickerLink) {
+  tickerLink.setAttribute('data-insight', tickerItems[0].id);
+  tickerLink.addEventListener('mouseenter', () => clearInterval(tickerTimer));
+  tickerLink.addEventListener('mouseleave', () => {
+    tickerTimer = setInterval(cycleTicker, 12000);
+  });
+}
+
+// === INSIGHTS ROUTING & SIDE PANEL ===
+const insightsDB = {
+  'ai-production-100k': {
+    ru: {
+      title: "Как бренды усиливают продакшен в 10× с AI",
+      body: `
+        <p>Мы проанализировали P&L 14 fashion-брендов с оборотом $500k–$3M в год. У всех одна картина: <strong>контент-продакшен съедает 18–24% выручки</strong>. Не маркетингового бюджета — выручки целиком.</p>
+        <p>Разберём куда реально уходят деньги при одном съёмочном дне:</p>
+        <ul>
+          <li><strong>Аренда студии</strong> — $400–900</li>
+          <li><strong>Видеограф + ассистент</strong> — $500–800</li>
+          <li><strong>Модели (2–3 чел.)</strong> — $600–1,500</li>
+          <li><strong>Стилист + визажист</strong> — $300–600</li>
+          <li><strong>Постпродакшн и монтаж</strong> — $200–500</li>
+        </ul>
+        <p>Итого один день — <strong>$2,000–4,300</strong>. На выходе 8–12 роликов. По $180–540 за единицу. TikTok и Reels требуют минимум 25–30 публикаций в месяц. Математика не сходится.</p>
+        <p>В марте 2026 мы взяли реальный бренд (средний чек $120, аудитория 40k) и перевели продакшен на AI. Исходники — только фото товаров на белом фоне, снятые на iPhone. Никакой студии.</p>
+        <p>Связка <strong>Veo 3.1 + Seedance 2 + KLING 3</strong>: 47 роликов за 72 часа. Стоимость токенов на всё — <strong>$234</strong>. Это $4.97 за ролик. CTR в рекламных кабинетах вырос на <strong>14%</strong> по сравнению со студийными материалами.</p>
+        <p>Но при первой итерации органические охваты упали на 40%. Проблема оказалась не в качестве генерации — а в том, <strong>как Instagram читает метаданные файла ещё до публикации</strong>. Решение — в одной строке настроек экспорта. Найти его нам стоило двух недель тестов...</p>
+      `
+    },
+    es: {
+      title: "Cómo las marcas multiplican producción ×10 con AI",
+      body: `
+        <p>Analizamos el P&L de 14 marcas de moda con una facturación de $500k–$3M al año. Todas muestran el mismo panorama: <strong>la producción de contenido devora el 18–24% de los ingresos totales</strong>. No del presupuesto de marketing, sino de los ingresos globales.</p>
+        <p>Veamos adónde se va realmente el dinero en un solo día de rodaje:</p>
+        <ul>
+          <li><strong>Alquiler de estudio</strong> — $400–900</li>
+          <li><strong>Videógrafo + asistente</strong> — $500–800</li>
+          <li><strong>Modelos (2–3 personas)</strong> — $600–1,500</li>
+          <li><strong>Estilista + maquillador</strong> — $300–600</li>
+          <li><strong>Postproducción y montaje</strong> — $200–500</li>
+        </ul>
+        <p>Total por un día: <strong>$2,000–4,300</strong>. El resultado son 8–12 vídeos. Entre $180 y $540 por unidad. TikTok y Reels requieren un mínimo de 25–30 publicaciones al mes. La matemática no cuadra.</p>
+        <p>En marzo de 2026 tomamos una marca real (ticket medio $120, audiencia de 40k) y transferimos su producción a la IA. Los archivos base eran únicamente fotos de productos sobre fondo blanco tomadas con iPhone. Sin estudio físico.</p>
+        <p>Combinación <strong>Veo 3.1 + Seedance 2 + KLING 3</strong>: 47 vídeos en 72 horas. El coste de tokens para todo fue de <strong>$234</strong>. Es decir, $4.97 por vídeo. El CTR en las cuentas publicitarias aumentó un <strong>14%</strong> en comparación con los materiales de estudio reales.</p>
+        <p>Sin embargo, en la primera fase el alcance orgánico cayó un 40%. El problema no fue la calidad de la generación, sino <strong>cómo lee Instagram los metadatos del archivo antes de publicarlo</strong>. La solución está en una sola línea de configuración de exportación. Encontrarla nos costó dos semanas de pruebas...</p>
+      `
+    }
+  },
+  'smm-replacement': {
+    ru: {
+      title: "SMM-агент вместо SMM-агентства: 90 дней в цифрах",
+      body: `
+        <p>Средний fashion-бренд платит SMM-агентству <strong>$1,500–3,000 в месяц</strong>. 15–20 постов по шаблону, капшены ни о чём и отчёт с метриками которые не влияют на продажи.</p>
+        <p>При этом <strong>60–70% продаж</strong> у Instagram-брендов до 200k подписчиков приходят именно из директа. И агентство в директ не заходит — «не их зона».</p>
+        <p>Клиент: бренд женской одежды, Москва, 85k подписчиков. Решение: полностью отказаться от агентства и развернуть три автономных агента на собственном VPS.</p>
+        <p><strong>День 1–14:</strong> Агент-Продюсер получил 400 исходных фотографий товаров. Агент-Дистрибьютор изучил 8 месяцев статистики и составил оптимальное расписание. Агент-Продавец прошёл обучение на 1,200 диалогах из архива директа.</p>
+        <p><strong>День 15–30:</strong> Количество публикаций выросло с 5 до 21 в неделю. Среднее время ответа в директе — <strong>90 секунд</strong> против 4 часов у живого менеджера.</p>
+        <p><strong>Итоги 90 дней:</strong></p>
+        <ul>
+          <li>Стоимость контент-продакшена: <strong>с $2,100 до $200/мес</strong></li>
+          <li>Engagement Rate: <strong>+23%</strong></li>
+          <li>Конверсия директа в продажу: <strong>+31%</strong></li>
+          <li>Выручка через Instagram: <strong>+44%</strong> при том же рекламном бюджете</li>
+        </ul>
+        <p>На 47-й день случился инцидент, который едва не сорвал эксперимент. Агент допустил тактическую ошибку с конкретным типом клиента — это обошлось бренду в <strong>$3,200 возвратов за один день</strong>. Вот как мы это исправили и какой фильтр теперь стоит по умолчанию...</p>
+      `
+    },
+    es: {
+      title: "Agente SMM vs agencia: 90 días en números",
+      body: `
+        <p>Una marca de moda promedio paga a una agencia SMM entre <strong>$1,500 y $3,000 al mes</strong>. 15–20 publicaciones con plantilla, textos genéricos y reportes con métricas de vanidad que no influyen en las ventas.</p>
+        <p>Sin embargo, el <strong>60–70% de las ventas</strong> en marcas de Instagram con menos de 200k seguidores provienen precisamente de los mensajes directos (DM). Y las agencias no atienden los DM: "no es su zona".</p>
+        <p>Cliente: marca de ropa femenina, 85k seguidores. Solución: prescindir por completo de la agencia e implementar tres agentes autónomos en un VPS propio.</p>
+        <p><strong>Día 1–14:</strong> El Agente-Productor recibió 400 fotos iniciales del producto. El Agente-Distribuidor analizó 8 meses de estadísticas para diseñar el calendario óptimo. El Agente-Vendedor se entrenó con 1,200 chats del archivo de DM.</p>
+        <p><strong>Día 15–30:</strong> Las publicaciones semanales pasaron de 5 a 21. El tiempo promedio de respuesta en DM bajó a <strong>90 segundos</strong> en comparación con las 4 horas de un gestor humano.</p>
+        <p><strong>Resultados a los 90 días:</strong></p>
+        <ul>
+          <li>Coste de producción de contenido: <strong>de $2,100 a $200/mes</strong></li>
+          <li>Tasa de interacción (Engagement Rate): <strong>+23%</strong></li>
+          <li>Conversión de DM a ventas: <strong>+31%</strong></li>
+          <li>Facturación por Instagram: <strong>+44%</strong> con el mismo presupuesto publicitario</li>
+        </ul>
+        <p>En el día 47 ocurrió un incidente que casi arruina el experimento. El agente cometió un error táctico con un tipo de cliente específico, costándole a la marca <strong>$3,200 en reembolsos en un solo día</strong>. Así lo solucionamos y este es el filtro de seguridad por defecto...</p>
+      `
+    }
+  },
+  'ai-models': {
+    ru: {
+      title: "AI-модели: контроль над образом которого раньше не существовало",
+      body: `
+        <p>Кастинг под конкретный образ — это минимум <strong>3 дня работы</strong>: поиск, переписка с агентством, согласование условий, примерка. И после всего этого на съёмке она может просто «не попасть в образ».</p>
+        <p>В 2026 году ведущие DTC-бренды переходят на AI-генерацию моделей. Не только потому что дешевле. А потому что это даёт <strong>уровень контроля, которого раньше не существовало</strong>.</p>
+        <p>Вы задаёте параметры: возраст, телосложение, этническая принадлежность, тип кожи, постановка. Модель генерируется за 40 секунд и <strong>абсолютно консистентна</strong> — одинаково выглядит в январской и июньской кампании, формируя узнаваемость.</p>
+        <ul>
+          <li><strong>Кастинг:</strong> 0 дней вместо 3</li>
+          <li><strong>50 образов</strong> — 2 часа вместо 2 дней съёмки</li>
+          <li><strong>Любая локация</strong> — Париж, Дубай, минимализм — без перелётов</li>
+          <li><strong>Стоимость кадра:</strong> $0.30 против $150–500 в студии</li>
+          <li><strong>Все права — ваши</strong>, никаких модельных релизов</li>
+        </ul>
+        <p>Один из наших клиентов использует одну AI-модель во всех коммуникациях уже 6 месяцев. Её узнают подписчики. Под постами пишут «где эта девушка взяла сумку». Никто не догадывается.</p>
+        <p>Но алгоритмы Instagram и TikTok начали по-разному реагировать на AI-контент в зависимости от одного конкретного параметра в метаданных. Бренды которые не знают об этом теряют до <strong>35% органики</strong>. Вот что именно нужно изменить перед публикацией...</p>
+      `
+    },
+    es: {
+      title: "Modelos de IA: un control de imagen que antes no existía",
+      body: `
+        <p>El casting para un estilo específico requiere al menos <strong>3 días de trabajo</strong>: búsqueda, comunicación con agencias, negociación de tarifas y pruebas. Y después de todo, en el set la modelo puede simplemente "no encajar con el personaje".</p>
+        <p>En 2026, las marcas DTC líderes adoptan la generación de modelos por IA. No solo por el ahorro, sino porque brinda un <strong>nivel de control de imagen que antes simplemente no existía</strong>.</p>
+        <p>Configuras los parámetros: edad, complexión, etnia, tipo de piel, pose. La modelo se genera en 40 segundos y es <strong>100% consistente</strong>: luce exactamente igual en la campaña de enero y en la de junio, forjando identidad de marca.</p>
+        <ul>
+          <li><strong>Casting:</strong> 0 días en vez de 3</li>
+          <li><strong>50 looks</strong> — 2 horas en lugar de 2 días enteros de sesión</li>
+          <li><strong>Cualquier ubicación</strong> — París, Dubái, minimalismo puro — sin vuelos</li>
+          <li><strong>Coste por imagen:</strong> $0.30 vs $150–500 en estudio físico</li>
+          <li><strong>Derechos de imagen 100% tuyos</strong>, sin contratos de modelos</li>
+        </ul>
+        <p>Uno de nuestros clientes lleva 6 meses usando la misma modelo de IA en toda su comunicación. Los seguidores ya la identifican. Escriben "¿de dónde es el bolso que lleva la chica?". Nadie sospecha nada.</p>
+        <p>Pero los algoritmos de Instagram y TikTok reaccionan de manera diferente según un parámetro específico de los metadatos. Las marcas que lo ignoran pierden hasta un <strong>35% de alcance orgánico</strong>. Esto es exactamente lo que debes cambiar antes de publicar...</p>
+      `
+    }
+  },
+  'cost-reduction': {
+    ru: {
+      title: "$5 за ролик: математика AI-продакшена изнутри",
+      body: `
+        <p>$300 за ролик — это не премиум. Это средний чек небольшого видеографа с базовым светом. У нормального продакшена с цветокоррекцией — от $600. Бренду нужно 25–35 роликов в месяц для полноценного покрытия всех платформ.</p>
+        <p>Считаем: $300 × 30 роликов = <strong>$9,000 в месяц только на видео</strong>. До таргета, блогеров и SMM не дошли ещё ни копейки.</p>
+        <p>Теперь реальные цифры из биллинга наших клиентов за Q1 2026:</p>
+        <ul>
+          <li><strong>VPS-сервер</strong> (достаточный для системы): $90–140/мес</li>
+          <li><strong>AI-токены на 1 ролик 30 сек 4K:</strong> $1.20–3.50</li>
+          <li><strong>Обслуживание инфраструктуры:</strong> $200/мес (фиксировано)</li>
+          <li><strong>Итого при 50 роликах в месяц:</strong> <strong>$4.60–7 за единицу</strong></li>
+        </ul>
+        <p>Это не маркетинговая цифра. Один из клиентов производит 120 роликов в месяц. Его стоимость единицы — <strong>$3.20</strong>.</p>
+        <p>Но есть одна скрытая статья расходов о которой мы намеренно не пишем открыто. Она не критическая — но если её игнорировать, реальная экономия окажется вдвое меньше расчётной. Речь о стоимости итераций при работе с определёнными типами тканей. Мы нашли способ сократить итерации с 8–12 до <strong>2–3 на позицию</strong>. Именно это и есть главный рычаг...</p>
+      `
+    },
+    es: {
+      title: "$5 por vídeo: la matemática de la producción de IA por dentro",
+      body: `
+        <p>$300 por un vídeo no es premium. Es la tarifa estándar de un videógrafo independiente con iluminación básica. Una producción seria con corrección de color ronda los $600. Una marca necesita de 25 a 35 vídeos mensuales para cobertura multicanal.</p>
+        <p>Calcula: $300 × 30 vídeos = <strong>$9,000 al mes solo en vídeo</strong>. Antes de destinar un solo céntimo a publicidad, influencers o SMM.</p>
+        <p>He aquí los costes reales de facturación de nuestros clientes en el Q1 2026:</p>
+        <ul>
+          <li><strong>Servidor VPS</strong> (suficiente para el sistema): $90–140/mes</li>
+          <li><strong>Tokens de IA por 1 vídeo de 30s en 4K:</strong> $1.20–3.50</li>
+          <li><strong>Soporte de infraestructura:</strong> $200/mes (tarifa fija)</li>
+          <li><strong>Coste final con 50 vídeos al mes:</strong> <strong>$4.60–7 por unidad</strong></li>
+        </ul>
+        <p>No es una cifra publicitaria. Uno de nuestros clientes produce 120 vídeos mensuales. Su coste unitario neto es de <strong>$3.20</strong>.</p>
+        <p>Sin embargo, existe un gasto oculto sobre el cual no escribimos abiertamente. No es crítico, pero ignorarlo reduce a la mitad el ahorro estimado. Hablamos del coste de iteraciones al trabajar con ciertos tipos de telas. Encontramos la forma de reducir los intentos de 8–12 a solo <strong>2–3 por producto</strong>. Esa es la palanca principal...</p>
+      `
+    }
+  }
+};
+
+function openInsight(insightId, pushHistory = true) {
+  const data = insightsDB[insightId] ? insightsDB[insightId][currentLang] : null;
+  if (!data) return;
+  const tEl = document.getElementById('insight-title');
+  const bEl = document.getElementById('insight-body');
+  if (!tEl || !bEl) return;
+  
+  tEl.innerHTML = data.title;
+  bEl.innerHTML = data.body;
+  document.body.classList.add('panel-open');
+  
+  if (pushHistory) {
+    const newUrl = window.location.pathname + '?insight=' + insightId;
+    window.history.pushState({ path: newUrl }, '', newUrl);
+  }
+}function closeInsight() {
+  document.body.classList.remove('panel-open');
+  window.history.pushState({ path: window.location.pathname }, '', window.location.pathname);
+}
+
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[data-insight]');
+  if (link) {
+    e.preventDefault();
+    const insightId = link.getAttribute('data-insight');
+    openInsight(insightId);
+  }
+  
+  const closeBtn = e.target.closest('#insight-close');
+  const overlay = e.target.closest('#insight-overlay');
+  if (closeBtn || overlay) {
+    closeInsight();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && document.body.classList.contains('panel-open')) closeInsight();
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const requestedInsight = urlParams.get('insight');
+  if (requestedInsight && insightsDB[requestedInsight]) {
+    openInsight(requestedInsight, false);
+  }
+});
+
+window.addEventListener('popstate', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const requestedInsight = urlParams.get('insight');
+  if (requestedInsight && insightsDB[requestedInsight]) {
+    openInsight(requestedInsight, false);
+  } else {
+    document.body.classList.remove('panel-open');
+  }
 });
 
 // === TYPE-ON HERO H1 (только первый visit в session) ===
@@ -2408,9 +2740,9 @@ document.querySelectorAll('a[href="#contact"]').forEach(link => {
     const text = link.textContent.toLowerCase();
     const sel = document.getElementById('segment');
     if (!sel) return;
-    if (text.includes('1 500') || text.includes('1500') || text.includes('тест-драйв')) sel.value = 'testdrive';
-    else if (text.includes('внедрение') || text.includes('mvp')) sel.value = 'mvp';
-    else if (text.includes('расширенн')) sel.value = 'advanced';
+    if (text.includes('1 500') || text.includes('1500') || text.includes('тест-драйв') || text.includes('demo')) sel.value = 'testdrive';
+    else if (text.includes('внедрение') || text.includes('mvp') || text.includes('implementación')) sel.value = 'mvp';
+    else if (text.includes('расширенн') || text.includes('avanzado') || text.includes('ampliado')) sel.value = 'advanced';
   });
 });
 document.getElementById('lead-form')?.addEventListener('submit', e => {
@@ -2423,7 +2755,656 @@ document.getElementById('lead-form')?.addEventListener('submit', e => {
     alert('Получили заявку. Свяжемся в Telegram в течение рабочего дня.');
   }, 200);
 });
+
+// === LANGUAGE SWITCHER ===
+const translations = {
+  ru: {
+    // Hero
+    'hero-eyebrow': 'Для DTC Fashion-брендов',
+    'hero-h1': 'Наймите <em>цифровую</em> команду,<br>которая никогда не устаёт<br>и не срывает сроки',
+    'hero-sub': 'Три AI-агента генерируют видео в стиле бренда, ведут аккаунты в соцсетях и закрывают сделки в директе — на ваших серверах, 24/7.',
+    'hero-cta1': 'Обсудить внедрение системы <span class="arrow">→</span>',
+    'hero-cta2': 'Взять Тест-драйв за $1 500',
+
+    // Sticky CTA
+    'sticky-text': 'Тест-драйв за $1 500<small>30 видео + 210 фото</small>',
+    'sticky-btn': 'Заказать <span class="arrow">→</span>',
+
+    // Math Section
+    'math-eyebrow': 'Математика',
+    'math-h2': 'Экономика сходится с первого месяца',
+    'math-t1': 'Традиционный подход',
+    'math-t1-sub': 'вымывается из бизнеса каждый год',
+    'math-t1-l1': '<span class="cross">×</span> Зависимость от людей и подрядчиков',
+    'math-t1-l2': '<span class="cross">×</span> Просадки контента между сезонами',
+    'math-t1-l3': '<span class="cross">×</span> Алгоритмы наказывают за нерегулярность',
+    'math-t1-l4': '<span class="cross">×</span> Каждое видео — новый счёт',
+    
+    'math-t2': 'ModAI Team (MVP)',
+    'math-t2-sub': 'за первый год ($5 000 установка + $200/мес обслуживание)',
+    'math-t2-l1': '<span class="check">✓</span> Полная собственность системы (Self-Hosted)',
+    'math-t2-l2': '<span class="check">✓</span> Неограниченное число видео по себестоимости $5',
+    'math-t2-l3': '<span class="check">✓</span> Публикации 24/7 без выходных',
+    'math-t2-l4': '<span class="check">✓</span> Все обновления и новые AI-движки включены',
+
+    // Pain Section
+    'pain-eyebrow': 'Цена вопроса',
+    'pain-h2': 'Вы платите за то, что алгоритмы<br>делают практически бесплатно',
+    'pain-sub': 'Содержание команды из трёх функций вымывает из вашей выручки от $32 000 до $113 000 каждый год.',
+    'pain-c1-t': 'Студийный продакшен',
+    'pain-c1-d': 'Фотограф, аренда, модели, ретушь — обходятся от $20 000 за 4 сезона. Каждая съёмка — стресс, логистика и человеческий фактор.',
+    'pain-c2-t': 'SMM-отдел',
+    'pain-c2-d': 'Агентство или in-house за 4–8 постов в неделю — от $6 000 в год. Вы платите фикс за рутину, которую AI делает мгновенно.',
+    'pain-c3-t': 'Менеджер в DM',
+    'pain-c3-d': 'Человек, который сутками отвечает на «а есть размер M?» — от $6 000 в год. Теряет лиды ночью и выгорает от рутины.',
+
+    // Pull Quote
+    'pull-quote-p': 'Контент стоит дороже одежды, которую он продаёт.',
+    'pull-quote-cite': 'Реальность DTC-брендов в 2026',
+
+    // Solution Section
+    'sol-eyebrow': 'Как это устроено',
+    'sol-h2': 'Ваша личная контент-фабрика. Три шага.',
+    'sol-sub': '100 % Self-Hosted. Система устанавливается на ваши VPS-серверы. Аккаунты нейросетей регистрируются на ваше юр.лицо. Вы полностью владеете инфраструктурой и данными.',
+    'sol-c1-t': '1. Загрузка исходников',
+    'sol-c1-d': 'Вы просто отдаёте системе фото вашей одежды — даже снятые на телефон или из старого каталога.',
+    'sol-c2-t': '2. AI-генерация',
+    'sol-c2-d': 'Нейросети одевают виртуальных моделей, помещают их в нужные локации и генерируют готовые видео и фото.',
+    'sol-c3-t': '3. Дистрибуция и продажи',
+    'sol-c3-d': 'Авто-агент сам публикует ролики в TikTok / Instagram / YouTube и закрывает сделки в DM.',
+
+    // Examples Section
+    'ex-eyebrow': 'Примеры генерации',
+    'ex-h2': 'Выглядит как съёмка в Милане.<br>Стоит как чашка кофе.',
+    'ex-sub': 'Никаких компромиссов в качестве. Кинематографическая картинка строго в эстетике вашего бренда.',
+    'ex-c1-tag': 'Streetwear · AI Production',
+    'ex-c2-tag': 'Multi-Model · Lookbook',
+    'ex-c3-tag': 'Behind The Scenes · BTS',
+    'ex-c4-tag': 'White Cyclorama · Studio',
+
+    // Pricing Section
+    'price-eyebrow': 'Флагман',
+    'price-h2': 'Автономная система<br>генерации и продаж<br>на ваших серверах',
+    'price-c1-badge': 'Главное',
+    'price-c1-third': '№ 01 · Студия + SMM + директ на автопилоте',
+    'price-c1-period': '+ $200/мес обслуживание<sup class="tier-footnote" title="Все обновления и новые AI-движки включены">²</sup>',
+    'price-c1-l1': 'Установка системы на ваши серверы',
+    'price-c1-l2': 'Неограниченно генераций видео<sup class="tier-footnote" title="Клиент платит за токены AI напрямую">³</sup>',
+    'price-c1-l3': 'Авто-постинг: TikTok + Instagram + YouTube',
+    'price-c1-l4': 'FAQ-бот в Instagram DM',
+    'price-c1-l5': 'Полное владение инфраструктурой',
+    'price-c1-cta': 'Обсудить внедрение <span class="arrow">→</span>',
+    
+    'price-c2-third': '№ 02 · + Sales-bot закрывает сделку',
+    'price-c2-t': 'Расширенный',
+    'price-c2-period': '+ $200/мес обслуживание',
+    'price-c2-l1': 'Всё, что входит в MVP',
+    'price-c2-l2': 'Поддержка 7 платформ (+ TG, VK, WA, Pinterest)',
+    'price-c2-l3': 'Продвинутый Sales-bot (размер → оплата)',
+    'price-c2-l4': 'Кастомные интеграции с вашей CRM',
+    'price-c2-cta': 'Обсудить внедрение',
+    'price-footnote': '<sup>1</sup> Цены за установку — фиксированные, разовый платёж. <sup>2</sup> $200/мес обслуживание включает все обновления продукта, новые AI-движки (Veo 4, Seedance 3, Kling 4) и фиксы багов. Кастомные доработки под одного клиента — оплачиваются отдельно. <sup>3</sup> Self-Hosted: видео по себестоимости (~$5/штука) — клиент платит за токены AI напрямую, без нашей наценки.',
+
+    // Testdrive Section
+    'td-eyebrow': 'Downsell · Не готовы к серверам?',
+    'td-h2': 'Пока не готовы внедрять AI-систему<br>на ваши серверы?',
+    'td-sub': 'Есть решение — тест-драйв. Мы сгенерируем все материалы на наших мощностях и пришлём готовый контент прямо в Telegram. Один запуск закрывает месяц съёмок: 30 видео + 210 фото.',
+    'td-period': 'Разовый платёж',
+    'td-cta': 'Заказать Тест-драйв <span class="arrow">→</span>',
+    'td-l1': '<strong>30 кинематографических AI-видео</strong> в стиле бренда',
+    'td-l2': '<strong>210 студийных AI-фото</strong> (по 7 к каждому ролику)',
+    'td-l3': 'Готовность за 7 дней (результат прямо в Telegram)',
+    'td-l4': 'Без автоподписок и обязательств',
+    
+    // Director's Note
+    'dir-note-p': '«23:47 — Ваш Reels попадает в рекомендации. 23:48 — Десятки вопросов в Direct. Офис спит. 23:48:08 — AI-агент мгновенно подхватывает каждый диалог и консультирует по ассортименту. Ваш бренд на связи 24/7. Ни одного потерянного запроса.»',
+
+    // FAQ Section
+    'faq-eyebrow': 'Вопросы',
+    'faq-h2': 'Что чаще всего спрашивают',
+    'faq-q1': 'А это не будет выглядеть дёшево?',
+    'faq-a1': 'Используем enterprise-модели Veo 3.1, Seedance 2 и Kling 3 — качество студийной RED-камеры. Картинка строго соответствует эстетике вашего бренда. Никаких пластиковых лиц или лишних пальцев.',
+    'faq-q2': 'Кто платит за генерации в Self-Hosted?',
+    'faq-a2': 'Вы платите напрямую AI-движкам за токены, без нашей наценки. Подписки на Veo / Seedance / Kling оформляются на ваше юр.лицо. Себестоимость 1 ролика — около $5.',
+    'faq-q3': 'Менеджер делает дополнительные продажи в DM. Сможет ли бот?',
+    'faq-a3': 'Sales-bot закрывает 80 % рутинных вопросов: размер → наличие → оплата → отправка. Сложные нестандартные диалоги вы перехватываете на себя — система передаёт их вашему менеджеру с историей переписки.',
+
+    // Contact Section
+    'c-eyebrow': 'Консультация',
+    'c-h2': 'Хотите обсудить детали?',
+    'c-sub': 'Расскажите про свой бренд и текущий контент-процесс. Свяжемся в Telegram в течение рабочего дня — уточним пакет, кейсы и условия внедрения. Никакого спама — только по делу.',
+    'c-label-name': 'Имя или название бренда',
+    'c-label-contact': 'Telegram / WhatsApp / телефон',
+    'c-label-segment': 'Какой пакет интересует?',
+    'c-opt0': '— выберите —',
+    'c-opt1': 'Тест-драйв $1 500 (30 видео + 210 фото)',
+    'c-opt2': 'Self-Hosted MVP $5 000 + $200/мес',
+    'c-opt3': 'Self-Hosted Расширенный $10 000 + $200/мес',
+    'c-opt4': 'Хочу обсудить, не уверен',
+    'c-agree': 'Согласен с <a href="#privacy-note">политикой обработки персональных данных</a>',
+    'c-btn': 'Отправить заявку <span class="arrow">→</span>',
+
+    // Downsell Section
+    'ds-eyebrow': 'Не готовы к консультации?',
+    'ds-h2': 'Проверьте на одной вещи. 3 видео за $100.',
+    'ds-sub': 'Загрузите фото — и через 48 часов получите 3 AI-ролика и 21 студийную фотографию в Telegram. Оцените кинематографическое качество движков. Без обязательств и автоподписок.',
+    'ds-cta': 'Получить 3 видео + 21 фото за $100 <span class="arrow">→</span>',
+
+    // Footer Section
+    'f-tagline': 'AI-команда для брендов одежды. Студия, SMM и продажи в директе — на автопилоте. Self-Hosted.',
+    'f-title-nav': 'Навигация',
+    'f-nav-td': 'Тест-драйв',
+    'f-nav-pricing': 'Тарифы',
+    'f-nav-contact': 'Контакт',
+    'f-title-contact': 'Связь',
+    'f-privacy-note': 'Отправляя заявку, вы соглашаетесь, что мы используем переданные контакты только для ответа по вашему запросу и обсуждения выбранного пакета.',
+
+    // Side panel CTA
+    'side-panel-h3': 'Это только начало',
+    'side-panel-p': 'Полный PDF-отчет с точными цифрами, промптами для генерации и разбором ошибок мы выложили в нашем Telegram-канале.',
+    'side-panel-btn': 'Читать полную версию в Telegram <span class="arrow">→</span>',
+    'insight-meta': 'Время чтения: 3 мин · Индустрия: Fashion'
+  },
+  es: {
+    // Hero
+    'hero-eyebrow': 'Para marcas DTC de moda',
+    'hero-h1': 'Contrata un <em>equipo digital</em>,<br>que nunca se cansa<br>ni incumple plazos',
+    'hero-sub': 'Tres agentes de IA generan vídeos al estilo de tu marca, gestionan redes sociales y cierran ventas por DM — en tus servidores, 24/7.',
+    'hero-cta1': 'Hablar sobre implementación <span class="arrow">→</span>',
+    'hero-cta2': 'Probar por $1 500',
+
+    // Sticky CTA
+    'sticky-text': 'Demo por $1 500<small>30 vídeos + 210 fotos</small>',
+    'sticky-btn': 'Pedir <span class="arrow">→</span>',
+
+    // Math Section
+    'math-eyebrow': 'Matemáticas',
+    'math-h2': 'La economía cuadra desde el primer mes',
+    'math-t1': 'Enfoque tradicional',
+    'math-t1-sub': 'se diluye del negocio cada año',
+    'math-t1-l1': '<span class="cross">×</span> Dependencia de personas y contratistas',
+    'math-t1-l2': '<span class="cross">×</span> Caídas de contenido entre temporadas',
+    'math-t1-l3': '<span class="cross">×</span> Los algoritmos castigan la irregularidad',
+    'math-t1-l4': '<span class="cross">×</span> Cada vídeo es una nueva factura',
+    
+    'math-t2': 'ModAI Team (MVP)',
+    'math-t2-sub': 'por el primer año ($5 000 instalación + $200/mes soporte)',
+    'math-t2-l1': '<span class="check">✓</span> Propiedad completa del sistema (Self-Hosted)',
+    'math-t2-l2': '<span class="check">✓</span> Vídeos ilimitados a un coste de producción de $5',
+    'math-t2-l3': '<span class="check">✓</span> Publicaciones 24/7 sin fines de semana',
+    'math-t2-l4': '<span class="check">✓</span> Todas las actualizaciones y motores de IA incluidos',
+
+    // Pain Section
+    'pain-eyebrow': 'El precio a pagar',
+    'pain-h2': 'Pagas por lo que los algoritmos<br>hacen prácticamente gratis',
+    'pain-sub': 'Mantener un equipo de tres funciones diluye entre $32 000 y $113 000 de tus ingresos anuales.',
+    'pain-c1-t': 'Producción de estudio',
+    'pain-c1-d': 'Fotógrafo, alquiler, modelos, retoques: desde $20 000 por 4 temporadas. Cada sesión implica estrés, logística y factor humano.',
+    'pain-c2-t': 'Departamento SMM',
+    'pain-c2-d': 'Agencia o equipo in-house por 4-8 posts semanales: desde $6 000 al año. Pagas una tarifa fija por tareas rutinarias que la IA realiza al instante.',
+    'pain-c3-t': 'Manager de DM',
+    'pain-c3-d': 'Una persona respondiendo "¿tienen talla M?" las 24 horas: desde $6 000 al año. Pierde leads por la noche y se quema con la rutina.',
+
+    // Pull Quote
+    'pull-quote-p': 'El contenido cuesta más que la ropa que vende.',
+    'pull-quote-cite': 'La realidad de las marcas DTC en 2026',
+
+    // Solution Section
+    'sol-eyebrow': 'Cómo funciona',
+    'sol-h2': 'Tu propia fábrica de contenido. Tres pasos.',
+    'sol-sub': '100% Self-Hosted. El sistema se instala en tus servidores VPS. Las cuentas de IA se registran a nombre de tu empresa. Eres dueño absoluto de la infraestructura y tus datos.',
+    'sol-c1-t': '1. Carga de recursos',
+    'sol-c1-d': 'Solo entregas al sistema fotos de tu ropa, incluso hechas con el móvil o de catálogos antiguos.',
+    'sol-c2-t': '2. Generación por IA',
+    'sol-c2-d': 'Las redes neuronales visten a modelos virtuales, los ubican en las locaciones deseadas y generan vídeos y fotos listos.',
+    'sol-c3-t': '3. Distribución y ventas',
+    'sol-c3-d': 'El autoagente publica los vídeos en TikTok / Instagram / YouTube y cierra las ventas directamente en DM.',
+
+    // Examples Section
+    'ex-eyebrow': 'Ejemplos de generación',
+    'ex-h2': 'Parece una sesión en Milán.<br>Cuesta como un café.',
+    'ex-sub': 'Sin compromisos de calidad. Imagen cinematográfica estrictamente fiel a la estética de tu marca.',
+    'ex-c1-tag': 'Streetwear · Producción IA',
+    'ex-c2-tag': 'Multimodelo · Lookbook',
+    'ex-c3-tag': 'Detrás de escena · BTS',
+    'ex-c4-tag': 'Ciclorama blanco · Estudio',
+
+    // Pricing Section
+    'price-eyebrow': 'Flagship',
+    'price-h2': 'Sistema autónomo<br>de producción y ventas<br>en tus servidores',
+    'price-c1-badge': 'Principal',
+    'price-c1-third': 'Nº 01 · Estudio + SMM + DM en piloto automático',
+    'price-c1-period': '+ $200/mes mantenimiento<sup class="tier-footnote" title="Todas las actualizaciones y motores de IA incluidos">²</sup>',
+    'price-c1-l1': 'Instalación del sistema en tus servidores',
+    'price-c1-l2': 'Generación de vídeo ilimitada<sup class="tier-footnote" title="El cliente paga por los tokens de IA directamente">³</sup>',
+    'price-c1-l3': 'Autopublicación: TikTok + Instagram + YouTube',
+    'price-c1-l4': 'FAQ-bot en Instagram DM',
+    'price-c1-l5': 'Propiedad total de la infraestructura',
+    'price-c1-cta': 'Hablar sobre implementación <span class="arrow">→</span>',
+    
+    'price-c2-third': 'Nº 02 · + Sales-bot cierra la venta',
+    'price-c2-t': 'Avanzado',
+    'price-c2-period': '+ $200/mes mantenimiento',
+    'price-c2-l1': 'Todo lo incluido en el MVP',
+    'price-c2-l2': 'Soporte para 7 plataformas (+ TG, VK, WA, Pinterest)',
+    'price-c2-l3': 'Sales-bot avanzado (talla → pago)',
+    'price-c2-l4': 'Integraciones personalizadas con tu CRM',
+    'price-c2-cta': 'Hablar sobre implementación',
+    'price-footnote': '<sup>1</sup> Los precios de instalación son fijos, pago único. <sup>2</sup> El soporte de $200/mes incluye todas las actualizaciones del producto, nuevos motores de IA (Veo 4, Seedance 3, Kling 4) y solución de errores. Las adaptaciones personalizadas se facturan por separado. <sup>3</sup> Self-Hosted: vídeos a precio de coste (~$5/unidad) — el cliente paga directamente los tokens de IA sin margen de beneficio.',
+
+    // Testdrive Section
+    'td-eyebrow': 'Downsell · ¿No listo para servidores?',
+    'td-h2': '¿Aún no listo para instalar<br>el sistema en tus servidores?',
+    'td-sub': 'Hay una solución — demo drive. Generamos todos los materiales en nuestra infraestructura y los enviamos por Telegram. Un lanzamiento cubre un mes de producción: 30 vídeos + 210 fotos.',
+    'td-period': 'Pago único',
+    'td-cta': 'Pedir Demo <span class="arrow">→</span>',
+    'td-l1': '<strong>30 vídeos cinematográficos de IA</strong> al estilo de la marca',
+    'td-l2': '<strong>210 fotos de estudio de IA</strong> (7 por cada vídeo)',
+    'td-l3': 'Listo en 7 días (resultados directos en Telegram)',
+    'td-l4': 'Sin suscripciones automáticas ni compromisos',
+    
+    // Director's Note
+    'dir-note-p': '«23:47 — Tus Reels entran en recomendaciones. 23:48 — Decenas de preguntas en Direct. La oficina duerme. 23:48:08 — El agente de IA atiende al instante cada chat y asesora sobre tallas. Tu marca activa 24/7. Ni un lead perdido.»',
+
+    // FAQ Section
+    'faq-eyebrow': 'Preguntas',
+    'faq-h2': 'Preguntas frecuentes',
+    'faq-q1': '¿No se verá de baja calidad?',
+    'faq-a1': 'Utilizamos modelos enterprise Veo 3.1, Seedance 2 y Kling 3 — calidad de cámara RED de estudio. La imagen coincide estrictamente con la estética de tu marca. Sin caras plásticas ni dedos de más.',
+    'faq-q2': '¿Quién paga por las generaciones en Self-Hosted?',
+    'faq-a2': 'Pagas directamente a los motores de IA por los tokens, sin nuestro recargo. Las suscripciones a Veo / Seedance / Kling se registran a nombre de tu empresa. El coste de 1 vídeo es de unos $5.',
+    'faq-q3': 'El manager hace ventas adicionales en DM. ¿Podrá el bot hacerlo?',
+    'faq-a3': 'El sales-bot cierra el 80% de las dudas habituales: talla → disponibilidad → pago → envío. Tú puedes interceptar los chats complejos: el sistema se los transfiere a tu manager con el historial de chat.',
+
+    // Contact Section
+    'c-eyebrow': 'Consulta',
+    'c-h2': '¿Quieres hablar sobre los detalles?',
+    'c-sub': 'Cuéntanos sobre tu marca y tu proceso de contenido actual. Nos pondremos en contacto por Telegram durante el día hábil — detallaremos el paquete, casos y condiciones de instalación. Sin spam — directo al grano.',
+    'c-label-name': 'Nombre o marca de moda',
+    'c-label-contact': 'Telegram / WhatsApp / teléfono',
+    'c-label-segment': '¿Qué paquete te interesa?',
+    'c-opt0': '— seleccionar —',
+    'c-opt1': 'Demo $1 500 (30 vídeos + 210 fotos)',
+    'c-opt2': 'Self-Hosted MVP $5 000 + $200/mes',
+    'c-opt3': 'Self-Hosted Avanzado $10 000 + $200/mes',
+    'c-opt4': 'Quiero hablar de ello, no estoy seguro',
+    'c-agree': 'Acepto la <a href="#privacy-note">política de tratamiento de datos personales</a>',
+    'c-btn': 'Enviar solicitud <span class="arrow">→</span>',
+
+    // Downsell Section
+    'ds-eyebrow': '¿No estás listo para consultar?',
+    'ds-h2': 'Pruébalo con un producto. 3 vídeos por $100.',
+    'ds-sub': 'Sube una foto — en 48 horas recibirás 3 vídeos AI y 21 fotos de estudio en Telegram. Evalúa la calidad cinematográfica. Sin compromisos ni suscripciones automáticas.',
+    'ds-cta': 'Obtener 3 vídeos + 21 fotos por $100 <span class="arrow">→</span>',
+
+    // Footer Section
+    'f-tagline': 'Equipo de IA para marcas de ropa. Estudio, SMM y ventas por DM — en piloto automático. Self-Hosted.',
+    'f-title-nav': 'Navegación',
+    'f-nav-td': 'Demo',
+    'f-nav-pricing': 'Tarifas',
+    'f-nav-contact': 'Contacto',
+    'f-title-contact': 'Contacto',
+    'f-privacy-note': 'Al enviar la solicitud, aceptas que utilizaremos tus datos de contacto únicamente para responder a tu consulta y discutir el paquete seleccionado.',
+
+    // Side panel CTA
+    'side-panel-h3': 'Esto es solo el comienzo',
+    'side-panel-p': 'Hemos publicado el informe PDF completo con cifras exactas, prompts de generación y análisis de errores en nuestro canal de Telegram.',
+    'side-panel-btn': 'Leer versión completa en Telegram <span class="arrow">→</span>',
+    'insight-meta': 'Lectura: 3 min · Industria: Moda'
+  }
+};
+
+// Map translation keys to DOM selectors
+const domMap = {
+  // Hero & Indicator
+  'hero-eyebrow':    () => document.querySelector('.hero .eyebrow'),
+  'hero-h1':         () => document.querySelector('.hero h1.typeon'),
+  'hero-sub':        () => document.querySelector('.hero-sub'),
+  'hero-cta1':       () => document.querySelector('.hero-actions .btn-primary'),
+  'hero-cta2':       () => document.querySelector('.hero-actions .btn-secondary'),
+
+  // Sticky CTA
+  'sticky-text':     () => document.querySelector('.sticky-cta-text'),
+  'sticky-btn':      () => document.querySelector('.sticky-cta .btn'),
+
+  // Math Section
+  'math-eyebrow':    () => document.querySelector('#math .eyebrow'),
+  'math-h2':         () => document.querySelector('#math h2'),
+  'math-t1':         () => document.querySelector('#math .math-box:nth-child(1) h3'),
+  'math-t1-sub':     () => document.querySelector('#math .math-box:nth-child(1) .math-sub'),
+  'math-t1-l1':      () => document.querySelector('#math .math-box:nth-child(1) li:nth-child(1)'),
+  'math-t1-l2':      () => document.querySelector('#math .math-box:nth-child(1) li:nth-child(2)'),
+  'math-t1-l3':      () => document.querySelector('#math .math-box:nth-child(1) li:nth-child(3)'),
+  'math-t1-l4':      () => document.querySelector('#math .math-box:nth-child(1) li:nth-child(4)'),
+  
+  'math-t2':         () => document.querySelector('#math .math-box:nth-child(2) h3'),
+  'math-t2-sub':     () => document.querySelector('#math .math-box:nth-child(2) .math-sub'),
+  'math-t2-l1':      () => document.querySelector('#math .math-box:nth-child(2) li:nth-child(1)'),
+  'math-t2-l2':      () => document.querySelector('#math .math-box:nth-child(2) li:nth-child(2)'),
+  'math-t2-l3':      () => document.querySelector('#math .math-box:nth-child(2) li:nth-child(3)'),
+  'math-t2-l4':      () => document.querySelector('#math .math-box:nth-child(2) li:nth-child(4)'),
+
+  // Pain Section
+  'pain-eyebrow':    () => document.querySelector('#pain .eyebrow'),
+  'pain-h2':         () => document.querySelector('#pain h2'),
+  'pain-sub':        () => document.querySelector('#pain .section-header p'),
+  'pain-c1-t':       () => document.querySelector('#pain .card:nth-child(1) h3'),
+  'pain-c1-d':       () => document.querySelector('#pain .card:nth-child(1) p'),
+  'pain-c2-t':       () => document.querySelector('#pain .card:nth-child(2) h3'),
+  'pain-c2-d':       () => document.querySelector('#pain .card:nth-child(2) p'),
+  'pain-c3-t':       () => document.querySelector('#pain .card:nth-child(3) h3'),
+  'pain-c3-d':       () => document.querySelector('#pain .card:nth-child(3) p'),
+
+  // Pull Quote
+  'pull-quote-p':    () => document.querySelector('.pull-quote p'),
+  'pull-quote-cite': () => document.querySelector('.pull-quote cite'),
+
+  // Solution Section
+  'sol-eyebrow':     () => document.querySelector('#solution .eyebrow'),
+  'sol-h2':          () => document.querySelector('#solution h2'),
+  'sol-sub':         () => document.querySelector('#solution .section-header p'),
+  'sol-c1-t':        () => document.querySelector('#solution .card:nth-child(1) h3'),
+  'sol-c1-d':        () => document.querySelector('#solution .card:nth-child(1) p'),
+  'sol-c2-t':        () => document.querySelector('#solution .card:nth-child(2) h3'),
+  'sol-c2-d':        () => document.querySelector('#solution .card:nth-child(2) p'),
+  'sol-c3-t':        () => document.querySelector('#solution .card:nth-child(3) h3'),
+  'sol-c3-d':        () => document.querySelector('#solution .card:nth-child(3) p'),
+
+  // Examples Section
+  'ex-eyebrow':      () => document.querySelector('#examples .eyebrow'),
+  'ex-h2':           () => document.querySelector('#examples h2'),
+  'ex-sub':          () => document.querySelector('#examples .section-header p'),
+  'ex-c1-tag':       () => document.querySelector('#examples .example-card:nth-child(1) .example-tag'),
+  'ex-c2-tag':       () => document.querySelector('#examples .example-card:nth-child(2) .example-tag'),
+  'ex-c3-tag':       () => document.querySelector('#examples .example-card:nth-child(3) .example-tag'),
+  'ex-c4-tag':       () => document.querySelector('#examples .example-card:nth-child(4) .example-tag'),
+
+  // Pricing Section
+  'price-eyebrow':   () => document.querySelector('#pricing .eyebrow'),
+  'price-h2':        () => document.querySelector('#pricing h2'),
+  'price-c1-badge':  () => document.querySelector('#pricing .price-card.featured .price-badge'),
+  'price-c1-third':  () => document.querySelector('#pricing .price-card.featured .lower-third'),
+  'price-c1-period': () => document.querySelector('#pricing .price-card.featured .price-period'),
+  'price-c1-l1':     () => document.querySelector('#pricing .price-card.featured li:nth-child(1)'),
+  'price-c1-l2':     () => document.querySelector('#pricing .price-card.featured li:nth-child(2)'),
+  'price-c1-l3':     () => document.querySelector('#pricing .price-card.featured li:nth-child(3)'),
+  'price-c1-l4':     () => document.querySelector('#pricing .price-card.featured li:nth-child(4)'),
+  'price-c1-l5':     () => document.querySelector('#pricing .price-card.featured li:nth-child(5)'),
+  'price-c1-cta':    () => document.querySelector('#pricing .price-card.featured .btn'),
+  
+  'price-c2-third':  () => document.querySelector('#pricing .price-card:not(.featured) .lower-third'),
+  'price-c2-t':      () => document.querySelector('#pricing .price-card:not(.featured) h3'),
+  'price-c2-period': () => document.querySelector('#pricing .price-card:not(.featured) .price-period'),
+  'price-c2-l1':     () => document.querySelector('#pricing .price-card:not(.featured) li:nth-child(1)'),
+  'price-c2-l2':     () => document.querySelector('#pricing .price-card:not(.featured) li:nth-child(2)'),
+  'price-c2-l3':     () => document.querySelector('#pricing .price-card:not(.featured) li:nth-child(3)'),
+  'price-c2-l4':     () => document.querySelector('#pricing .price-card:not(.featured) li:nth-child(4)'),
+  'price-c2-cta':    () => document.querySelector('#pricing .price-card:not(.featured) .btn'),
+  'price-footnote':  () => document.querySelector('#pricing .footnote-block p'),
+
+  // Testdrive Section
+  'td-eyebrow':      () => document.querySelector('#testdrive .eyebrow'),
+  'td-h2':           () => document.querySelector('#testdrive h2'),
+  'td-sub':          () => document.querySelector('#testdrive .section-header p'),
+  'td-period':       () => document.querySelector('#testdrive .testdrive-period'),
+  'td-cta':          () => document.querySelector('#testdrive .testdrive-left .btn'),
+  'td-l1':           () => document.querySelector('#testdrive .testdrive-list li:nth-child(1) span:not(.check)'),
+  'td-l2':           () => document.querySelector('#testdrive .testdrive-list li:nth-child(2) span:not(.check)'),
+  'td-l3':           () => document.querySelector('#testdrive .testdrive-list li:nth-child(3) span:not(.check)'),
+  'td-l4':           () => document.querySelector('#testdrive .testdrive-list li:nth-child(4) span:not(.check)'),
+  
+  // Director's Note
+  'dir-note-p':      () => document.querySelector('.director-note p'),
+
+  // FAQ Section
+  'faq-eyebrow':     () => document.querySelector('#faq .eyebrow'),
+  'faq-h2':          () => document.querySelector('#faq h2'),
+  'faq-q1':          () => document.querySelector('#faq .faq-item:nth-child(1) .faq-q'),
+  'faq-a1':          () => document.querySelector('#faq .faq-item:nth-child(1) .faq-content'),
+  'faq-q2':          () => document.querySelector('#faq .faq-item:nth-child(2) .faq-q'),
+  'faq-a2':          () => document.querySelector('#faq .faq-item:nth-child(2) .faq-content'),
+  'faq-q3':          () => document.querySelector('#faq .faq-item:nth-child(3) .faq-q'),
+  'faq-a3':          () => document.querySelector('#faq .faq-item:nth-child(3) .faq-content'),
+
+  // Contact Section
+  'c-eyebrow':       () => document.querySelector('#contact .contact-left .eyebrow'),
+  'c-h2':            () => document.querySelector('#contact h2'),
+  'c-sub':           () => document.querySelector('#contact .contact-left p'),
+  'c-label-name':    () => document.querySelector('#contact label[for="name"]'),
+  'c-label-contact': () => document.querySelector('#contact label[for="contact-input"]'),
+  'c-label-segment': () => document.querySelector('#contact label[for="segment"]'),
+  'c-opt0':          () => document.querySelector('#contact select option[value=""]'),
+  'c-opt1':          () => document.querySelector('#contact select option[value="testdrive"]'),
+  'c-opt2':          () => document.querySelector('#contact select option[value="mvp"]'),
+  'c-opt3':          () => document.querySelector('#contact select option[value="advanced"]'),
+  'c-opt4':          () => document.querySelector('#contact select option[value="other"]'),
+  'c-agree':         () => document.querySelector('#contact .form-agree span'),
+  'c-btn':           () => document.querySelector('#contact button[type="submit"]'),
+
+  // Downsell Section
+  'ds-eyebrow':      () => document.querySelector('#downsell .eyebrow'),
+  'ds-h2':           () => document.querySelector('#downsell h2'),
+  'ds-sub':          () => document.querySelector('#downsell p'),
+  'ds-cta':          () => document.getElementById('downsell-cta'),
+
+  // Footer Section
+  'f-tagline':       () => document.querySelector('footer .footer-grid div p'),
+  'f-title-nav':     () => document.querySelector('footer .footer-nav:nth-child(2) .footer-nav-title'),
+  'f-nav-td':        () => document.querySelector('footer .footer-nav:nth-child(2) a[href="#testdrive"]'),
+  'f-nav-pricing':   () => document.querySelector('footer .footer-nav:nth-child(2) a[href="#pricing"]'),
+  'f-nav-contact':   () => document.querySelector('footer .footer-nav:nth-child(2) a[href="#contact"]'),
+  'f-title-contact': () => document.querySelector('footer .footer-nav:nth-child(3) .footer-nav-title'),
+  'f-privacy-note':  () => document.getElementById('privacy-note'),
+
+  // Side panel CTA
+  'side-panel-h3':   () => document.querySelector('.insight-cta-box h3'),
+  'side-panel-p':    () => document.querySelector('.insight-cta-box p'),
+  'side-panel-btn':  () => document.querySelector('.insight-cta-box a'),
+  'insight-meta':    () => document.querySelector('.insight-meta')
+};
+
+// Ticker items per language
+const tickerTranslations = {
+  ru: [
+    { text: "Insights: Как бренды усиливают продакшен в 10× с AI", id: "ai-production-100k", href: "/insights/ai-production-100k.html" },
+    { text: "Case Study: SMM-агент вместо агентства: 90 дней в цифрах", id: "smm-replacement", href: "/insights/smm-replacement.html" },
+    { text: "Тренд 2026: AI-модели вместо фотосессий", id: "ai-models", href: "/insights/ai-models.html" },
+    { text: "Как снизить стоимость ролика с $300 до $5", id: "cost-reduction", href: "/insights/cost-reduction.html" }
+  ],
+  es: [
+    { text: "Insights: Cómo las marcas multiplican producción ×10 con AI", id: "ai-production-100k", href: "/insights/ai-production-100k.html" },
+    { text: "Case Study: Agente SMM vs agencia: 90 días en números", id: "smm-replacement", href: "/insights/smm-replacement.html" },
+    { text: "Tendencia 2026: Modelos AI en lugar de sesiones de fotos", id: "ai-models", href: "/insights/ai-models.html" },
+    { text: "Cómo bajar el coste de un vídeo de $300 a $5", id: "cost-reduction", href: "/insights/cost-reduction.html" }
+  ]
+};let currentLang = localStorage.getItem('modai-lang') || 'ru';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('modai-lang', lang);
+
+  const t = translations[lang];
+
+  // Update all mapped elements
+  Object.entries(domMap).forEach(([key, getEl]) => {
+    const el = getEl();
+    if (el && t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Update data-ru/data-es elements
+  document.querySelectorAll('[data-ru][data-es]').forEach(el => {
+    el.textContent = el.getAttribute('data-' + lang);
+  });
+
+  // Update ticker
+  Object.assign(tickerItems, tickerTranslations[lang]);
+  currentTickerIndex = 0;
+  if (tickerEl) tickerEl.textContent = tickerItems[0].text;
+  if (tickerLink) tickerLink.setAttribute('data-insight', tickerItems[0].id);
+
+  // Update active button
+  document.getElementById('btn-ru').classList.toggle('active', lang === 'ru');
+  document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+
+  // Update html lang attr
+  document.documentElement.lang = lang === 'es' ? 'es' : 'ru';
+}
+
+// Apply saved language on load
+if (currentLang === 'es') setLang('es');
+
+// === OPTIMIZED LAZY BACKGROUND VIDEO FOR DESKTOP ===
+document.addEventListener('DOMContentLoaded', () => {
+  const bgVideo = document.querySelector('.hero-bg-video');
+  if (bgVideo && window.innerWidth > 768) {
+    const source = bgVideo.querySelector('source');
+    if (source && source.dataset.src) {
+      source.src = source.dataset.src;
+      bgVideo.preload = "auto";
+      bgVideo.load();
+      bgVideo.addEventListener('loadeddata', () => {
+        bgVideo.setAttribute('data-loaded', 'true');
+      });
+    }
+  }
+});
 </script>
 
+
+<style>
+/* === INSIGHT SIDE PANEL === */
+.insight-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 900;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.insight-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 600px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+  overflow-y: auto;
+  box-shadow: -24px 0 64px rgba(0, 0, 0, 0.5);
+}
+
+body.panel-open {
+  overflow: hidden;
+}
+body.panel-open .insight-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+body.panel-open .insight-panel {
+  transform: translateX(0);
+}
+
+.insight-close {
+  position: sticky;
+  top: 24px;
+  float: right;
+  margin-right: 24px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+.insight-close:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+  transform: rotate(90deg);
+}
+
+.insight-content {
+  padding: 80px 48px 60px;
+}
+@media(max-width: 640px) {
+  .insight-content { padding: 60px 24px 40px; }
+}
+
+.insight-meta {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.insight-content h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  line-height: 1.1;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+
+.insight-body {
+  color: var(--text-muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.insight-body p { margin-bottom: 24px; }
+.insight-body strong { color: var(--text); font-weight: 500; }
+.insight-body ul { margin-bottom: 24px; padding-left: 20px; }
+.insight-body li { margin-bottom: 8px; }
+
+.insight-cta-box {
+  margin-top: 48px;
+  padding: 40px;
+  background: linear-gradient(180deg, var(--surface-2) 0%, rgba(201,163,95,0.04) 100%);
+  border: 1px solid var(--gold-soft);
+  border-radius: 12px;
+  text-align: center;
+}
+.insight-cta-box h3 { margin-bottom: 12px; font-size: 20px; color: var(--gold); }
+.insight-cta-box p { font-size: 14px; margin-bottom: 24px; color: var(--text-muted); }
+</style>
+
+<!-- OVERLAY -->
+<div class="insight-overlay" id="insight-overlay"></div>
+
+<!-- SIDE PANEL -->
+<aside class="insight-panel" id="insight-panel" aria-hidden="true">
+  <button class="insight-close" id="insight-close" aria-label="Закрыть">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M18 6L6 18M6 6l12 12"/>
+    </svg>
+  </button>
+  
+  <div class="insight-content" id="insight-content-container">
+    <div class="insight-meta">Время чтения: 3 мин · Индустрия: Fashion</div>
+    <h1 id="insight-title">Загрузка...</h1>
+    <div class="insight-body" id="insight-body"></div>
+    
+    <div class="insight-cta-box">
+      <h3>Это только начало</h3>
+      <p>Полный PDF-отчет с точными цифрами, промптами для генерации и разбором ошибок мы выложили в нашем Telegram-канале.</p>
+      <a href="https://t.me/modaiteambot" target="_blank" class="btn btn-primary" style="width:100%;">Читать полную версию в Telegram <span class="arrow">→</span></a>
+    </div>
+  </div>
+</aside>
+
 </body>
+
 </html>
